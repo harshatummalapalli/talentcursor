@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TalentCursor — Fewer candidates. Better hiring signal.</title>
+  <title>TalentCursor — Guided by Precision. Driven by Speed.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -23,7 +23,7 @@
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth;font-size:16px}
-    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    body{font-family:'Inter',sans-serif;background:var(--bg-warm);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
     img{display:block;max-width:100%}
     a{text-decoration:none;color:inherit}
     h1,h2,h3{font-family:'Fraunces',serif;line-height:1.15;font-weight:600}
@@ -48,20 +48,20 @@
 
     /* Navbar */
     .navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;transition:background .3s,box-shadow .3s,backdrop-filter .3s}
-    .navbar.scrolled{background:rgba(250,247,243,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);box-shadow:var(--shadow-md)}
+    .navbar.scrolled{background:rgba(243,237,228,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);box-shadow:var(--shadow-md)}
     .navbar-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
     .logo{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:2px;transition:color .3s}
-    .logo em{color:var(--terra);font-style:normal}
-    .logo-dot{width:7px;height:7px;background:var(--terra);border-radius:50%;margin-left:3px;display:inline-block}
+    .logo em{color:var(--amber);font-style:normal}
+    .logo-dot{width:7px;height:7px;background:var(--amber);border-radius:50%;margin-left:3px;display:inline-block}
     .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
     .nav-links a{font-size:.9rem;font-weight:500;color:var(--text-mid);transition:color .2s}
     .nav-links a:hover{color:var(--terra)}
 
     /* Hero */
-    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;background:var(--bg)}
+    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;background:var(--bg-warm)}
     .hero-bg{display:none}
     .hero-overlay{display:none}
-    .hero-content{max-width:760px;position:relative;z-index:2;padding-top:130px;padding-bottom:60px}
+    .hero-content{max-width:760px;position:relative;z-index:2;padding-top:90px;padding-bottom:80px}
     .hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:24px;animation:fadeUp .6s ease both}
     .hero-eyebrow-line{width:36px;height:2px;background:linear-gradient(90deg,var(--terra),var(--amber));border-radius:2px}
     .hero-eyebrow-text{font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terra)}
@@ -106,7 +106,7 @@
     .section-header.centered .divider{margin:18px auto 28px}
 
     /* Our Story */
-    .about{background:var(--bg)}
+    .about{background:var(--bg-warm)}
     .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
     .about-left p{margin-bottom:18px;line-height:1.85;font-size:.97rem}
     .about-accent{font-weight:600;color:var(--terra);font-style:italic}
@@ -156,8 +156,8 @@
     .solutions-note a{color:var(--terra);font-weight:600;border-bottom:1px solid rgba(192,81,46,.3);transition:border-color .2s}
     .solutions-note a:hover{border-color:var(--terra)}
 
-    /* Method */
-    .process{background:var(--bg)}
+    /* Method — horizontal timeline */
+    .process{background:var(--bg-warm)}
     .method-outer{position:relative;padding-top:20px}
     .method-line-track{position:absolute;top:49px;left:calc(12.5% - 12px);right:calc(12.5% - 12px);height:2px;background:rgba(192,81,46,.15);border-radius:2px;overflow:hidden;z-index:0}
     .method-line-fill{height:100%;width:0;background:linear-gradient(90deg,var(--terra),var(--amber));border-radius:2px;transition:width 1.4s cubic-bezier(.22,1,.36,1)}
@@ -204,7 +204,7 @@
     .audience-card p{font-size:.88rem;line-height:1.65}
 
     /* Contact */
-    .contact{background:var(--bg)}
+    .contact{background:var(--bg-warm)}
     .contact-wrapper{display:grid;grid-template-columns:1fr 1.3fr;gap:72px;align-items:start}
     .contact-left p{font-size:1rem;line-height:1.82;margin-bottom:30px}
     .contact-trust{display:flex;flex-direction:column;gap:12px}
@@ -225,8 +225,8 @@
     footer{background:var(--bg-dark);color:rgba(255,255,255,.65);padding:70px 0 32px}
     .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08)}
     .footer-logo{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:2px}
-    .footer-logo em{color:var(--amber-light);font-style:normal}
-    .footer-logo .logo-dot{background:var(--amber-light)}
+    .footer-logo em{color:var(--amber);font-style:normal}
+    .footer-logo .logo-dot{background:var(--amber)}
     .footer-brand p{font-size:.87rem;line-height:1.7;color:rgba(255,255,255,.45);margin-bottom:22px;max-width:320px}
     .footer-social{display:flex;gap:12px}
     .footer-social a{width:36px;height:36px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.82rem;color:rgba(255,255,255,.55);transition:all .2s}
@@ -246,6 +246,7 @@
       .about-grid,.contact-wrapper{grid-template-columns:1fr;gap:48px}
       .solutions-grid{grid-template-columns:1fr}
       .pricing-grid{grid-template-columns:1fr 1fr}
+      .audience-grid{grid-template-columns:1fr 1fr}
       .nav-links,.navbar .btn{display:none}
       .footer-top{grid-template-columns:1fr;gap:36px}
       .stats-grid{grid-template-columns:1fr 1fr}
@@ -294,7 +295,7 @@
         <span class="hero-eyebrow-text">Structured Recruiting for Modern Teams</span>
       </div>
       <h1>Fewer candidates.<br><em>Better hiring signal.</em></h1>
-      <p class="hero-sub">We combine AI-assisted sourcing with structured human evaluation to find the candidates most teams miss.<br><br>Candidates worth meeting, in 15 days — not bloated pipelines.</p>
+      <p class="hero-sub">We combine AI-assisted sourcing with structured human evaluation to find the candidates most teams miss.<span style="display:block;margin-top:14px">Candidates worth meeting, in 15 days — not bloated pipelines.</span></p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Start Your Search →</a>
         <a href="#process" class="btn btn-outline">See How It Works</a>
@@ -439,6 +440,7 @@
       <p>Choose the model that fits your stage and hiring pace.</p>
     </div>
     <div class="solutions-grid">
+
       <div class="solution-card" data-aos="fade-up" data-aos-delay="0">
         <div class="solution-icon"><i class="ph ph-rocket-launch"></i></div>
         <div class="solution-card-tag">Sprint Hire</div>
@@ -452,6 +454,7 @@
         </ul>
         <p class="solution-footer">Perfect for startup founders and growing teams needing rapid, quality hires.</p>
       </div>
+
       <div class="solution-card featured" data-aos="fade-up" data-aos-delay="100">
         <div class="solution-badge">Popular</div>
         <div class="solution-icon"><i class="ph ph-users-three"></i></div>
@@ -466,6 +469,7 @@
         </ul>
         <p class="solution-footer">Ideal for remote-first teams and tech companies with consistent hiring needs.</p>
       </div>
+
       <div class="solution-card" data-aos="fade-up" data-aos-delay="200">
         <div class="solution-icon"><i class="ph ph-crown-simple"></i></div>
         <div class="solution-card-tag">Leadership Search</div>
@@ -479,6 +483,7 @@
         </ul>
         <p class="solution-footer">For product companies and scale-ups building their leadership bench.</p>
       </div>
+
       <div class="solution-card" data-aos="fade-up" data-aos-delay="300">
         <div class="solution-icon"><i class="ph ph-chart-line-up"></i></div>
         <div class="solution-card-tag">TA Advisory</div>
@@ -492,6 +497,7 @@
         </ul>
         <p class="solution-footer">Perfect for internal TA teams looking to scale and optimise operations.</p>
       </div>
+
     </div>
     <p class="solutions-note">All plans include weekly reporting, 90-day quality guarantee, and dedicated support. <a href="#contact">Need a custom solution? Let's talk.</a></p>
   </div>
@@ -509,39 +515,43 @@
     <div class="method-outer" id="method-outer">
       <div class="method-line-track"><div class="method-line-fill" id="method-fill"></div></div>
       <div class="method-steps">
+
         <div class="method-step">
           <div class="method-node" data-node="0">1</div>
           <div class="method-step-body-wrap">
             <div class="method-step-title">We learn what actually matters</div>
-            <p class="method-step-body">We map your tech stack, culture, growth trajectory, and ideal candidate DNA. Not just requirements — strategy.</p>
+            <p class="method-step-body">We map your tech stack, culture, growth trajectory, and ideal candidate DNA. Not just requirements — strategy. Understanding the why behind every role is what separates a great hire from an average one.</p>
           </div>
         </div>
+
         <div class="method-step">
           <div class="method-node" data-node="1">2</div>
           <div class="method-step-body-wrap">
             <div class="method-step-title">We find people worth meeting</div>
-            <p class="method-step-body">Multi-channel outreach combining LinkedIn, GitHub, communities, and our proprietary network. Every pipeline is curated, not spray-and-prayed.</p>
+            <p class="method-step-body">Multi-channel outreach combining LinkedIn, GitHub, communities, and our proprietary network. Every message is personalised; every pipeline is curated, not spray-and-prayed.</p>
           </div>
         </div>
+
         <div class="method-step">
           <div class="method-node" data-node="2">3</div>
           <div class="method-step-body-wrap">
             <div class="method-step-title">We filter so you don't have to</div>
-            <p class="method-step-body">Technical screens, behavioural assessments, and culture-fit evaluations. Only the top 3–5% reach your desk.</p>
+            <p class="method-step-body">Technical screens, behavioural assessments, and culture-fit evaluations. Only the top 3–5% reach your desk. You interview people who are ready to join, not just available to talk.</p>
           </div>
         </div>
+
         <div class="method-step">
           <div class="method-node" data-node="3">4</div>
           <div class="method-step-body-wrap">
             <div class="method-step-title">We stay until the hire is real</div>
-            <p class="method-step-body">From first interview to signed offer, we guide negotiations and ensure smooth onboarding through day one and beyond.</p>
+            <p class="method-step-body">From first interview to signed offer, we guide negotiations and ensure smooth onboarding. We stay involved until your new hire's first day — and beyond.</p>
           </div>
         </div>
+
       </div>
     </div>
   </div>
 </section>
-
 <!-- ─── Pricing ─── -->
 <section class="pricing" id="pricing">
   <div class="container">
@@ -555,6 +565,7 @@
       <strong>Indian startups want results before they pay. So do we.</strong> Our Sprint Hire model charges a flat 10% only when we successfully place a candidate — zero upfront, zero retainer, zero risk.
     </div>
     <div class="pricing-grid">
+
       <div class="pricing-card" data-aos="fade-up" data-aos-delay="0">
         <div class="pricing-name">Sprint Hire</div>
         <div class="pricing-price">10%</div>
@@ -564,8 +575,9 @@
           <li>Pay on success</li>
           <li>90-day guarantee</li>
         </ul>
-        <div class="pricing-best"><strong>Best for:</strong> Startup founders with urgent, single-role needs.</div>
+        <div class="pricing-best"><strong>Best for:</strong> Startup founders with urgent, single-role needs. Pay only on success.</div>
       </div>
+
       <div class="pricing-card featured" data-aos="fade-up" data-aos-delay="100">
         <div class="pricing-popular">Most Popular</div>
         <div class="pricing-name">Embedded Recruiter</div>
@@ -578,6 +590,7 @@
         </ul>
         <div class="pricing-best"><strong>Best for:</strong> Growth-stage teams with consistent hiring across multiple roles.</div>
       </div>
+
       <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
         <div class="pricing-name">Leadership Search</div>
         <div class="pricing-price">15%</div>
@@ -587,8 +600,9 @@
           <li>Market mapping</li>
           <li>Discreet outreach</li>
         </ul>
-        <div class="pricing-best"><strong>Best for:</strong> Product companies building their leadership bench.</div>
+        <div class="pricing-best"><strong>Best for:</strong> Product companies and scale-ups building their leadership bench.</div>
       </div>
+
       <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
         <div class="pricing-name">TA Advisory</div>
         <div class="pricing-price">₹60K+</div>
@@ -600,6 +614,7 @@
         </ul>
         <div class="pricing-best"><strong>Best for:</strong> Internal TA teams scaling or optimising their hiring function.</div>
       </div>
+
     </div>
     <p class="pricing-footer">All plans include weekly reporting, 90-day quality guarantee, and dedicated support. <a href="#contact">Need a custom plan? Let's talk.</a></p>
   </div>
@@ -657,19 +672,19 @@
       </div>
       <div class="contact-form" data-aos="fade-up" data-aos-delay="100">
         <form>
-          <div class="form-group">
+          <div class="form-group" data-aos="fade-up" data-aos-delay="80">
             <label for="name">Full Name *</label>
             <input type="text" id="name" placeholder="Jane Smith" required />
           </div>
-          <div class="form-group">
+          <div class="form-group" data-aos="fade-up" data-aos-delay="160">
             <label for="email">Work Email *</label>
             <input type="email" id="email" placeholder="jane@company.com" required />
           </div>
-          <div class="form-group">
+          <div class="form-group" data-aos="fade-up" data-aos-delay="240">
             <label for="needs">What are you hiring for?</label>
-            <textarea id="needs" placeholder="e.g., Senior product manager and two backend engineers in Q1…"></textarea>
+            <textarea id="needs" placeholder="e.g., We're looking for a senior product manager and two backend engineers in Q1…"></textarea>
           </div>
-          <div class="form-submit">
+          <div class="form-submit" data-aos="fade-up" data-aos-delay="320">
             <button type="submit" class="btn btn-primary">Book Free Strategy Call →</button>
           </div>
           <p class="form-guarantee"><span>✓</span> No commitment &nbsp;•&nbsp; <span>✓</span> 30 minutes &nbsp;•&nbsp; <span>✓</span> Actionable insights</p>
@@ -721,15 +736,22 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
+  // AOS
   AOS.init({ duration:650, easing:'ease-out-cubic', once:true, offset:60 });
+
+  // Navbar
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+
+  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', function(e) {
       const t = document.querySelector(this.getAttribute('href'));
       if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 76, behavior:'smooth' }); }
     });
   });
+
+  // Count-up
   const countEls = document.querySelectorAll('.stat-num[data-count]');
   const cObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -747,6 +769,8 @@
     });
   }, { threshold: 0.5 });
   countEls.forEach(el => cObs.observe(el));
+
+  // Method timeline
   const methodOuter = document.getElementById('method-outer');
   const methodFill = document.getElementById('method-fill');
   const nodes = document.querySelectorAll('.method-node');
@@ -760,6 +784,8 @@
       });
     }, { threshold: 0.25 }).observe(methodOuter);
   }
+
+  // HAI divider
   const haiCols = document.getElementById('hai-cols');
   const haiDiv = document.getElementById('hai-divider');
   if (haiCols && haiDiv) {
@@ -767,6 +793,8 @@
       entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => haiDiv.classList.add('vis'), 420); } });
     }, { threshold: 0.3 }).observe(haiCols);
   }
+
+  // Form
   const form = document.querySelector('form');
   if (form) {
     form.addEventListener('submit', function(e) {
@@ -779,4 +807,4 @@
   }
 </script>
 </body>
-</html>
+  </html>
