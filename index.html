@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TalentCursor — Guided by Precision. Driven by Speed.</title>
+  <title>TalentCursor — Fewer candidates. Better hiring signal.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -43,34 +43,33 @@
     .btn-primary:hover{background:var(--terra-light);box-shadow:0 6px 24px rgba(192,81,46,.38);transform:translateY(-1px)}
     .btn-outline-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
     .btn-outline-white:hover{background:rgba(255,255,255,.12);transform:translateY(-1px)}
+    .btn-outline{background:transparent;color:var(--terra);border:1.5px solid rgba(192,81,46,.35)}
+    .btn-outline:hover{background:rgba(192,81,46,.07);transform:translateY(-1px)}
 
     /* Navbar */
     .navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;transition:background .3s,box-shadow .3s,backdrop-filter .3s}
     .navbar.scrolled{background:rgba(250,247,243,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);box-shadow:var(--shadow-md)}
     .navbar-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-    .logo{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:2px;transition:color .3s}
-    .navbar.scrolled .logo{color:var(--text)}
-    .logo em{color:var(--amber-light);font-style:normal}
-    .navbar.scrolled .logo em{color:var(--terra)}
-    .logo-dot{width:7px;height:7px;background:var(--amber);border-radius:50%;margin-left:3px;display:inline-block}
+    .logo{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:2px;transition:color .3s}
+    .logo em{color:var(--terra);font-style:normal}
+    .logo-dot{width:7px;height:7px;background:var(--terra);border-radius:50%;margin-left:3px;display:inline-block}
     .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
-    .nav-links a{font-size:.9rem;font-weight:500;color:rgba(255,255,255,.8);transition:color .2s}
-    .navbar.scrolled .nav-links a{color:var(--text-mid)}
-    .nav-links a:hover,.navbar.scrolled .nav-links a:hover{color:var(--terra)}
+    .nav-links a{font-size:.9rem;font-weight:500;color:var(--text-mid);transition:color .2s}
+    .nav-links a:hover{color:var(--terra)}
 
     /* Hero */
-    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;background:var(--bg-dark)}
+    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;background:var(--bg)}
     .hero-bg{display:none}
     .hero-overlay{display:none}
     .hero-content{max-width:760px;position:relative;z-index:2;padding-top:130px;padding-bottom:60px}
     .hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:24px;animation:fadeUp .6s ease both}
     .hero-eyebrow-line{width:36px;height:2px;background:linear-gradient(90deg,var(--terra),var(--amber));border-radius:2px}
-    .hero-eyebrow-text{font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-light)}
-    .hero h1{color:#fff;margin-bottom:22px;animation:fadeUp .6s .15s ease both}
-    .hero h1 em{font-style:italic;color:var(--amber-light);font-weight:300}
-    .hero-sub{font-size:1.08rem;line-height:1.75;max-width:560px;margin-bottom:38px;color:rgba(255,255,255,.72);animation:fadeUp .6s .3s ease both}
+    .hero-eyebrow-text{font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terra)}
+    .hero h1{color:var(--text);margin-bottom:22px;animation:fadeUp .6s .15s ease both}
+    .hero h1 em{font-style:italic;color:var(--amber);font-weight:300}
+    .hero-sub{font-size:1.08rem;line-height:1.75;max-width:580px;margin-bottom:38px;color:var(--text-mid);animation:fadeUp .6s .3s ease both}
     .hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;animation:fadeUp .5s .45s ease both}
-    .hero-note{font-size:.82rem;color:rgba(255,255,255,.4);animation:fadeIn .4s .6s ease both;margin-top:20px}
+    .hero-note{font-size:.82rem;color:var(--text-muted);animation:fadeIn .4s .6s ease both;margin-top:20px}
     @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
@@ -157,7 +156,7 @@
     .solutions-note a{color:var(--terra);font-weight:600;border-bottom:1px solid rgba(192,81,46,.3);transition:border-color .2s}
     .solutions-note a:hover{border-color:var(--terra)}
 
-    /* Method — horizontal timeline */
+    /* Method */
     .process{background:var(--bg)}
     .method-outer{position:relative;padding-top:20px}
     .method-line-track{position:absolute;top:49px;left:calc(12.5% - 12px);right:calc(12.5% - 12px);height:2px;background:rgba(192,81,46,.15);border-radius:2px;overflow:hidden;z-index:0}
@@ -225,8 +224,9 @@
     /* Footer */
     footer{background:var(--bg-dark);color:rgba(255,255,255,.65);padding:70px 0 32px}
     .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08)}
-    .footer-logo{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:14px}
-    .footer-logo span{color:var(--amber-light)}
+    .footer-logo{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:2px}
+    .footer-logo em{color:var(--amber-light);font-style:normal}
+    .footer-logo .logo-dot{background:var(--amber-light)}
     .footer-brand p{font-size:.87rem;line-height:1.7;color:rgba(255,255,255,.45);margin-bottom:22px;max-width:320px}
     .footer-social{display:flex;gap:12px}
     .footer-social a{width:36px;height:36px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.82rem;color:rgba(255,255,255,.55);transition:all .2s}
@@ -293,11 +293,11 @@
         <div class="hero-eyebrow-line"></div>
         <span class="hero-eyebrow-text">Structured Recruiting for Modern Teams</span>
       </div>
-      <h1>Your Talent Engine<br>for <em>Hypergrowth</em></h1>
-      <p class="hero-sub">Guided by Precision. Driven by Speed.<br>We deliver vetted, culture-matched talent in 15 days — so you can stay focused on what matters: building.</p>
+      <h1>Fewer candidates.<br><em>Better hiring signal.</em></h1>
+      <p class="hero-sub">We combine AI-assisted sourcing with structured human evaluation to find the candidates most teams miss.<br><br>Candidates worth meeting, in 15 days — not bloated pipelines.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Start Your Search →</a>
-        <a href="#process" class="btn btn-outline-white">See How It Works</a>
+        <a href="#process" class="btn btn-outline">See How It Works</a>
       </div>
       <p class="hero-note">No retainers. No lock-ins. Just results.</p>
     </div>
@@ -513,28 +513,28 @@
           <div class="method-node" data-node="0">1</div>
           <div class="method-step-body-wrap">
             <div class="method-step-title">We learn what actually matters</div>
-            <p class="method-step-body">We map your tech stack, culture, growth trajectory, and ideal candidate DNA. Not just requirements — strategy. Understanding the why behind every role is what separates a great hire from an average one.</p>
+            <p class="method-step-body">We map your tech stack, culture, growth trajectory, and ideal candidate DNA. Not just requirements — strategy.</p>
           </div>
         </div>
         <div class="method-step">
           <div class="method-node" data-node="1">2</div>
           <div class="method-step-body-wrap">
             <div class="method-step-title">We find people worth meeting</div>
-            <p class="method-step-body">Multi-channel outreach combining LinkedIn, GitHub, communities, and our proprietary network. Every message is personalised; every pipeline is curated, not spray-and-prayed.</p>
+            <p class="method-step-body">Multi-channel outreach combining LinkedIn, GitHub, communities, and our proprietary network. Every pipeline is curated, not spray-and-prayed.</p>
           </div>
         </div>
         <div class="method-step">
           <div class="method-node" data-node="2">3</div>
           <div class="method-step-body-wrap">
             <div class="method-step-title">We filter so you don't have to</div>
-            <p class="method-step-body">Technical screens, behavioural assessments, and culture-fit evaluations. Only the top 3–5% reach your desk. You interview people who are ready to join, not just available to talk.</p>
+            <p class="method-step-body">Technical screens, behavioural assessments, and culture-fit evaluations. Only the top 3–5% reach your desk.</p>
           </div>
         </div>
         <div class="method-step">
           <div class="method-node" data-node="3">4</div>
           <div class="method-step-body-wrap">
             <div class="method-step-title">We stay until the hire is real</div>
-            <p class="method-step-body">From first interview to signed offer, we guide negotiations and ensure smooth onboarding. We stay involved until your new hire's first day — and beyond.</p>
+            <p class="method-step-body">From first interview to signed offer, we guide negotiations and ensure smooth onboarding through day one and beyond.</p>
           </div>
         </div>
       </div>
@@ -564,7 +564,7 @@
           <li>Pay on success</li>
           <li>90-day guarantee</li>
         </ul>
-        <div class="pricing-best"><strong>Best for:</strong> Startup founders with urgent, single-role needs. Pay only on success.</div>
+        <div class="pricing-best"><strong>Best for:</strong> Startup founders with urgent, single-role needs.</div>
       </div>
       <div class="pricing-card featured" data-aos="fade-up" data-aos-delay="100">
         <div class="pricing-popular">Most Popular</div>
@@ -587,7 +587,7 @@
           <li>Market mapping</li>
           <li>Discreet outreach</li>
         </ul>
-        <div class="pricing-best"><strong>Best for:</strong> Product companies and scale-ups building their leadership bench.</div>
+        <div class="pricing-best"><strong>Best for:</strong> Product companies building their leadership bench.</div>
       </div>
       <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
         <div class="pricing-name">TA Advisory</div>
@@ -657,19 +657,19 @@
       </div>
       <div class="contact-form" data-aos="fade-up" data-aos-delay="100">
         <form>
-          <div class="form-group" data-aos="fade-up" data-aos-delay="80">
+          <div class="form-group">
             <label for="name">Full Name *</label>
             <input type="text" id="name" placeholder="Jane Smith" required />
           </div>
-          <div class="form-group" data-aos="fade-up" data-aos-delay="160">
+          <div class="form-group">
             <label for="email">Work Email *</label>
             <input type="email" id="email" placeholder="jane@company.com" required />
           </div>
-          <div class="form-group" data-aos="fade-up" data-aos-delay="240">
+          <div class="form-group">
             <label for="needs">What are you hiring for?</label>
-            <textarea id="needs" placeholder="e.g., We're looking for a senior product manager and two backend engineers in Q1…"></textarea>
+            <textarea id="needs" placeholder="e.g., Senior product manager and two backend engineers in Q1…"></textarea>
           </div>
-          <div class="form-submit" data-aos="fade-up" data-aos-delay="320">
+          <div class="form-submit">
             <button type="submit" class="btn btn-primary">Book Free Strategy Call →</button>
           </div>
           <p class="form-guarantee"><span>✓</span> No commitment &nbsp;•&nbsp; <span>✓</span> 30 minutes &nbsp;•&nbsp; <span>✓</span> Actionable insights</p>
@@ -684,11 +684,10 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="footer-logo">Talent<span>Cursor</span></div>
-        <p>Guided by Precision. Driven by Speed. Structured recruiting for modern teams — delivering interview-ready candidates in 15 days.</p>
+        <div class="footer-logo">Talent<em>Cursor</em><span class="logo-dot"></span></div>
+        <p>AI-assisted sourcing with structured human evaluation. Fewer candidates — every one worth your time, in 15 days.</p>
         <div class="footer-social">
           <a href="#" title="LinkedIn">in</a>
-          <a href="#" title="X / Twitter">𝕏</a>
         </div>
       </div>
       <div class="footer-col">
@@ -780,4 +779,4 @@
   }
 </script>
 </body>
-                </html>
+</html>
