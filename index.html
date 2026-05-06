@@ -7,621 +7,442 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
   <style>
-    /* ─── Design tokens ─── */
-    :root {
-      --bg:          #FAF7F3;
-      --bg-warm:     #F3EDE4;
-      --bg-card:     #FFFFFF;
-      --bg-dark:     #1E1610;
-      --text:        #1C1410;
-      --text-mid:    #5A4A3F;
-      --text-muted:  #9A857A;
-      --terra:       #C0512E;
-      --terra-light: #E07A57;
-      --amber:       #D4943A;
-      --amber-light: #F0C070;
-      --linen:       #EDE5D8;
-      --border:      #E2D8CE;
-      --shadow-sm:   0 2px 8px rgba(60,30,10,0.07);
-      --shadow-md:   0 6px 24px rgba(60,30,10,0.10);
-      --shadow-lg:   0 16px 48px rgba(60,30,10,0.12);
-      --r-sm:        10px;
-      --r-md:        16px;
-      --r-lg:        24px;
-      --r-xl:        32px;
+    :root{--bg:#FAF7F3;--bg-warm:#F3EDE4;--bg-card:#FFFFFF;--bg-dark:#1E1610;--text:#1C1410;--text-mid:#5A4A3F;--text-muted:#9A857A;--terra:#C0512E;--terra-light:#E07A57;--amber:#D4943A;--amber-light:#F0C070;--linen:#EDE5D8;--border:#E2D8CE;--shadow-sm:0 2px 8px rgba(60,30,10,.07);--shadow-md:0 6px 24px rgba(60,30,10,.10);--shadow-lg:0 16px 48px rgba(60,30,10,.12);--r-sm:10px;--r-md:16px;--r-lg:24px;--r-xl:32px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+    h1,h2,h3{font-family:'Fraunces',serif;line-height:1.15;font-weight:600}
+    h1{font-size:clamp(2.6rem,5.5vw,4.5rem);letter-spacing:-.02em}
+    h2{font-size:clamp(2rem,3.5vw,2.9rem);letter-spacing:-.015em}
+    h3{font-size:1.25rem;font-weight:600}
+    p{color:var(--text-mid)}
+    .container{max-width:1160px;margin:0 auto;padding:0 28px}
+    .tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);background:rgba(192,81,46,.09);border:1px solid rgba(192,81,46,.18);border-radius:100px;padding:4px 14px;margin-bottom:18px}
+    .divider{width:48px;height:3px;background:linear-gradient(90deg,var(--terra),var(--amber));border-radius:2px;margin:18px 0 28px}
+    .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:.93rem;font-weight:600;border-radius:100px;padding:13px 28px;cursor:pointer;border:none;transition:all .25s cubic-bezier(.16,1,.3,1);white-space:nowrap;position:relative;overflow:hidden}
+    .btn::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);transform:translateX(-100%);transition:transform .5s ease}
+    .btn:hover::after{transform:translateX(100%)}
+    .btn-primary{background:var(--terra);color:#fff;box-shadow:0 4px 16px rgba(192,81,46,.30)}
+    .btn-primary:hover{background:var(--terra-light);box-shadow:0 6px 24px rgba(192,81,46,.38);transform:translateY(-1px)}
+    .btn-outline-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+    .btn-outline-white:hover{background:rgba(255,255,255,.12);transform:translateY(-1px)}
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;transition:background .3s,box-shadow .3s,backdrop-filter .3s}
+    .navbar.scrolled{background:rgba(250,247,243,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);box-shadow:var(--shadow-md)}
+    .navbar-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+    .logo{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:2px;transition:color .3s}
+    .navbar.scrolled .logo{color:var(--text)}
+    .logo em{color:var(--amber-light);font-style:normal}
+    .navbar.scrolled .logo em{color:var(--terra)}
+    .logo-dot{width:7px;height:7px;background:var(--amber);border-radius:50%;margin-left:3px;display:inline-block}
+    .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+    .nav-links a{font-size:.9rem;font-weight:500;color:rgba(255,255,255,.8);transition:color .2s}
+    .navbar.scrolled .nav-links a{color:var(--text-mid)}
+    .nav-links a:hover,.navbar.scrolled .nav-links a:hover{color:var(--terra)}
+    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;background:var(--bg-dark)}
+    .hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1553484771-047a44eee27a?auto=format&fit=crop&w=1600&q=80');background-size:cover;background-position:center;animation:kenburns 8s ease-out forwards;z-index:0}
+    @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.05)}}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(15,8,4,.90) 0%,rgba(15,8,4,.60) 55%,rgba(15,8,4,.20) 100%);z-index:1}
+    .hero-content{max-width:760px;position:relative;z-index:2;padding-top:130px;padding-bottom:60px}
+    .hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:24px;animation:fadeUp .6s ease both}
+    .hero-eyebrow-line{width:36px;height:2px;background:linear-gradient(90deg,var(--terra),var(--amber));border-radius:2px}
+    .hero-eyebrow-text{font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-light)}
+    .hero h1{color:#fff;margin-bottom:22px;animation:fadeUp .6s .15s ease both}
+    .hero h1 em{font-style:italic;color:var(--amber-light);font-weight:300}
+    .hero-sub{font-size:1.08rem;line-height:1.75;max-width:560px;margin-bottom:38px;color:rgba(255,255,255,.72);animation:fadeUp .6s .3s ease both}
+    .hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;animation:fadeUp .5s .45s ease both}
+    .hero-note{font-size:.82rem;color:rgba(255,255,255,.4);animation:fadeIn .4s .6s ease both;margin-top:20px}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .stats-bar{background:var(--bg-dark);border-top:1px solid rgba(255,255,255,.06);padding:60px 0}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06)}
+    .stat-item{background:var(--bg-dark);padding:36px 24px;text-align:center}
+    .stat-num{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--amber-light);line-height:1;margin-bottom:6px}
+    .stat-label{font-size:.88rem;color:rgba(255,255,255,.65);font-weight:500;margin-bottom:8px}
+    .stat-compare{font-size:.74rem;color:rgba(255,255,255,.30);line-height:1.5;max-width:180px;margin:0 auto}
+    .tc-s{background:#080f1a;padding:52px 0 44px;overflow:hidden;position:relative}
+    .tc-s::before,.tc-s::after{content:'';position:absolute;top:0;bottom:0;width:130px;z-index:2;pointer-events:none}
+    .tc-s::before{left:0;background:linear-gradient(to right,#080f1a 0%,transparent 100%)}
+    .tc-s::after{right:0;background:linear-gradient(to left,#080f1a 0%,transparent 100%)}
+    .tc-lbl{text-align:center;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:36px}
+    .tc-wrap{overflow:hidden}
+    .tc-track{display:flex;align-items:center;gap:80px;width:max-content;animation:tc-go 24s linear infinite}
+    .tc-track:hover{animation-play-state:paused}
+    @keyframes tc-go{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .tc-logo{display:flex;align-items:center;justify-content:center;height:48px;flex-shrink:0;opacity:.5;transition:opacity .3s ease}
+    .tc-logo:hover{opacity:1}
+    .tc-logo img{max-height:40px;width:auto;max-width:160px;object-fit:contain;filter:brightness(0) invert(1)}
+    .tc-text{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.01em;white-space:nowrap;transition:color .3s}
+    .tc-logo:hover .tc-text{color:#fff}
+    section{padding:100px 0}
+    .section-header{margin-bottom:60px}
+    .section-header.centered{text-align:center}
+    .section-header.centered .divider{margin:18px auto 28px}
+    .about{background:var(--bg)}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+    .about-left p{margin-bottom:18px;line-height:1.85;font-size:.97rem}
+    .about-accent{font-weight:600;color:var(--terra);font-style:italic}
+    .value-prop{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:26px;margin-bottom:16px;box-shadow:var(--shadow-sm);transition:box-shadow .25s,transform .25s}
+    .value-prop:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+    .value-prop-icon{width:42px;height:42px;background:linear-gradient(135deg,rgba(192,81,46,.10),rgba(212,148,58,.15));border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1.25rem;color:var(--terra);margin-bottom:12px}
+    .value-prop h3{font-size:1.05rem;margin-bottom:5px}
+    .value-prop p{font-size:.9rem}
+    .human-ai{background:#0d1117;padding:100px 0}
+    .human-ai .tag{background:rgba(124,58,237,.15);border-color:rgba(124,58,237,.30);color:#a78bfa}
+    .human-ai .divider{background:linear-gradient(90deg,#7c3aed,#2563eb)}
+    .human-ai h2{color:#fff}
+    .hai-body{max-width:780px;margin-bottom:56px}
+    .hai-body p{color:rgba(255,255,255,.62);line-height:1.88;font-size:.97rem;margin-bottom:16px}
+    .hai-cols{display:grid;grid-template-columns:1fr 1px 1fr;gap:48px;align-items:start}
+    .hai-divider{background:rgba(255,255,255,.10);align-self:stretch;border-radius:2px;transform:scaleY(0);transform-origin:top;transition:transform .65s cubic-bezier(.22,1,.36,1) .4s}
+    .hai-divider.vis{transform:scaleY(1)}
+    .hai-col-label{font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .hai-left .hai-col-label{color:#93c5fd}
+    .hai-right .hai-col-label{color:var(--amber-light)}
+    .hai-col ul{list-style:none}
+    .hai-col ul li{font-size:.93rem;color:rgba(255,255,255,.62);padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:12px;align-items:flex-start;line-height:1.65}
+    .hai-col ul li:last-child{border-bottom:none}
+    .hai-left li::before,.hai-right li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;margin-top:7px;flex-shrink:0}
+    .hai-left li::before{background:#60a5fa}
+    .hai-right li::before{background:var(--amber)}
+    .solutions{background:var(--bg-warm)}
+    .solutions-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .solution-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:36px;position:relative;box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .2s}
+    .solution-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+    .solution-card.featured{border-color:var(--terra);border-width:2px}
+    .solution-badge{position:absolute;top:-12px;right:28px;background:var(--terra);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 14px;border-radius:100px}
+    .solution-card-tag{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+    .solution-icon{width:44px;height:44px;background:linear-gradient(135deg,rgba(192,81,46,.10),rgba(212,148,58,.15));border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--terra);margin-bottom:14px}
+    .solution-card h3{font-size:1.4rem;margin-bottom:6px}
+    .solution-tagline{font-size:.88rem;color:var(--text-muted);margin-bottom:22px}
+    .solution-features{list-style:none;margin-bottom:22px}
+    .solution-features li{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--text-mid);padding:7px 0;border-bottom:1px solid var(--linen)}
+    .solution-features li:last-child{border-bottom:none}
+    .solution-features li::before{content:'✓';width:20px;height:20px;background:rgba(192,81,46,.10);color:var(--terra);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0}
+    .solution-footer{font-size:.82rem;color:var(--text-muted);font-style:italic;line-height:1.5}
+    .solutions-note{text-align:center;margin-top:36px;font-size:.9rem;color:var(--text-muted)}
+    .solutions-note a{color:var(--terra);font-weight:600;border-bottom:1px solid rgba(192,81,46,.3);transition:border-color .2s}
+    .solutions-note a:hover{border-color:var(--terra)}
+    .process{background:var(--bg)}
+    .method-outer{position:relative;padding-top:20px}
+    .method-line-track{position:absolute;top:49px;left:calc(12.5% - 12px);right:calc(12.5% - 12px);height:2px;background:rgba(192,81,46,.15);border-radius:2px;overflow:hidden;z-index:0}
+    .method-line-fill{height:100%;width:0;background:linear-gradient(90deg,var(--terra),var(--amber));border-radius:2px;transition:width 1.4s cubic-bezier(.22,1,.36,1)}
+    .method-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:1}
+    .method-step{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative}
+    .method-node{width:58px;height:58px;border:2px solid var(--terra);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1.25rem;font-weight:700;color:var(--terra);background:var(--bg-card);box-shadow:var(--shadow-sm);flex-shrink:0;margin-bottom:22px;transform:scale(0);transition:transform .4s cubic-bezier(.34,1.56,.64,1),background .25s,color .25s}
+    .method-node.popped{transform:scale(1)}
+    .method-step:hover .method-node{background:var(--terra);color:#fff}
+    .method-step-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:10px;line-height:1.3}
+    .method-step-body{font-size:.87rem;color:var(--text-mid);line-height:1.72}
+    .pricing{background:var(--bg-dark);color:#fff}
+    .pricing .section-header h2{color:#fff}
+    .pricing .section-header p{color:rgba(255,255,255,.55)}
+    .pricing .tag{background:rgba(212,148,58,.15);border-color:rgba(212,148,58,.3);color:var(--amber-light)}
+    .pricing .divider{background:linear-gradient(90deg,var(--amber),var(--amber-light))}
+    .pricing-callout{background:rgba(212,148,58,.09);border:1px solid rgba(212,148,58,.20);border-radius:var(--r-md);padding:20px 28px;margin-bottom:40px;font-size:.93rem;color:rgba(255,255,255,.68);line-height:1.75}
+    .pricing-callout strong{color:var(--amber-light)}
+    .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .pricing-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);border-radius:var(--r-lg);padding:32px 26px;transition:background .3s,border-color .3s,transform .3s;position:relative}
+    .pricing-card:hover{background:rgba(255,255,255,.08);border-color:rgba(212,148,58,.35);transform:translateY(-4px)}
+    .pricing-card.featured{background:linear-gradient(160deg,rgba(192,81,46,.20),rgba(212,148,58,.12));border-color:rgba(212,148,58,.45)}
+    .pricing-popular{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--terra),var(--amber));color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 16px;border-radius:100px;white-space:nowrap;animation:pulse-badge 3s ease-in-out infinite}
+    @keyframes pulse-badge{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.03)}}
+    .pricing-name{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;color:#fff;margin-bottom:8px}
+    .pricing-price{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:var(--amber-light);line-height:1;margin-bottom:4px}
+    .pricing-price-note{font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:20px}
+    .pricing-features{list-style:none;margin-bottom:24px}
+    .pricing-features li{display:flex;align-items:center;gap:8px;font-size:.87rem;color:rgba(255,255,255,.70);padding:6px 0}
+    .pricing-features li::before{content:'→';color:var(--amber-light);font-size:.75rem;flex-shrink:0}
+    .pricing-best{font-size:.8rem;color:rgba(255,255,255,.40);padding-top:16px;border-top:1px solid rgba(255,255,255,.08);line-height:1.55}
+    .pricing-best strong{color:rgba(255,255,255,.60)}
+    .pricing-footer{text-align:center;margin-top:40px;font-size:.9rem;color:rgba(255,255,255,.45)}
+    .pricing-footer a{color:var(--amber-light);font-weight:600;border-bottom:1px solid rgba(240,192,112,.35)}
+    .audience{background:var(--bg-warm)}
+    .audience-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+    .audience-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:32px 26px;box-shadow:var(--shadow-sm);transition:box-shadow .3s,transform .3s}
+    .audience-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+    .audience-icon{width:44px;height:44px;background:linear-gradient(135deg,rgba(192,81,46,.10),rgba(212,148,58,.15));border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--terra);margin-bottom:16px}
+    .audience-card h3{font-size:1.05rem;margin-bottom:10px}
+    .audience-card p{font-size:.88rem;line-height:1.65}
+    .contact{background:var(--bg)}
+    .contact-wrapper{display:grid;grid-template-columns:1fr 1.3fr;gap:72px;align-items:start}
+    .contact-left p{font-size:1rem;line-height:1.82;margin-bottom:30px}
+    .contact-trust{display:flex;flex-direction:column;gap:12px}
+    .trust-item{display:flex;align-items:center;gap:12px;font-size:.88rem;color:var(--text-mid);font-weight:500}
+    .trust-item-dot{width:8px;height:8px;border-radius:50%;background:var(--terra);flex-shrink:0}
+    .contact-form{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:44px;box-shadow:var(--shadow-lg)}
+    .form-group{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+    .form-group label{font-size:.83rem;font-weight:600;color:var(--text);letter-spacing:.01em}
+    .form-group input,.form-group textarea{font-family:'Inter',sans-serif;font-size:.93rem;color:var(--text);background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:12px 16px;outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
+    .form-group input:focus,.form-group textarea:focus{border-color:var(--terra);box-shadow:0 0 0 3px rgba(192,81,46,.10)}
+    .form-group textarea{resize:vertical;min-height:110px}
+    .form-submit{margin-top:8px}
+    .form-submit .btn{width:100%;justify-content:center;padding:15px 28px;font-size:.96rem}
+    .form-guarantee{text-align:center;font-size:.8rem;color:var(--text-muted);margin-top:14px}
+    .form-guarantee span{color:var(--terra);font-weight:600}
+    footer{background:var(--bg-dark);color:rgba(255,255,255,.65);padding:70px 0 32px}
+    .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .footer-logo{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:14px}
+    .footer-logo span{color:var(--amber-light)}
+    .footer-brand p{font-size:.87rem;line-height:1.7;color:rgba(255,255,255,.45);margin-bottom:22px;max-width:320px}
+    .footer-social{display:flex;gap:12px}
+    .footer-social a{width:36px;height:36px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.82rem;color:rgba(255,255,255,.55);transition:all .2s}
+    .footer-social a:hover{background:rgba(212,148,58,.18);border-color:rgba(212,148,58,.35);color:var(--amber-light)}
+    .footer-col h4{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:18px}
+    .footer-col ul{list-style:none}
+    .footer-col li{margin-bottom:11px}
+    .footer-col a{font-size:.88rem;color:rgba(255,255,255,.55);transition:color .2s}
+    .footer-col a:hover{color:var(--amber-light)}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:28px;font-size:.82rem;color:rgba(255,255,255,.28)}
+    .footer-legal{display:flex;gap:24px}
+    .footer-legal a{color:rgba(255,255,255,.35);transition:color .2s}
+    .footer-legal a:hover{color:rgba(255,255,255,.65)}
+    @media(max-width:900px){
+      .about-grid,.contact-wrapper{grid-template-columns:1fr;gap:48px}
+      .solutions-grid{grid-template-columns:1fr}
+      .pricing-grid{grid-template-columns:1fr 1fr}
+      .audience-grid{grid-template-columns:1fr 1fr}
+      .nav-links,.navbar .btn{display:none}
+      .footer-top{grid-template-columns:1fr;gap:36px}
+      .stats-grid{grid-template-columns:1fr 1fr}
+      .hai-cols{grid-template-columns:1fr;gap:32px}
+      .hai-divider{display:none}
+      .method-steps{grid-template-columns:1fr;gap:0}
+      .method-line-track{display:none}
+      .method-step{flex-direction:row;text-align:left;padding-bottom:32px;padding-left:24px;border-left:2px solid rgba(192,81,46,.18);margin-left:29px}
+      .method-step:last-child{border-left-color:transparent}
+      .method-node{margin:0 20px 0 -52px;flex-shrink:0}
+      .method-step-body-wrap{padding-top:8px}
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+    @media(max-width:600px){
+      .pricing-grid,.audience-grid{grid-template-columns:1fr}
+      .stats-grid{grid-template-columns:1fr 1fr}
+      .hero h1{font-size:2.4rem}
     }
-    img { display: block; max-width: 100%; }
-    a { text-decoration: none; color: inherit; }
-    .serif { font-family: 'Fraunces', serif; }
-    h1, h2, h3 { font-family: 'Fraunces', serif; line-height: 1.15; font-weight: 600; }
-    h1 { font-size: clamp(2.6rem, 5.5vw, 4.5rem); letter-spacing: -0.02em; }
-    h2 { font-size: clamp(2rem, 3.5vw, 2.9rem); letter-spacing: -0.015em; }
-    h3 { font-size: 1.25rem; font-weight: 600; }
-    p  { color: var(--text-mid); }
-    .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
-    .tag {
-      display: inline-block;
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--terra);
-      background: rgba(192, 81, 46, 0.09);
-      border: 1px solid rgba(192, 81, 46, 0.18);
-      border-radius: 100px; padding: 4px 14px; margin-bottom: 18px;
-    }
-    .divider {
-      width: 48px; height: 3px;
-      background: linear-gradient(90deg, var(--terra), var(--amber));
-      border-radius: 2px; margin: 18px 0 28px;
-    }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: 'Inter', sans-serif; font-size: 0.93rem; font-weight: 600;
-      border-radius: 100px; padding: 13px 28px; cursor: pointer; border: none;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); white-space: nowrap;
-    }
-    .btn-primary { background: var(--terra); color: #fff; box-shadow: 0 4px 16px rgba(192,81,46,0.30); }
-    .btn-primary:hover { background: var(--terra-light); box-shadow: 0 6px 24px rgba(192,81,46,0.38); transform: translateY(-1px); }
-    .btn-outline { background: transparent; color: var(--terra); border: 1.5px solid var(--terra); }
-    .btn-outline:hover { background: var(--terra); color: #fff; transform: translateY(-1px); }
-    .btn-ghost { background: rgba(255,255,255,0.12); color: #fff; border: 1.5px solid rgba(255,255,255,0.25); backdrop-filter: blur(8px); }
-    .btn-ghost:hover { background: rgba(255,255,255,0.22); transform: translateY(-1px); }
-    .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(250, 247, 243, 0.88); backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border); transition: box-shadow 0.3s;
-    }
-    .navbar.scrolled { box-shadow: var(--shadow-md); }
-    .navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-    .logo { font-family: 'Fraunces', serif; font-size: 1.45rem; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 2px; }
-    .logo span { color: var(--terra); }
-    .logo-dot { width: 7px; height: 7px; background: var(--amber); border-radius: 50%; margin-left: 3px; display: inline-block; }
-    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-    .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-mid); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--terra); }
-    .hero { padding-top: 130px; padding-bottom: 80px; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; top: -120px; right: -200px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(212,148,58,0.12) 0%, transparent 65%); pointer-events: none; }
-    .hero::after { content: ''; position: absolute; bottom: -100px; left: -150px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(192,81,46,0.08) 0%, transparent 65%); pointer-events: none; }
-    .hero-content { max-width: 760px; position: relative; z-index: 1; }
-    .hero-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
-    .hero-eyebrow-line { width: 36px; height: 2px; background: linear-gradient(90deg, var(--terra), var(--amber)); border-radius: 2px; }
-    .hero-eyebrow-text { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra); }
-    .hero h1 { margin-bottom: 22px; }
-    .hero h1 em { font-style: italic; color: var(--terra); font-weight: 300; }
-    .hero-sub { font-size: 1.08rem; line-height: 1.75; max-width: 560px; margin-bottom: 38px; }
-    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-    .hero-note { font-size: 0.82rem; color: var(--text-muted); }
-    .stats-bar { background: var(--bg-dark); padding: 42px 0; margin-top: 72px; }
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.08); }
-    .stat-item { background: var(--bg-dark); padding: 28px 36px; text-align: center; }
-    .stat-num { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 700; color: var(--amber-light); line-height: 1; margin-bottom: 8px; }
-    .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.55); font-weight: 400; }
-    section { padding: 100px 0; }
-    .section-header { margin-bottom: 60px; }
-    .section-header.centered { text-align: center; }
-    .section-header.centered .divider { margin: 18px auto 28px; }
-    .about { background: var(--bg); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-    .about-left p { margin-bottom: 20px; line-height: 1.8; }
-    .about-accent { font-weight: 600; color: var(--terra); font-style: italic; }
-    .pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0; }
-    .pain-item { background: var(--bg-warm); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 16px 18px; font-size: 0.9rem; font-weight: 500; color: var(--text-mid); display: flex; align-items: center; gap: 10px; }
-    .pain-item::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--terra); flex-shrink: 0; }
-    .value-prop { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-md); padding: 28px; margin-bottom: 18px; box-shadow: var(--shadow-sm); transition: box-shadow 0.25s, transform 0.25s; }
-    .value-prop:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-    .value-prop-icon { width: 42px; height: 42px; background: linear-gradient(135deg, rgba(192,81,46,0.1), rgba(212,148,58,0.15)); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 14px; }
-    .value-prop h3 { font-size: 1.05rem; margin-bottom: 6px; }
-    .value-prop p { font-size: 0.9rem; }
-    .solutions { background: var(--bg-warm); }
-    .solutions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-    .solution-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 36px; position: relative; box-shadow: var(--shadow-sm); transition: box-shadow 0.3s, transform 0.3s; }
-    .solution-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
-    .solution-card.featured { border-color: var(--terra); border-width: 2px; }
-    .solution-badge { position: absolute; top: -12px; right: 28px; background: var(--terra); color: #fff; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 14px; border-radius: 100px; }
-    .solution-card-tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
-    .solution-card h3 { font-size: 1.4rem; margin-bottom: 4px; }
-    .solution-tagline { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 22px; }
-    .solution-features { list-style: none; margin-bottom: 22px; }
-    .solution-features li { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--text-mid); padding: 7px 0; border-bottom: 1px solid var(--linen); }
-    .solution-features li:last-child { border-bottom: none; }
-    .solution-features li::before { content: '✓'; width: 20px; height: 20px; background: rgba(192,81,46,0.1); color: var(--terra); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; flex-shrink: 0; }
-    .solution-footer { font-size: 0.82rem; color: var(--text-muted); font-style: italic; line-height: 1.5; }
-    .solutions-note { text-align: center; margin-top: 36px; font-size: 0.9rem; color: var(--text-muted); }
-    .solutions-note a { color: var(--terra); font-weight: 600; border-bottom: 1px solid rgba(192,81,46,0.3); transition: border-color 0.2s; }
-    .solutions-note a:hover { border-color: var(--terra); }
-    .process { background: var(--bg); }
-    .process-timeline { position: relative; }
-    .process-timeline::before { content: ''; position: absolute; left: 28px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--terra), var(--amber), transparent); }
-    .process-step { display: grid; grid-template-columns: 60px 1fr; gap: 28px; margin-bottom: 48px; position: relative; }
-    .process-step:last-child { margin-bottom: 0; }
-    .step-number { width: 58px; height: 58px; background: var(--bg-card); border: 2px solid var(--terra); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 700; color: var(--terra); flex-shrink: 0; position: relative; z-index: 1; box-shadow: var(--shadow-sm); transition: background 0.25s, color 0.25s; }
-    .process-step:hover .step-number { background: var(--terra); color: #fff; }
-    .step-content { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-md); padding: 28px 32px; box-shadow: var(--shadow-sm); transition: box-shadow 0.25s, transform 0.25s; }
-    .process-step:hover .step-content { box-shadow: var(--shadow-md); transform: translateX(4px); }
-    .step-content h3 { margin-bottom: 10px; }
-    .step-content p { font-size: 0.95rem; line-height: 1.75; }
-    .pricing { background: var(--bg-dark); color: #fff; }
-    .pricing .section-header h2 { color: #fff; }
-    .pricing .section-header p { color: rgba(255,255,255,0.55); }
-    .pricing .tag { background: rgba(212,148,58,0.15); border-color: rgba(212,148,58,0.3); color: var(--amber-light); }
-    .pricing .divider { background: linear-gradient(90deg, var(--amber), var(--amber-light)); }
-    .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .pricing-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); border-radius: var(--r-lg); padding: 32px 26px; transition: background 0.3s, border-color 0.3s, transform 0.3s; position: relative; }
-    .pricing-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(212,148,58,0.35); transform: translateY(-4px); }
-    .pricing-card.featured { background: linear-gradient(160deg, rgba(192,81,46,0.20), rgba(212,148,58,0.12)); border-color: rgba(212,148,58,0.45); }
-    .pricing-popular { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, var(--terra), var(--amber)); color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 16px; border-radius: 100px; white-space: nowrap; }
-    .pricing-name { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
-    .pricing-price { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 700; color: var(--amber-light); line-height: 1; margin-bottom: 4px; }
-    .pricing-price-note { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-bottom: 20px; }
-    .pricing-features { list-style: none; margin-bottom: 24px; }
-    .pricing-features li { display: flex; align-items: center; gap: 8px; font-size: 0.87rem; color: rgba(255,255,255,0.70); padding: 6px 0; }
-    .pricing-features li::before { content: '→'; color: var(--amber-light); font-size: 0.75rem; flex-shrink: 0; }
-    .pricing-best { font-size: 0.8rem; color: rgba(255,255,255,0.40); padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
-    .pricing-best strong { color: rgba(255,255,255,0.60); }
-    .pricing-footer { text-align: center; margin-top: 40px; font-size: 0.9rem; color: rgba(255,255,255,0.45); }
-    .pricing-footer a { color: var(--amber-light); font-weight: 600; border-bottom: 1px solid rgba(240,192,112,0.35); }
-    .audience { background: var(--bg-warm); }
-    .audience-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-    .audience-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-md); padding: 32px 26px; box-shadow: var(--shadow-sm); transition: box-shadow 0.3s, transform 0.3s; }
-    .audience-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
-    .audience-icon { font-size: 1.8rem; margin-bottom: 16px; }
-    .audience-card h3 { font-size: 1.05rem; margin-bottom: 10px; }
-    .audience-card p { font-size: 0.88rem; line-height: 1.65; }
-    .contact { background: var(--bg); }
-    .contact-wrapper { display: grid; grid-template-columns: 1fr 1.3fr; gap: 72px; align-items: start; }
-    .contact-left p { font-size: 1rem; line-height: 1.8; margin-bottom: 30px; }
-    .contact-trust { display: flex; flex-direction: column; gap: 12px; }
-    .trust-item { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; color: var(--text-mid); font-weight: 500; }
-    .trust-item-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--terra); flex-shrink: 0; }
-    .contact-form { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 44px; box-shadow: var(--shadow-lg); }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .form-group { display: flex; flex-direction: column; gap: 7px; }
-    .form-group.full { grid-column: 1 / -1; }
-    .form-group label { font-size: 0.83rem; font-weight: 600; color: var(--text); letter-spacing: 0.01em; }
-    .form-group input, .form-group select, .form-group textarea { font-family: 'Inter', sans-serif; font-size: 0.93rem; color: var(--text); background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--r-sm); padding: 12px 16px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; width: 100%; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--terra); box-shadow: 0 0 0 3px rgba(192,81,46,0.1); }
-    .form-group textarea { resize: vertical; min-height: 100px; }
-    .form-group select { appearance: none; cursor: pointer; }
-    .form-submit { margin-top: 24px; }
-    .form-submit .btn { width: 100%; justify-content: center; padding: 15px 28px; font-size: 0.96rem; }
-    .form-guarantee { text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 14px; }
-    .form-guarantee span { color: var(--terra); font-weight: 600; }
-    footer { background: var(--bg-dark); color: rgba(255,255,255,0.65); padding: 70px 0 32px; }
-    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .footer-logo { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 14px; }
-    .footer-logo span { color: var(--amber-light); }
-    .footer-brand p { font-size: 0.87rem; line-height: 1.7; color: rgba(255,255,255,0.45); margin-bottom: 22px; max-width: 320px; }
-    .footer-social { display: flex; gap: 12px; }
-    .footer-social a { width: 36px; height: 36px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.10); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.82rem; color: rgba(255,255,255,0.55); transition: all 0.2s; }
-    .footer-social a:hover { background: rgba(212,148,58,0.18); border-color: rgba(212,148,58,0.35); color: var(--amber-light); }
-    .footer-col h4 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 18px; }
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 11px; }
-    .footer-col a { font-size: 0.88rem; color: rgba(255,255,255,0.55); transition: color 0.2s; }
-    .footer-col a:hover { color: var(--amber-light); }
-    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; font-size: 0.82rem; color: rgba(255,255,255,0.28); }
-    .footer-legal { display: flex; gap: 24px; }
-    .footer-legal a { color: rgba(255,255,255,0.35); transition: color 0.2s; }
-    .footer-legal a:hover { color: rgba(255,255,255,0.65); }
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1); }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-delay-1 { transition-delay: 0.08s; }
-    .reveal-delay-2 { transition-delay: 0.16s; }
-    .reveal-delay-3 { transition-delay: 0.24s; }
-    .reveal-delay-4 { transition-delay: 0.32s; }
-    @media (max-width: 900px) {
-      .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 48px; }
-      .solutions-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr 1fr; }
-      .audience-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links, .navbar .btn { display: none; }
-      .footer-top { grid-template-columns: 1fr; gap: 36px; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .form-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 600px) {
-      .pricing-grid, .audience-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .hero { padding-top: 110px; }
-      .process-timeline::before { display: none; }
-      .process-step { grid-template-columns: 1fr; }
-      .step-number { margin-bottom: -12px; }
+    @media(prefers-reduced-motion:reduce){
+      .hero-bg,.method-line-fill,[data-aos]{animation:none!important;transition:none!important}
     }
   </style>
 </head>
 <body>
-
-  <nav class="navbar" id="navbar">
-    <div class="container navbar-inner">
-      <a href="#" class="logo">Talent<span>Cursor</span><span class="logo-dot"></span></a>
-      <ul class="nav-links">
-        <li><a href="#services">Solutions</a></li>
-        <li><a href="#process">How We Work</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-      </ul>
-      <a href="#contact" class="btn btn-primary">Partner With Us</a>
-    </div>
-  </nav>
-
-  <section class="hero" id="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-eyebrow">
-          <div class="hero-eyebrow-line"></div>
-          <span class="hero-eyebrow-text">Structured Recruiting for Modern Teams</span>
-        </div>
-        <h1>Your Talent Engine<br>for <em>Hypergrowth</em></h1>
-        <p class="hero-sub">
-          Guided by Precision. Driven by Speed.<br>
-          We deliver vetted, culture-matched talent in 15 days, so you can stay focused on what matters — building.
-        </p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Start Your Search →</a>
-          <a href="#process" class="btn btn-outline">See How It Works</a>
-        </div>
-        <p class="hero-note" style="margin-top:20px;">No retainers. No lock-ins. Just results.</p>
+<nav class="navbar" id="navbar">
+  <div class="container navbar-inner">
+    <a href="#" class="logo">Talent<em>Cursor</em><span class="logo-dot"></span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Solutions</a></li>
+      <li><a href="#process">How We Work</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-primary">Partner With Us</a>
+  </div>
+</nav>
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow"><div class="hero-eyebrow-line"></div><span class="hero-eyebrow-text">Structured Recruiting for Modern Teams</span></div>
+      <h1>Your Talent Engine<br>for <em>Hypergrowth</em></h1>
+      <p class="hero-sub">Guided by Precision. Driven by Speed.<br>We deliver vetted, culture-matched talent in 15 days — so you can stay focused on what matters: building.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Start Your Search →</a>
+        <a href="#process" class="btn btn-outline-white">See How It Works</a>
       </div>
+      <p class="hero-note">No retainers. No lock-ins. Just results.</p>
     </div>
-    <div class="stats-bar">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-item"><div class="stat-num">120+</div><div class="stat-label">Candidates Delivered</div></div>
-          <div class="stat-item"><div class="stat-num">30%</div><div class="stat-label">Faster Time to Hire</div></div>
-          <div class="stat-item"><div class="stat-num">72%</div><div class="stat-label">Offer to Join Success</div></div>
-          <div class="stat-item"><div class="stat-num">50%</div><div class="stat-label">Faster Shortlists</div></div>
-        </div>
-      </div>
+  </div>
+</section>
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item" data-aos="fade-up" data-aos-delay="0"><div class="stat-num" data-count="15" data-suffix=" Days">15 Days</div><div class="stat-label">From brief to shortlist</div><div class="stat-compare">The industry average is 6–8 weeks</div></div>
+      <div class="stat-item" data-aos="fade-up" data-aos-delay="100"><div class="stat-num">3–5%</div><div class="stat-label">Of candidates reach your desk</div><div class="stat-compare">The rest are filtered before they reach you</div></div>
+      <div class="stat-item" data-aos="fade-up" data-aos-delay="200"><div class="stat-num" data-count="72" data-suffix="%">72%</div><div class="stat-label">Offer-to-join rate</div><div class="stat-compare">Industry average sits at 50–55%</div></div>
+      <div class="stat-item" data-aos="fade-up" data-aos-delay="300"><div class="stat-num" data-count="2" data-suffix="x">2x</div><div class="stat-label">Faster shortlists than traditional search</div><div class="stat-compare">Without sacrificing evaluation depth</div></div>
     </div>
-  </section>
-
-  <section class="about" id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-left reveal">
-          <div class="tag">Our Story</div>
-          <h2>Your talent partner<br>in the modern era</h2>
-          <div class="divider"></div>
-          <p>TalentCursor was created to bring structure, speed, and clarity into modern hiring. After years of building and scaling teams across high-growth startups and global technology companies, our founding team identified the same problems:</p>
-          <div class="pain-grid">
-            <div class="pain-item">Hiring moved too slowly</div>
-            <div class="pain-item">Roles lacked clarity</div>
-            <div class="pain-item">Recruiters reacted instead of guiding</div>
-            <div class="pain-item">Processes were fragmented</div>
-          </div>
-          <p>We built a different approach. A structured <span class="about-accent">15-day Sprint Hire model</span> supported by deep sourcing, careful evaluation, and human judgement. The result is a system that produces interview-ready candidates quickly and consistently.</p>
-        </div>
-        <div class="about-right">
-          <div class="value-prop reveal reveal-delay-1">
-            <div class="value-prop-icon">🎯</div>
-            <h3>Pre-Vetted Excellence</h3>
-            <p>Only 3–5% of candidates make it to your desk. Every shortlist is a product of rigorous evaluation, not volume.</p>
-          </div>
-          <div class="value-prop reveal reveal-delay-2">
-            <div class="value-prop-icon">⚡</div>
-            <h3>Speed Without Sacrifice</h3>
-            <p>Interview-ready shortlists in 15 days. Our sprint model is built for velocity without compromising on quality.</p>
-          </div>
-          <div class="value-prop reveal reveal-delay-3">
-            <div class="value-prop-icon">🤝</div>
-            <h3>True Partnership</h3>
-            <p>Transparent communication, always aligned with your goals. We focus on clarity and predictable outcomes.</p>
-          </div>
-        </div>
-      </div>
+  </div>
+</div>
+<div class="tc-s">
+  <div class="tc-lbl">Trusted by founders building in India</div>
+  <div class="tc-wrap">
+    <div class="tc-track">
+      <div class="tc-logo"><span class="tc-text">Tericsoft</span></div>
+      <div class="tc-logo"><span class="tc-text">LetsMobility</span></div>
+      <div class="tc-logo"><span class="tc-text">Bintix</span></div>
+      <div class="tc-logo"><span class="tc-text">Halo Group</span></div>
+      <div class="tc-logo"><span class="tc-text">99.co</span></div>
+      <div class="tc-logo"><span class="tc-text">Tericsoft</span></div>
+      <div class="tc-logo"><span class="tc-text">LetsMobility</span></div>
+      <div class="tc-logo"><span class="tc-text">Bintix</span></div>
+      <div class="tc-logo"><span class="tc-text">Halo Group</span></div>
+      <div class="tc-logo"><span class="tc-text">99.co</span></div>
     </div>
-  </section>
-
-  <section class="solutions" id="services">
-    <div class="container">
-      <div class="section-header centered reveal">
-        <div class="tag">Solutions</div>
-        <h2>Structured recruiting that scales<br>with your needs</h2>
+  </div>
+</div>
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left" data-aos="fade-up">
+        <div class="tag">Our Story</div>
+        <h2>Your talent partner<br>in the modern era</h2>
         <div class="divider"></div>
-        <p>Choose the model that fits your stage and hiring pace.</p>
+        <p>TalentCursor was built by recruiting specialists and technologists — not a platform looking for a problem to solve.</p>
+        <p>Our recruiting team brings 15+ years of hands-on experience leading technical hiring across global technology companies, building recruiting functions from scratch, and working directly with founders who needed the right hire and got the wrong process instead.</p>
+        <p>Our technology team has built AI agents and automation systems that accelerate every stage of the search — from sourcing to screening — without replacing the judgment that makes a shortlist actually useful.</p>
+        <p>That combination produced one clear conviction: most recruiting fails not because the talent doesn't exist, but because the search lacks structure, the evaluation lacks depth, and urgency gets confused with speed.</p>
+        <p>We built TalentCursor around a different model. A 15-day sprint with a defined process, rigorous candidate evaluation, and recruiting specialists accountable for every shortlist — backed by technology built to move fast without cutting corners.</p>
+        <p>The result is fewer candidates on your desk and more hires who stay. We work with <span class="about-accent">startups and growth-stage teams building in India</span>. Not because it's a limitation — because focus is what separates a recruiting partner from a recruiting vendor.</p>
       </div>
-      <div class="solutions-grid">
-
-        <div class="solution-card reveal reveal-delay-1">
-          <div class="solution-card-tag">Sprint Hire</div>
-          <h3>Sprint Hire</h3>
-          <p class="solution-tagline">Fastest path from req to offer</p>
-          <ul class="solution-features">
-            <li>Curated shortlist in 15 days</li>
-            <li>Structured sprint workflow</li>
-            <li>Weekly progress reports</li>
-            <li>Deep multi-channel sourcing</li>
-          </ul>
-          <p class="solution-footer">Perfect for startup founders and growing teams needing rapid, quality hires.</p>
-        </div>
-
-        <div class="solution-card featured reveal reveal-delay-2">
-          <div class="solution-badge">Popular</div>
-          <div class="solution-card-tag">Embedded Recruiter</div>
-          <h3>Embedded Recruiter</h3>
-          <p class="solution-tagline">Your dedicated remote recruiting partner</p>
-          <ul class="solution-features">
-            <li>Dedicated remote recruiter</li>
-            <li>25 hours per week</li>
-            <li>Manage up to 3 roles</li>
-            <li>Weekly dashboards &amp; end-to-end support</li>
-          </ul>
-          <p class="solution-footer">Ideal for remote-first teams and tech companies with consistent hiring needs.</p>
-        </div>
-
-        <div class="solution-card reveal reveal-delay-3">
-          <div class="solution-card-tag">Leadership Search</div>
-          <h3>Leadership Search</h3>
-          <p class="solution-tagline">Executive and senior leadership hiring</p>
-          <ul class="solution-features">
-            <li>Market mapping</li>
-            <li>Senior outreach</li>
-            <li>Structured evaluation</li>
-            <li>Discreet engagement</li>
-          </ul>
-          <p class="solution-footer">For product companies and scale-ups building their leadership bench.</p>
-        </div>
-
-        <div class="solution-card reveal reveal-delay-4">
-          <div class="solution-card-tag">TA Advisory</div>
-          <h3>TA Advisory &amp; Intelligence</h3>
-          <p class="solution-tagline">Build and optimise your talent function</p>
-          <ul class="solution-features">
-            <li>TA &amp; HR function setup</li>
-            <li>Interview process design</li>
-            <li>ATS mapping</li>
-            <li>Compensation benchmarks</li>
-          </ul>
-          <p class="solution-footer">Perfect for internal TA teams looking to scale and optimise operations.</p>
-        </div>
-
+      <div class="about-right">
+        <div class="value-prop" data-aos="fade-up" data-aos-delay="80"><div class="value-prop-icon"><i class="ph ph-funnel-simple"></i></div><h3>Pre-Vetted Excellence</h3><p>Only 3–5% of candidates make it to your desk. Every shortlist is a product of rigorous evaluation, not volume.</p></div>
+        <div class="value-prop" data-aos="fade-up" data-aos-delay="160"><div class="value-prop-icon"><i class="ph ph-lightning"></i></div><h3>Speed Without Sacrifice</h3><p>Interview-ready shortlists in 15 days. Our sprint model is built for velocity without compromising on quality.</p></div>
+        <div class="value-prop" data-aos="fade-up" data-aos-delay="240"><div class="value-prop-icon"><i class="ph ph-handshake"></i></div><h3>True Partnership</h3><p>Transparent communication, always aligned with your goals. We focus on clarity and predictable outcomes.</p></div>
+        <div class="value-prop" data-aos="fade-up" data-aos-delay="320"><div class="value-prop-icon"><i class="ph ph-cpu"></i></div><h3>Technology That Works For You</h3><p>AI agents handle sourcing at scale. Our specialists handle judgment. You get the best of both — without managing either.</p></div>
       </div>
-      <p class="solutions-note">All plans include weekly reporting, 90-day quality guarantee, and dedicated support. <a href="#contact">Need a custom solution? Let's talk.</a></p>
     </div>
-  </section>
-
-  <section class="process" id="process">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="tag">The Method</div>
-        <h2>The TalentCursor Method</h2>
+  </div>
+</section>
+<section class="human-ai" id="human-ai">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="tag">Why We're Different</div>
+      <h2>The Market Went Full AI.<br>We Went Further.</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="hai-body" data-aos="fade-up" data-aos-delay="80">
+      <p>Every recruiting platform today claims to be AI-powered. Most mean they automated the part that was already broken — blasting more CVs faster, to more inboxes, with less judgment behind every send.</p>
+      <p>We built our own AI agents and automation systems from the ground up. They handle the speed problem: sourcing at scale, initial screening, pattern matching across channels. That's real, and it matters.</p>
+      <p>But speed was never the only problem. The harder problem is judgment — knowing that a career gap tells a story, that a candidate performing confidence in an interview is different from one demonstrating it, that what a founding team actually needs is rarely what the job description says.</p>
+      <p>That part is still done by recruiting specialists with 15+ years inside the problem. At TalentCursor, AI runs the search. Our team closes it. Every shortlist that reaches your desk has been reviewed, filtered, and validated by people who have made these calls before — not handed off to an algorithm and delivered as output.</p>
+      <p><strong style="color:rgba(255,255,255,.9);font-weight:600;">Fewer candidates. Every one worth your time.</strong></p>
+    </div>
+    <div class="hai-cols" id="hai-cols">
+      <div class="hai-col hai-left" data-aos="fade-right"><div class="hai-col-label">What AI Does</div><ul><li>Sources at scale across LinkedIn, GitHub, and communities</li><li>Screens for keywords, experience signals, and role fit</li><li>Ranks and pattern-matches across thousands of profiles</li></ul></div>
+      <div class="hai-divider" id="hai-divider"></div>
+      <div class="hai-col hai-right" data-aos="fade-left"><div class="hai-col-label">What Our Team Does</div><ul><li>Reads the career story behind every shortlisted profile</li><li>Evaluates judgment, not just credentials, under pressure</li><li>Matches to your actual culture, team dynamic, and stage</li></ul></div>
+    </div>
+  </div>
+</section>
+<section class="solutions" id="services">
+  <div class="container">
+    <div class="section-header centered" data-aos="fade-up"><div class="tag">Solutions</div><h2>Structured recruiting that scales<br>with your needs</h2><div class="divider"></div><p>Choose the model that fits your stage and hiring pace.</p></div>
+    <div class="solutions-grid">
+      <div class="solution-card" data-aos="fade-up" data-aos-delay="0"><div class="solution-icon"><i class="ph ph-rocket-launch"></i></div><div class="solution-card-tag">Sprint Hire</div><h3>Sprint Hire</h3><p class="solution-tagline">Fastest path from req to offer</p><ul class="solution-features"><li>Curated shortlist in 15 days</li><li>Structured sprint workflow</li><li>Weekly progress reports</li><li>Deep multi-channel sourcing</li></ul><p class="solution-footer">Perfect for startup founders and growing teams needing rapid, quality hires.</p></div>
+      <div class="solution-card featured" data-aos="fade-up" data-aos-delay="100"><div class="solution-badge">Popular</div><div class="solution-icon"><i class="ph ph-users-three"></i></div><div class="solution-card-tag">Embedded Recruiter</div><h3>Embedded Recruiter</h3><p class="solution-tagline">Your dedicated remote recruiting partner</p><ul class="solution-features"><li>Dedicated remote recruiter</li><li>25 hours per week</li><li>Manage up to 3 roles</li><li>Weekly dashboards &amp; end-to-end support</li></ul><p class="solution-footer">Ideal for remote-first teams and tech companies with consistent hiring needs.</p></div>
+      <div class="solution-card" data-aos="fade-up" data-aos-delay="200"><div class="solution-icon"><i class="ph ph-crown-simple"></i></div><div class="solution-card-tag">Leadership Search</div><h3>Leadership Search</h3><p class="solution-tagline">Executive and senior leadership hiring</p><ul class="solution-features"><li>Market mapping</li><li>Senior outreach</li><li>Structured evaluation</li><li>Discreet engagement</li></ul><p class="solution-footer">For product companies and scale-ups building their leadership bench.</p></div>
+      <div class="solution-card" data-aos="fade-up" data-aos-delay="300"><div class="solution-icon"><i class="ph ph-chart-line-up"></i></div><div class="solution-card-tag">TA Advisory</div><h3>TA Advisory &amp; Intelligence</h3><p class="solution-tagline">Build and optimise your talent function</p><ul class="solution-features"><li>TA &amp; HR function setup</li><li>Interview process design</li><li>ATS mapping</li><li>Compensation benchmarks</li></ul><p class="solution-footer">Perfect for internal TA teams looking to scale and optimise operations.</p></div>
+    </div>
+    <p class="solutions-note">All plans include weekly reporting, 90-day quality guarantee, and dedicated support. <a href="#contact">Need a custom solution? Let's talk.</a></p>
+  </div>
+</section>
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up"><div class="tag">The Method</div><h2>The TalentCursor Method</h2><div class="divider"></div><p style="max-width:480px;">A battle-tested 15-day sprint for predictable hiring outcomes.</p></div>
+    <div class="method-outer" id="method-outer">
+      <div class="method-line-track"><div class="method-line-fill" id="method-fill"></div></div>
+      <div class="method-steps">
+        <div class="method-step"><div class="method-node">1</div><div class="method-step-body-wrap"><div class="method-step-title">We learn what actually matters</div><p class="method-step-body">We map your tech stack, culture, growth trajectory, and ideal candidate DNA. Not just requirements — strategy. Understanding the why behind every role is what separates a great hire from an average one.</p></div></div>
+        <div class="method-step"><div class="method-node">2</div><div class="method-step-body-wrap"><div class="method-step-title">We find people worth meeting</div><p class="method-step-body">Multi-channel outreach combining LinkedIn, GitHub, communities, and our proprietary network. Every message is personalised; every pipeline is curated, not spray-and-prayed.</p></div></div>
+        <div class="method-step"><div class="method-node">3</div><div class="method-step-body-wrap"><div class="method-step-title">We filter so you don't have to</div><p class="method-step-body">Technical screens, behavioural assessments, and culture-fit evaluations. Only the top 3–5% reach your desk. You interview people who are ready to join, not just available to talk.</p></div></div>
+        <div class="method-step"><div class="method-node">4</div><div class="method-step-body-wrap"><div class="method-step-title">We stay until the hire is real</div><p class="method-step-body">From first interview to signed offer, we guide negotiations and ensure smooth onboarding. We stay involved until your new hire's first day — and beyond.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-header centered" data-aos="fade-up"><div class="tag">Pricing</div><h2>True transparent pricing</h2><div class="divider"></div><p>No hidden fees. No surprises. Designed for Indian startups — risk-free until we deliver.</p></div>
+    <div class="pricing-callout" data-aos="fade-up"><strong>Indian startups want results before they pay. So do we.</strong> Our Sprint Hire model charges a flat 10% only when we successfully place a candidate — zero upfront, zero retainer, zero risk.</div>
+    <div class="pricing-grid">
+      <div class="pricing-card" data-aos="fade-up" data-aos-delay="0"><div class="pricing-name">Sprint Hire</div><div class="pricing-price">10%</div><div class="pricing-price-note">flat success fee</div><ul class="pricing-features"><li>15-day delivery</li><li>Pay on success</li><li>90-day guarantee</li></ul><div class="pricing-best"><strong>Best for:</strong> Startup founders with urgent, single-role needs. Pay only on success.</div></div>
+      <div class="pricing-card featured" data-aos="fade-up" data-aos-delay="100"><div class="pricing-popular">Most Popular</div><div class="pricing-name">Embedded Recruiter</div><div class="pricing-price">₹35K</div><div class="pricing-price-note">/month + 8% fee</div><ul class="pricing-features"><li>25 hrs/week dedicated</li><li>Up to 3 roles</li><li>Weekly dashboards</li></ul><div class="pricing-best"><strong>Best for:</strong> Growth-stage teams with consistent hiring across multiple roles.</div></div>
+      <div class="pricing-card" data-aos="fade-up" data-aos-delay="200"><div class="pricing-name">Leadership Search</div><div class="pricing-price">15%</div><div class="pricing-price-note">flat success fee</div><ul class="pricing-features"><li>Executive search</li><li>Market mapping</li><li>Discreet outreach</li></ul><div class="pricing-best"><strong>Best for:</strong> Product companies and scale-ups building their leadership bench.</div></div>
+      <div class="pricing-card" data-aos="fade-up" data-aos-delay="300"><div class="pricing-name">TA Advisory</div><div class="pricing-price">₹60K+</div><div class="pricing-price-note">/month retainer</div><ul class="pricing-features"><li>TA setup &amp; optimisation</li><li>Process design</li><li>Team capability building</li></ul><div class="pricing-best"><strong>Best for:</strong> Internal TA teams scaling or optimising their hiring function.</div></div>
+    </div>
+    <p class="pricing-footer">All plans include weekly reporting, 90-day quality guarantee, and dedicated support. <a href="#contact">Need a custom plan? Let's talk.</a></p>
+  </div>
+</section>
+<section class="audience" id="audience">
+  <div class="container">
+    <div class="section-header centered" data-aos="fade-up"><div class="tag">Built For</div><h2>Built for modern teams</h2><div class="divider"></div><p>Trusted by forward-thinking companies building in India and beyond.</p></div>
+    <div class="audience-grid">
+      <div class="audience-card" data-aos="fade-up" data-aos-delay="0"><div class="audience-icon"><i class="ph ph-rocket-launch"></i></div><h3>Startup Founders</h3><p>Move fast without sacrificing quality. Build your founding team with precision and speed when it matters most.</p></div>
+      <div class="audience-card" data-aos="fade-up" data-aos-delay="100"><div class="audience-icon"><i class="ph ph-code"></i></div><h3>Tech &amp; Product Companies</h3><p>Scale your engineering and product teams with candidates who match your technical bar and culture.</p></div>
+      <div class="audience-card" data-aos="fade-up" data-aos-delay="200"><div class="audience-icon"><i class="ph ph-globe-hemisphere-west"></i></div><h3>Remote-First Teams</h3><p>Hire across geographies with structured remote interviewing, assessment, and onboarding support.</p></div>
+      <div class="audience-card" data-aos="fade-up" data-aos-delay="300"><div class="audience-icon"><i class="ph ph-buildings"></i></div><h3>Internal TA Teams</h3><p>Augment your team during peak hiring or optimise your existing processes with expert guidance.</p></div>
+    </div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-wrapper">
+      <div class="contact-left" data-aos="fade-up">
+        <div class="tag">Get In Touch</div>
+        <h2>Ready to accelerate<br>your hiring?</h2>
         <div class="divider"></div>
-        <p style="max-width:480px;">A battle-tested 15-day sprint process for predictable hiring outcomes.</p>
+        <p>Book a free 30-minute strategy call. No pitch — just an honest look at your hiring challenges and what it would take to solve them. Whether you work with us or not.</p>
+        <div class="contact-trust">
+          <div class="trust-item"><span class="trust-item-dot"></span>No commitment required</div>
+          <div class="trust-item"><span class="trust-item-dot"></span>30-minute call</div>
+          <div class="trust-item"><span class="trust-item-dot"></span>Actionable insights guaranteed</div>
+          <div class="trust-item"><span class="trust-item-dot"></span>hello@talentcursor.com</div>
+        </div>
       </div>
-      <div class="process-timeline">
-        <div class="process-step reveal">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <h3>Deep Discovery</h3>
-            <p>We map your tech stack, culture, growth trajectory, and ideal candidate DNA. Not just requirements — strategy. Understanding the why behind every role is what separates a great hire from an average one.</p>
-          </div>
-        </div>
-        <div class="process-step reveal reveal-delay-1">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <h3>Precision Sourcing</h3>
-            <p>Multi-channel outreach combining LinkedIn, GitHub, communities, and our proprietary network of candidates. Every message is personalised; every pipeline is curated, not spray-and-prayed.</p>
-          </div>
-        </div>
-        <div class="process-step reveal reveal-delay-2">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <h3>Rigorous Vetting</h3>
-            <p>Technical screens, behavioural assessments, and culture-fit evaluations. Only the top 3–5% reach your desk. You interview people who are ready to join, not just available to talk.</p>
-          </div>
-        </div>
-        <div class="process-step reveal reveal-delay-3">
-          <div class="step-number">4</div>
-          <div class="step-content">
-            <h3>Close &amp; Support</h3>
-            <p>From first interview to signed offer, we guide negotiations and ensure smooth onboarding. Partnership doesn't end at "yes." We stay involved until your new hire's first day — and beyond.</p>
-          </div>
-        </div>
+      <div class="contact-form" data-aos="fade-up" data-aos-delay="100">
+        <form>
+          <div class="form-group" data-aos="fade-up" data-aos-delay="80"><label for="fname">Full Name *</label><input type="text" id="fname" placeholder="Jane Smith" required /></div>
+          <div class="form-group" data-aos="fade-up" data-aos-delay="160"><label for="femail">Work Email *</label><input type="email" id="femail" placeholder="jane@company.com" required /></div>
+          <div class="form-group" data-aos="fade-up" data-aos-delay="240"><label for="fneeds">What are you hiring for?</label><textarea id="fneeds" placeholder="e.g., We're looking for a senior product manager and two backend engineers in Q1…"></textarea></div>
+          <div class="form-submit" data-aos="fade-up" data-aos-delay="320"><button type="submit" class="btn btn-primary">Book Free Strategy Call →</button></div>
+          <p class="form-guarantee"><span>✓</span> No commitment &nbsp;•&nbsp; <span>✓</span> 30 minutes &nbsp;•&nbsp; <span>✓</span> Actionable insights</p>
+        </form>
       </div>
     </div>
-  </section>
-
-  <section class="pricing" id="pricing">
-    <div class="container">
-      <div class="section-header centered reveal">
-        <div class="tag">Pricing</div>
-        <h2>True transparent pricing</h2>
-        <div class="divider"></div>
-        <p>No hidden fees. No surprises. Honest pricing designed for different team needs.</p>
-      </div>
-      <div class="pricing-grid">
-        <div class="pricing-card reveal reveal-delay-1">
-          <div class="pricing-name">Sprint Hire</div>
-          <div class="pricing-price">10%</div>
-          <div class="pricing-price-note">flat success fee</div>
-          <ul class="pricing-features">
-            <li>15-day delivery</li>
-            <li>Pay on success</li>
-            <li>90-day guarantee</li>
-          </ul>
-          <div class="pricing-best"><strong>Best for:</strong> Startup founders, single role urgency</div>
-        </div>
-        <div class="pricing-card featured reveal reveal-delay-2">
-          <div class="pricing-popular">Most Popular</div>
-          <div class="pricing-name">Embedded Recruiter</div>
-          <div class="pricing-price">₹35K</div>
-          <div class="pricing-price-note">/month + 8% fee</div>
-          <ul class="pricing-features">
-            <li>25 hrs/week dedicated</li>
-            <li>Up to 3 roles</li>
-            <li>Weekly dashboards</li>
-          </ul>
-          <div class="pricing-best"><strong>Best for:</strong> Remote teams, consistent hiring</div>
-        </div>
-        <div class="pricing-card reveal reveal-delay-3">
-          <div class="pricing-name">Leadership Search</div>
-          <div class="pricing-price">15%</div>
-          <div class="pricing-price-note">flat success fee</div>
-          <ul class="pricing-features">
-            <li>Executive search</li>
-            <li>Market mapping</li>
-            <li>Discreet outreach</li>
-          </ul>
-          <div class="pricing-best"><strong>Best for:</strong> Product companies, scale-ups</div>
-        </div>
-        <div class="pricing-card reveal reveal-delay-4">
-          <div class="pricing-name">TA Advisory</div>
-          <div class="pricing-price">₹60K+</div>
-          <div class="pricing-price-note">/month retainer</div>
-          <ul class="pricing-features">
-            <li>TA setup &amp; optimisation</li>
-            <li>Process design</li>
-            <li>Team capability building</li>
-          </ul>
-          <div class="pricing-best"><strong>Best for:</strong> Internal TA teams</div>
-        </div>
-      </div>
-      <p class="pricing-footer">All plans include weekly reporting, 90-day quality guarantee, and dedicated support. <a href="#contact">Need a custom plan? Let's talk.</a></p>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="footer-logo">Talent<span>Cursor</span></div><p>Guided by Precision. Driven by Speed. Structured recruiting for modern teams — delivering interview-ready candidates in 15 days.</p><div class="footer-social"><a href="#" title="LinkedIn">in</a><a href="#" title="X">𝕏</a></div></div>
+      <div class="footer-col"><h4>Solutions</h4><ul><li><a href="#services">Sprint Hire</a></li><li><a href="#services">Embedded Recruiter</a></li><li><a href="#services">Leadership Search</a></li><li><a href="#services">TA Advisory</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="#process">How It Works</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#contact">Contact</a></li><li><a href="mailto:hello@talentcursor.com">hello@talentcursor.com</a></li></ul></div>
     </div>
-  </section>
-
-  <section class="audience" id="audience">
-    <div class="container">
-      <div class="section-header centered reveal">
-        <div class="tag">Built For</div>
-        <h2>Built for modern teams</h2>
-        <div class="divider"></div>
-        <p>Trusted by forward-thinking companies across the globe.</p>
-      </div>
-      <div class="audience-grid">
-        <div class="audience-card reveal reveal-delay-1"><div class="audience-icon">🚀</div><h3>Startup Founders</h3><p>Move fast without sacrificing quality. Build your founding team with precision and speed when it matters most.</p></div>
-        <div class="audience-card reveal reveal-delay-2"><div class="audience-icon">💻</div><h3>Tech &amp; Product Companies</h3><p>Scale your engineering and product teams with candidates who match your technical bar and culture.</p></div>
-        <div class="audience-card reveal reveal-delay-3"><div class="audience-icon">🌍</div><h3>Remote-First Teams</h3><p>Hire across geographies with structured remote interviewing, assessment, and onboarding support.</p></div>
-        <div class="audience-card reveal reveal-delay-4"><div class="audience-icon">🏗️</div><h3>Internal TA Teams</h3><p>Augment your team during peak hiring or optimise your existing processes with expert guidance.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="contact-wrapper">
-        <div class="contact-left reveal">
-          <div class="tag">Get In Touch</div>
-          <h2>Ready to accelerate<br>your hiring?</h2>
-          <div class="divider"></div>
-          <p>Book a free 30-minute strategy call. No pitch, just insights. We'll analyse your hiring challenges and show you exactly how we can help — whether you work with us or not.</p>
-          <div class="contact-trust">
-            <div class="trust-item"><span class="trust-item-dot"></span>No commitment required</div>
-            <div class="trust-item"><span class="trust-item-dot"></span>30-minute call</div>
-            <div class="trust-item"><span class="trust-item-dot"></span>Actionable insights guaranteed</div>
-            <div class="trust-item"><span class="trust-item-dot"></span>hello@talentcursor.com</div>
-          </div>
-        </div>
-        <div class="contact-form reveal reveal-delay-1">
-          <form>
-            <div class="form-grid">
-              <div class="form-group"><label for="name">Full Name *</label><input type="text" id="name" placeholder="Jane Smith" required /></div>
-              <div class="form-group"><label for="email">Work Email *</label><input type="email" id="email" placeholder="jane@company.com" required /></div>
-              <div class="form-group"><label for="company">Company Name *</label><input type="text" id="company" placeholder="Acme Inc" required /></div>
-              <div class="form-group">
-                <label for="size">Company Size</label>
-                <select id="size">
-                  <option value="">Select size</option>
-                  <option>1–10 employees</option>
-                  <option>11–50 employees</option>
-                  <option>51–200 employees</option>
-                  <option>201–500 employees</option>
-                  <option>500+ employees</option>
-                </select>
-              </div>
-              <div class="form-group full">
-                <label for="solution">What solution interests you? *</label>
-                <select id="solution" required>
-                  <option value="">Select a solution</option>
-                  <option>Sprint Hire</option>
-                  <option>Embedded Recruiter</option>
-                  <option>Leadership Search</option>
-                  <option>TA Advisory and Intelligence</option>
-                  <option>Not sure yet — let's discuss</option>
-                </select>
-              </div>
-              <div class="form-group full"><label for="needs">Tell us about your hiring needs</label><textarea id="needs" placeholder="e.g., We're hiring 3 engineers and 2 product managers in Q1…"></textarea></div>
-            </div>
-            <div class="form-submit"><button type="submit" class="btn btn-primary">Book Free Strategy Call →</button></div>
-            <p class="form-guarantee"><span>✓</span> No commitment &nbsp;•&nbsp; <span>✓</span> 30 minutes &nbsp;•&nbsp; <span>✓</span> Actionable insights</p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-logo">Talent<span>Cursor</span></div>
-          <p>Guided by Precision. Driven by Speed. Structured recruiting for modern teams — delivering interview-ready candidates in 15 days.</p>
-          <div class="footer-social">
-            <a href="#" title="LinkedIn">in</a>
-            <a href="#" title="X / Twitter">𝕏</a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Solutions</h4>
-          <ul>
-            <li><a href="#services">Sprint Hire</a></li>
-            <li><a href="#services">Embedded Recruiter</a></li>
-            <li><a href="#services">Leadership Search</a></li>
-            <li><a href="#services">TA Advisory</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#process">How It Works</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="mailto:hello@talentcursor.com">hello@talentcursor.com</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2025 TalentCursor. All rights reserved.</span>
-        <div class="footer-legal">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
-    const revealEls = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-    revealEls.forEach(el => io.observe(el));
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) { e.preventDefault(); const top = target.getBoundingClientRect().top + window.scrollY - 76; window.scrollTo({ top, behavior: 'smooth' }); }
-      });
+    <div class="footer-bottom"><span>© 2025 TalentCursor. All rights reserved.</span><div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div>
+  </div>
+</footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({duration:650,easing:'ease-out-cubic',once:true,offset:60});
+  const navbar=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>60));
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',function(e){
+      const t=document.querySelector(this.getAttribute('href'));
+      if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-76,behavior:'smooth'});}
     });
-    const form = document.querySelector('form');
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const btn = this.querySelector('button[type="submit"]');
-        btn.textContent = '✓ Message sent!';
-        btn.style.background = '#4caf87';
-        btn.style.boxShadow = '0 4px 16px rgba(76,175,135,0.35)';
-        setTimeout(() => { btn.textContent = 'Book Free Strategy Call →'; btn.style.background = ''; btn.style.boxShadow = ''; }, 3000);
-      });
-    }
-  </script>
+  });
+  const countEls=document.querySelectorAll('.stat-num[data-count]');
+  const cObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const el=e.target,end=+el.dataset.count,suf=el.dataset.suffix||'';
+      let t0;
+      const step=ts=>{if(!t0)t0=ts;const p=Math.min((ts-t0)/1200,1);el.textContent=Math.round(p*end)+suf;if(p<1)requestAnimationFrame(step);};
+      requestAnimationFrame(step);
+      cObs.unobserve(el);
+    });
+  },{threshold:0.5});
+  countEls.forEach(el=>cObs.observe(el));
+  const mo=document.getElementById('method-outer'),mf=document.getElementById('method-fill'),nodes=document.querySelectorAll('.method-node');
+  if(mo){new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;mf.style.width='100%';nodes.forEach((n,i)=>setTimeout(()=>n.classList.add('popped'),150+i*280));});},{threshold:0.25}).observe(mo);}
+  const hc=document.getElementById('hai-cols'),hd=document.getElementById('hai-divider');
+  if(hc&&hd){new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)setTimeout(()=>hd.classList.add('vis'),420);});},{threshold:0.3}).observe(hc);}
+  const form=document.querySelector('form');
+  if(form){form.addEventListener('submit',function(e){e.preventDefault();const btn=this.querySelector('button[type="submit"]');btn.textContent='✓ Message sent!';btn.style.cssText='background:#4caf87;box-shadow:0 4px 16px rgba(76,175,135,.35)';setTimeout(()=>{btn.textContent='Book Free Strategy Call →';btn.style.cssText='';},3000);});}
+</script>
 </body>
   </html>
