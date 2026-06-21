@@ -1,810 +1,1331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TalentCursor — Guided by Precision. Driven by Speed.</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
-  <style>
-    :root {
-      --bg:#FAF7F3; --bg-warm:#F3EDE4; --bg-card:#FFFFFF; --bg-dark:#1E1610;
-      --text:#1C1410; --text-mid:#5A4A3F; --text-muted:#9A857A;
-      --terra:#C0512E; --terra-light:#E07A57;
-      --amber:#D4943A; --amber-light:#F0C070;
-      --linen:#EDE5D8; --border:#E2D8CE;
-      --shadow-sm:0 2px 8px rgba(60,30,10,.07);
-      --shadow-md:0 6px 24px rgba(60,30,10,.10);
-      --shadow-lg:0 16px 48px rgba(60,30,10,.12);
-      --r-sm:10px; --r-md:16px; --r-lg:24px; --r-xl:32px;
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;font-size:16px}
-    body{font-family:'Inter',sans-serif;background:var(--bg-warm);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
-    img{display:block;max-width:100%}
-    a{text-decoration:none;color:inherit}
-    h1,h2,h3{font-family:'Fraunces',serif;line-height:1.15;font-weight:600}
-    h1{font-size:clamp(2.6rem,5.5vw,4.5rem);letter-spacing:-.02em}
-    h2{font-size:clamp(2rem,3.5vw,2.9rem);letter-spacing:-.015em}
-    h3{font-size:1.25rem;font-weight:600}
-    p{color:var(--text-mid)}
-    .container{max-width:1160px;margin:0 auto;padding:0 28px}
-    .tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);background:rgba(192,81,46,.09);border:1px solid rgba(192,81,46,.18);border-radius:100px;padding:4px 14px;margin-bottom:18px}
-    .divider{width:48px;height:3px;background:linear-gradient(90deg,var(--terra),var(--amber));border-radius:2px;margin:18px 0 28px}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TalentCursor: Tech, AI &amp; Product Hiring</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<style>
+:root {
+--bg:#FFFFFF; --bg-warm:#FFFFFF; --bg-card:#FFFFFF; --bg-dark:#0B0E22;
+--text:#0E0E12; --text-mid:#43434D; --text-muted:#85858F;
+--terra:#1E4FD8; --terra-light:#3D6AE8;
+--amber:#1E4FD8; --amber-light:#3D6AE8;
+--linen:#EEEEF2; --border:#E4E4EA;
+--shadow-sm:none;
+--shadow-md:none;
+--shadow-lg:0 12px 32px rgba(14,14,18,.08);
+--r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:20px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;background:var(--bg-warm);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+h1,h2,h3{font-family:'Inter',sans-serif;line-height:1.05;font-weight:800;letter-spacing:-.035em}
+h1{font-size:clamp(2.6rem,5.5vw,4.2rem);letter-spacing:-.03em}
+h2{font-size:clamp(2rem,3.5vw,2.7rem);letter-spacing:-.025em}
+h3{font-size:1.2rem;font-weight:700;letter-spacing:-.01em}
+p{color:var(--text-mid)}
+.container{max-width:1160px;margin:0 auto;padding:0 28px}
+.tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);background:rgba(192,81,46,.09);border:1px solid rgba(192,81,46,.18);border-radius:100px;padding:4px 14px;margin-bottom:18px}
+.divider{width:32px;height:2px;background:var(--terra);border-radius:2px;margin:18px 0 28px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:.93rem;font-weight:600;border-radius:100px;padding:13px 28px;cursor:pointer;border:none;transition:all .25s cubic-bezier(.16,1,.3,1);white-space:nowrap;position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);transform:translateX(-100%);transition:transform .5s ease}
+.btn:hover::after{transform:translateX(100%)}
+.btn-primary{background:var(--terra);color:#fff;box-shadow:0 4px 16px rgba(192,81,46,.30)}
+.btn-primary:hover{background:var(--terra-light);box-shadow:0 6px 24px rgba(192,81,46,.38);transform:translateY(-1px)}
+.btn-outline{background:#EEF2FE;color:var(--terra);border:none}
+.btn-outline:hover{background:#E2E9FD;transform:translateY(-1px)}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;transition:background .3s,box-shadow .3s,backdrop-filter .3s}
+.navbar.scrolled{background:rgba(243,237,228,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);box-shadow:var(--shadow-md)}
+.navbar.on-dark .logo{color:#fff}
+.navbar.on-dark .nav-links a{color:rgba(255,255,255,.7)}
+.navbar.on-dark .nav-links a:hover{color:#fff}
+.navbar.on-dark .btn-primary{background:#fff;color:#0B0E22}
+.navbar.on-dark .btn-primary:hover{background:rgba(255,255,255,.88)}
+.navbar-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:'Inter',sans-serif;font-size:1.3rem;font-weight:700;letter-spacing:-.02em;color:var(--text);display:flex;align-items:center;gap:2px;transition:color .3s}
+.logo em{color:var(--amber);font-style:normal}
+.logo-cursor{width:3px;height:.95em;background:#B8860B;margin-left:4px;display:inline-block;vertical-align:-0.1em;animation:cursorblink 1.1s step-end infinite}
+@keyframes cursorblink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.logo-cursor{animation:none;opacity:1}}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--text-mid);transition:color .2s}
+.nav-links a:hover{color:var(--terra)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;background:var(--bg-warm)}
+.hero-content{max-width:780px;position:relative;z-index:2;padding-top:90px;padding-bottom:60px;margin:0 auto;text-align:center}
+.hero-eyebrow{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:24px;animation:fadeUp .6s ease both}
+.hero-eyebrow-line{display:none}
+.hero-eyebrow-text{font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
+.hero h1{color:var(--text);margin-bottom:22px;animation:fadeUp .6s .15s ease both}
+.hero h1 em{font-style:normal;color:var(--text);font-weight:700}
+.hero-sub{font-size:1.08rem;line-height:1.6;max-width:600px;margin:0 auto 38px;color:var(--text-muted);animation:fadeUp .6s .3s ease both}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;animation:fadeUp .5s .45s ease both}
+.hero-note{font-size:.82rem;color:var(--text-muted);animation:fadeIn .4s .6s ease both;margin-top:20px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.proof-strip{display:flex;align-items:center;justify-content:center;gap:0;margin:48px auto 0;animation:fadeUp .6s .55s ease both;flex-wrap:wrap}
+.proof-live-tag{display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:18px;animation:fadeUp .6s .5s ease both}
+.proof-live-dot{width:7px;height:7px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 0 rgba(34,197,94,.5);animation:livepulse 2s ease infinite}
+@keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.45)}70%{box-shadow:0 0 0 6px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+.proof-live-text{font-size:.78rem;font-weight:600;color:#16A34A;letter-spacing:.01em}
+.proof-item{display:flex;flex-direction:column;gap:4px;padding-right:40px;margin-right:40px;border-right:1px solid var(--border)}
+.proof-item:last-child{border-right:none;margin-right:0;padding-right:0}
+.proof-num{font-family:'Inter',sans-serif;font-size:2.2rem;font-weight:700;letter-spacing:-.03em;color:var(--text);line-height:1}
+.proof-item.accent-text .proof-num{font-size:1.3rem;white-space:nowrap}
+.proof-num.accent{color:var(--terra)}
+.proof-label{font-size:.8rem;color:var(--text-muted)}
+.pw-frame-label{text-align:center;font-size:.74rem;font-weight:600;color:var(--text-muted);margin:56px 0 14px;animation:fadeUp .6s .6s ease both}
+.product-window{margin:0 auto;max-width:1040px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);overflow:hidden;animation:fadeUp .7s .68s ease both}
+.pw-bar{height:40px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:8px}
+.pw-dot{width:10px;height:10px;border-radius:50%;background:var(--linen)}
+.pw-url{flex:1;margin:0 12px;height:24px;background:var(--bg-warm);border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;padding:0 10px;font-size:.72rem;color:var(--text-muted)}
+.pw-typing-cursor{display:inline-block;width:2px;height:11px;background:var(--terra);margin-left:1px;animation:cursorblink 1.1s step-end infinite;vertical-align:-1px}
+@media(prefers-reduced-motion:reduce){.pw-typing-cursor{animation:none;opacity:1}}
+.pw-grid{display:grid;grid-template-columns:200px 1fr 1fr}
+.pw-sidebar{background:#fff;border-right:1px solid var(--border);padding:18px}
+.pw-mandate{background:rgba(192,81,46,.06);border:1px solid rgba(192,81,46,.15);border-radius:10px;padding:12px}
+.pw-mandate-label{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--terra);margin-bottom:3px}
+.pw-mandate-title{font-size:.85rem;font-weight:700;color:var(--text)}
+.pw-mandate-sub{font-size:.7rem;color:var(--text-muted);margin-top:2px}
+.pw-tabs{display:flex;gap:6px;padding:12px 16px 0;border-bottom:1px solid var(--border);background:#fff}
+.pw-tab{font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;color:var(--text-muted);background:transparent;border:none;padding:8px 14px 12px;cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.pw-tab:hover{color:var(--text)}
+.pw-tab.active{color:var(--terra);border-bottom-color:var(--terra)}
+.pw-recruiter{display:flex;align-items:center;gap:9px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.pw-recruiter-av{width:26px;height:26px;border-radius:50%;background:#EEF2FE;color:var(--terra);display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:700;flex-shrink:0}
+.pw-recruiter-name{font-size:.74rem;font-weight:700;color:var(--text)}
+.pw-recruiter-status{font-size:.65rem;color:var(--text-muted);display:flex;align-items:center;gap:5px}
+.pw-recruiter-dot{width:5px;height:5px;border-radius:50%;background:#22C55E;animation:livepulse 2s ease infinite}
+.pw-list{padding:16px}
+.pw-funnel{background:var(--bg-warm);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:14px}
+.pw-funnel-h{font-size:.84rem;font-weight:700;color:var(--text);margin-bottom:3px;letter-spacing:-.01em}
+.pw-funnel-sub{font-size:.66rem;color:var(--text-muted);margin-bottom:12px}
+.pw-funnel-row{display:flex;justify-content:space-between;text-align:center}
+.pw-fstep{display:flex;flex-direction:column;gap:2px}
+.pw-fnum{font-family:'Inter',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:-.02em;color:var(--text)}
+.pw-fnum.accent{color:var(--terra)}
+.pw-flabel{font-size:.62rem;color:var(--text-muted)}
+.pw-candidate{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.pw-candidate.sel{border-color:var(--terra)}
+.pw-cand-top{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.pw-avatar{width:30px;height:30px;border-radius:50%;background:rgba(192,81,46,.12);color:var(--terra);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700}
+.pw-cand-name{font-size:.82rem;font-weight:700;color:var(--text)}
+.pw-cand-role{font-size:.68rem;color:var(--text-muted)}
+.pw-verdict{margin-left:auto;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border-radius:20px;background:rgba(192,81,46,.1);color:var(--terra)}
+.pw-detail{padding:18px;background:#fff}
+.pw-detail-name{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:2px}
+.pw-detail-role{font-size:.72rem;color:var(--text-muted);margin-bottom:10px}
+.pw-badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.pw-badge{font-size:.62rem;font-weight:600;padding:3px 9px;border-radius:20px}
+.pw-badge-primary{background:var(--terra);color:#fff}
+.pw-badge-soft{background:rgba(192,81,46,.08);color:var(--terra)}
+.pw-section-label{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
+.pw-dims{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.pw-dim{background:var(--bg-warm);border:1px solid var(--border);border-radius:8px;padding:9px 11px}
+.pw-dim-label{font-size:.62rem;color:var(--text-muted);margin-bottom:3px}
+.pw-dim-val{font-size:.74rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:5px}
+.pw-dim-val .ok{color:#16A34A}
+.pw-dim-val .warn{color:#D97706}
+.pw-signal{background:var(--bg-warm);border:1px solid var(--border);border-radius:8px;padding:9px 11px;margin-bottom:6px;font-size:.72rem;color:var(--text-mid);line-height:1.5}
+.pw-signal strong{color:var(--text)}
+@media(max-width:900px){.pw-grid{grid-template-columns:1fr}.pw-sidebar{display:none}.proof-strip{gap:20px}.proof-item{border-right:none;margin-right:0;padding-right:0}}
+/* What Clients Get */
+.outcomes-sec{background:var(--bg-warm);padding:80px 0}
+.outcomes-head{text-align:center;margin-bottom:48px}
+.outcomes-lead{font-size:1.3rem;font-weight:700;letter-spacing:-.015em;color:var(--text);max-width:520px;margin:0 auto}
+.contrast-block{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;max-width:880px;margin:0 auto 48px;background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:32px}
+.contrast-col-them{opacity:.6}
+.contrast-label{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px}
+.contrast-col-us .contrast-label{color:var(--terra)}
+.contrast-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.contrast-list li{font-size:.86rem;color:var(--text-mid);line-height:1.5;padding-left:18px;position:relative}
+.contrast-col-them .contrast-list li::before{content:'•';position:absolute;left:0;color:var(--text-muted)}
+.contrast-col-us .contrast-list li{color:var(--text);font-weight:500}
+.contrast-col-us .contrast-list li::before{content:'✓';position:absolute;left:0;color:var(--terra);font-weight:700}
+.contrast-divider{width:34px;height:34px;border-radius:50%;background:var(--bg-warm);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--terra);font-size:.9rem}
+@media(max-width:700px){.contrast-block{grid-template-columns:1fr;text-align:left;padding:24px}.contrast-divider{transform:rotate(90deg);margin:4px 0}}
+.outcomes-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:1080px;margin:0 auto}
+.outcomes-grid-3{grid-template-columns:repeat(3,1fr);max-width:760px}
+.outcome-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-md);padding:22px 18px;text-align:center}
+.outcome-icon{width:34px;height:34px;background:#fff;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--terra);margin:0 auto 14px}
+.outcome-text{font-size:.82rem;color:var(--text-mid);line-height:1.55}
+.outcome-text strong{color:var(--text);font-weight:700;display:block;margin-bottom:2px}
+@media(max-width:900px){.outcomes-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.outcomes-grid{grid-template-columns:1fr}}
 
-    /* Buttons */
-    .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:.93rem;font-weight:600;border-radius:100px;padding:13px 28px;cursor:pointer;border:none;transition:all .25s cubic-bezier(.16,1,.3,1);white-space:nowrap;position:relative;overflow:hidden}
-    .btn::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);transform:translateX(-100%);transition:transform .5s ease}
-    .btn:hover::after{transform:translateX(100%)}
-    .btn-primary{background:var(--terra);color:#fff;box-shadow:0 4px 16px rgba(192,81,46,.30)}
-    .btn-primary:hover{background:var(--terra-light);box-shadow:0 6px 24px rgba(192,81,46,.38);transform:translateY(-1px)}
-    .btn-outline-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
-    .btn-outline-white:hover{background:rgba(255,255,255,.12);transform:translateY(-1px)}
-    .btn-outline{background:transparent;color:var(--terra);border:1.5px solid rgba(192,81,46,.35)}
-    .btn-outline:hover{background:rgba(192,81,46,.07);transform:translateY(-1px)}
+.tc-s{background:var(--bg-dark);padding:52px 0 44px;overflow:hidden;position:relative}
+.dark-glow{position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse at center,rgba(120,140,255,.10) 0%,rgba(90,100,200,.04) 40%,transparent 70%);pointer-events:none;z-index:0}
+.tc-s::before,.tc-s::after{content:'';position:absolute;top:0;bottom:0;width:130px;z-index:2;pointer-events:none}
+.tc-s::before{left:0;background:linear-gradient(to right,#0B0E22 0%,transparent 100%)}
+.tc-s::after{right:0;background:linear-gradient(to left,#0B0E22 0%,transparent 100%)}
+.tc-lbl{text-align:center;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:36px}
+.tc-metrics{display:flex;align-items:center;justify-content:center;gap:0;max-width:1000px;margin:0 auto;flex-wrap:wrap}
+.tc-metrics-5{max-width:1180px;margin-bottom:52px}
+.tc-metric{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 44px;border-right:1px solid rgba(255,255,255,.1)}
+.tc-metrics-5 .tc-metric{padding:0 28px}
+.tc-metric:last-child{border-right:none}
+.tc-metric-num{font-family:'Inter',sans-serif;font-size:1.7rem;font-weight:700;letter-spacing:-.02em;color:#fff}
+.tc-metrics-5 .tc-metric-num{font-size:1.4rem;white-space:nowrap}
+.tc-metric-label{font-size:.72rem;color:rgba(255,255,255,.45);text-align:center;max-width:140px}
+.tc-metrics-5 .tc-metric-label{max-width:160px;line-height:1.4}
+.tc-logos-lbl{text-align:center;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:22px}
+@media(max-width:900px){.tc-metric{border-right:none;padding:10px 24px}}
+@media(max-width:700px){.tc-metrics-5{flex-direction:column;gap:18px}.tc-metrics-5 .tc-metric{padding:0}}
+.tc-wrap{overflow:hidden}
+.tc-track{display:flex;align-items:center;gap:80px;width:max-content;animation:tc-go 24s linear infinite}
+.tc-track:hover{animation-play-state:paused}
+@keyframes tc-go{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tc-logo{display:flex;align-items:center;justify-content:center;height:48px;flex-shrink:0;opacity:.5;transition:opacity .3s ease}
+.tc-logo:hover{opacity:1}
+.tc-text{font-family:'Inter',sans-serif;font-size:1.05rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:-.01em;white-space:nowrap;transition:color .3s}
+.tc-logo:hover .tc-text{color:#fff}
+section{padding:100px 0}
+.section-header{margin-bottom:60px}
+.section-header.centered{text-align:center}
+.section-header.centered .divider{margin:18px auto 28px}
+.about{background:var(--bg-warm)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.about-left p{margin-bottom:18px;line-height:1.85;font-size:.97rem}
+.about-accent{font-weight:600;color:var(--terra);font-style:italic}
+.value-prop{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:24px;margin-bottom:14px;transition:border-color .2s,transform .2s,box-shadow .2s}
+.value-prop:hover{border-color:#C7D2FB;transform:translateY(-3px);box-shadow:0 10px 28px rgba(14,14,18,.07)}
+.value-prop-icon{width:38px;height:38px;background:#fff;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--terra);margin-bottom:14px}
+.value-prop h3{font-size:1.05rem;margin-bottom:5px}
+.value-prop p{font-size:.9rem}
+.human-ai{background:var(--bg-dark);padding:100px 0;position:relative;overflow:hidden}
+.human-ai .tag{background:rgba(212,148,58,.15);border-color:rgba(212,148,58,.30);color:var(--amber-light)}
+.human-ai .divider{background:var(--amber-light)}
+.human-ai h2{color:#fff}
+.hai-body{max-width:780px;margin-bottom:56px}
+.hai-body p{color:rgba(255,255,255,.62);line-height:1.88;font-size:.97rem;margin-bottom:16px}
+.hai-cols{display:grid;grid-template-columns:1fr 1px 1fr;gap:48px;align-items:start}
+.hai-divider{background:rgba(255,255,255,.10);align-self:stretch;border-radius:2px;transform:scaleY(0);transform-origin:top;transition:transform .65s cubic-bezier(.22,1,.36,1) .4s}
+.hai-divider.vis{transform:scaleY(1)}
+.hai-col-label{font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08)}
+.hai-left .hai-col-label{color:var(--terra-light)}
+.hai-right .hai-col-label{color:var(--amber-light)}
+.hai-col ul{list-style:none}
+.hai-col ul li{font-size:.93rem;color:rgba(255,255,255,.62);padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:12px;align-items:flex-start;line-height:1.65}
+.hai-col ul li:last-child{border-bottom:none}
+.hai-left li::before,.hai-right li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;margin-top:7px;flex-shrink:0}
+.hai-left li::before{background:var(--terra)}
+.hai-right li::before{background:var(--amber)}
+/* How We Source */
+.source-sec{background:#fff}
+.source-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.source-copy p{font-size:.95rem;line-height:1.85;margin-bottom:16px}
+.source-list{list-style:none;margin-top:24px}
+.source-list li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border-2,var(--border))}
+.source-list li:last-child{border-bottom:none}
+.source-list-num{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--terra);color:var(--terra);font-size:.68rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.source-list-text{font-size:.88rem;color:var(--text-mid);line-height:1.6}
+.source-list-text strong{color:var(--text);font-weight:700}
+.source-visual{background:var(--bg-warm);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px}
+.source-visual-label{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px}
+.source-recruiter-bar{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:16px}
+.source-recruiter-av{width:30px;height:30px;border-radius:50%;background:#EEF2FE;color:var(--terra);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0}
+.source-recruiter-text{font-size:.78rem;color:var(--text)}
+.source-recruiter-text strong{font-weight:700}
+.source-recruiter-sub{font-size:.68rem;color:var(--text-muted);margin-top:1px}
+.source-channels{display:flex;flex-direction:column;gap:10px}
+.source-channel{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--border);border-radius:9px;padding:11px 14px;position:relative;overflow:hidden}
+.source-channel-icon{width:30px;height:30px;border-radius:7px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--terra);flex-shrink:0}
+.source-channel-name{font-size:.8rem;font-weight:600;color:var(--text);flex:1}
+.source-channel-count{font-size:.72rem;color:var(--text-muted);font-weight:600}
+.source-channel-bar{position:absolute;bottom:0;left:0;height:2px;background:var(--terra);width:0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+@media(max-width:900px){.source-layout{grid-template-columns:1fr;gap:36px}}
 
-    /* Navbar */
-    .navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;transition:background .3s,box-shadow .3s,backdrop-filter .3s}
-    .navbar.scrolled{background:rgba(243,237,228,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);box-shadow:var(--shadow-md)}
-    .navbar-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-    .logo{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:2px;transition:color .3s}
-    .logo em{color:var(--amber);font-style:normal}
-    .logo-dot{width:7px;height:7px;background:var(--amber);border-radius:50%;margin-left:3px;display:inline-block}
-    .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
-    .nav-links a{font-size:.9rem;font-weight:500;color:var(--text-mid);transition:color .2s}
-    .nav-links a:hover{color:var(--terra)}
 
-    /* Hero */
-    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;background:var(--bg-warm)}
-    .hero-bg{display:none}
-    .hero-overlay{display:none}
-    .hero-content{max-width:760px;position:relative;z-index:2;padding-top:90px;padding-bottom:80px}
-    .hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:24px;animation:fadeUp .6s ease both}
-    .hero-eyebrow-line{width:36px;height:2px;background:linear-gradient(90deg,var(--terra),var(--amber));border-radius:2px}
-    .hero-eyebrow-text{font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terra)}
-    .hero h1{color:var(--text);margin-bottom:22px;animation:fadeUp .6s .15s ease both}
-    .hero h1 em{font-style:italic;color:var(--amber);font-weight:300}
-    .hero-sub{font-size:1.08rem;line-height:1.75;max-width:580px;margin-bottom:38px;color:var(--text-mid);animation:fadeUp .6s .3s ease both}
-    .hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;animation:fadeUp .5s .45s ease both}
-    .hero-note{font-size:.82rem;color:var(--text-muted);animation:fadeIn .4s .6s ease both;margin-top:20px}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.solutions-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px}
+.solutions-grid-2{grid-template-columns:1fr 1fr;max-width:820px;margin:0 auto}
+.solution-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:32px;position:relative;transition:border-color .2s,transform .2s,box-shadow .2s}
+.solution-card:hover{border-color:#C7D2FB;transform:translateY(-4px);box-shadow:0 14px 32px rgba(14,14,18,.08)}
+.solution-card-tag{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.solution-icon{width:38px;height:38px;background:#fff;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--terra);margin-bottom:16px}
+.solution-card h3{font-size:1.4rem;margin-bottom:6px}
+.solution-tagline{font-size:.88rem;color:var(--text-muted);margin-bottom:22px}
+.solution-features{list-style:none;margin-bottom:22px}
+.solution-features li{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--text-mid);padding:7px 0;border-bottom:1px solid var(--linen)}
+.solution-features li:last-child{border-bottom:none}
+.solution-features li::before{content:'✓';width:20px;height:20px;background:rgba(192,81,46,.10);color:var(--terra);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0}
+.solution-footer{font-size:.82rem;color:var(--text-muted);font-style:italic;line-height:1.5}
+.solutions-note{text-align:center;margin-top:36px;font-size:.9rem;color:var(--text-muted)}
+.solutions-note a{color:var(--terra);font-weight:600;border-bottom:1px solid rgba(192,81,46,.3);transition:border-color .2s}
+.audience{background:var(--bg-warm)}
+.audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.audience-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:28px 24px;transition:border-color .2s,transform .2s,box-shadow .2s}
+.audience-card:hover{border-color:#C7D2FB;transform:translateY(-3px);box-shadow:0 10px 28px rgba(14,14,18,.07)}
+.audience-icon{width:38px;height:38px;background:#fff;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--terra);margin-bottom:16px}
+.audience-card h3{font-size:1.05rem;margin-bottom:10px}
+.audience-card p{font-size:.88rem;line-height:1.65}
+.contact{background:var(--bg-warm)}
+.contact-wrapper{display:grid;grid-template-columns:1fr 1.3fr;gap:72px;align-items:start}
+.contact-left p{font-size:1rem;line-height:1.82;margin-bottom:30px}
+.contact-trust{display:flex;flex-direction:column;gap:12px}
+.trust-item{display:flex;align-items:center;gap:12px;font-size:.88rem;color:var(--text-mid);font-weight:500}
+.trust-item-dot{width:8px;height:8px;border-radius:50%;background:var(--terra);flex-shrink:0}
+.contact-form{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:40px}
+.form-group{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.form-group label{font-size:.83rem;font-weight:600;color:var(--text);letter-spacing:.01em}
+.form-group input,.form-group textarea{font-family:'Inter',sans-serif;font-size:.93rem;color:var(--text);background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:12px 16px;outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--terra);box-shadow:0 0 0 3px rgba(192,81,46,.10)}
+.form-group textarea{resize:vertical;min-height:110px}
+.form-submit{margin-top:8px}
+.form-submit .btn{width:100%;justify-content:center;padding:15px 28px;font-size:.96rem}
+footer{background:var(--bg-dark);color:rgba(255,255,255,.65);padding:70px 0 32px;position:relative;overflow:hidden}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-logo{font-family:'Inter',sans-serif;font-size:1.25rem;font-weight:700;letter-spacing:-.02em;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:2px}
+.footer-logo em{color:var(--amber);font-style:normal}
+.footer-logo .logo-cursor{background:#C9A227}
+.footer-brand p{font-size:.87rem;line-height:1.7;color:rgba(255,255,255,.45);margin-bottom:22px;max-width:320px}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:36px;height:36px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.82rem;color:rgba(255,255,255,.55);transition:all .2s}
+.footer-social a:hover{background:rgba(212,148,58,.18);border-color:rgba(212,148,58,.35);color:var(--amber-light)}
+.footer-col h4{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:18px}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:11px}
+.footer-col a{font-size:.88rem;color:rgba(255,255,255,.55);transition:color .2s}
+.footer-col a:hover{color:var(--amber-light)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:28px;font-size:.82rem;color:rgba(255,255,255,.28)}
+.footer-legal{display:flex;gap:24px}
+.footer-legal a{color:rgba(255,255,255,.35);transition:color .2s}
+.footer-entity{font-size:.74rem;color:rgba(255,255,255,.22);margin-top:18px;line-height:1.6}
+@media(max-width:900px){
+.about-grid,.contact-wrapper{grid-template-columns:1fr;gap:48px}
+.solutions-grid{grid-template-columns:1fr}
+.audience-grid{grid-template-columns:1fr 1fr}
+.nav-links,.navbar .btn{display:none}
+.footer-top{grid-template-columns:1fr;gap:36px}
+.hai-cols{grid-template-columns:1fr;gap:32px}
+.hai-divider{display:none}
+}
+@media(max-width:600px){
+.audience-grid{grid-template-columns:1fr}
+.hero h1{font-size:2.4rem}
+}
+@media(prefers-reduced-motion:reduce){
+[data-aos]{animation:none!important;transition:none!important}
+}
+/* ───── Notion-aligned system (test sections) ───── */
+.n-hero{background:var(--bg-dark);padding:64px 0 0;position:relative;overflow:hidden}
+.n-hero-glow{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:1100px;height:700px;background:radial-gradient(ellipse at center,rgba(120,140,255,.20) 0%,rgba(90,100,200,.08) 40%,transparent 70%);pointer-events:none;z-index:0}
+.n-hero-rule{position:absolute;top:0;left:0;right:0;height:1px;background:rgba(255,255,255,.08)}
+.n-kicker.n-kicker-dark{color:rgba(255,255,255,.55)}
+.n-h1.n-h1-dark{color:#fff}
+.n-sub.n-sub-dark{color:rgba(255,255,255,.6)}
+.btn-n-secondary-dark{background:rgba(255,255,255,.08);color:#fff;font-weight:600;font-size:.92rem;padding:13px 26px;border-radius:100px;border:1px solid rgba(255,255,255,.16);transition:background .2s,transform .2s}
+.btn-n-secondary-dark:hover{background:rgba(255,255,255,.14);transform:translateY(-1px)}
+.n-hero .btn-n-primary{background:#5B6EF5}
+.n-hero .btn-n-primary:hover{background:#6E7FF7}
+.n-shot-frame-dark{background:#fff;border:1px solid rgba(255,255,255,.1);border-radius:16px 16px 0 0;box-shadow:0 30px 80px rgba(0,0,0,.45);overflow:hidden;position:relative;z-index:1;max-height:560px;mask-image:linear-gradient(to bottom, black 0%, black 88%, transparent 100%);-webkit-mask-image:linear-gradient(to bottom, black 0%, black 88%, transparent 100%)}
+.n-hero-inner{max-width:760px;margin:0 auto;text-align:center;padding:0 28px}
+.n-kicker{display:inline-flex;align-items:center;gap:7px;font-size:.76rem;font-weight:600;color:#5C6470;margin-bottom:16px}
+.n-h1{font-size:clamp(2.8rem,6vw,4.6rem);color:#0A0A0A;margin-bottom:20px;line-height:1.06}
+.n-sub{font-size:1.15rem;color:#5C6470;font-weight:400;max-width:560px;margin:0 auto 32px;line-height:1.55}
+.n-ctas{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:56px}
+.btn-n-primary{background:#0A0A0A;color:#fff;font-weight:600;font-size:.92rem;padding:13px 26px;border-radius:100px;display:inline-flex;align-items:center;gap:8px;transition:background .2s,transform .2s}
+.btn-n-primary:hover{background:#262626;transform:translateY(-1px)}
+.btn-n-secondary{background:#F1F0EE;color:#0A0A0A;font-weight:600;font-size:.92rem;padding:13px 26px;border-radius:100px;transition:background .2s,transform .2s}
+.btn-n-secondary:hover{background:#E5E3DF;transform:translateY(-1px)}
 
-    /* Stats */
-    .stats-bar{background:var(--bg-dark);border-top:1px solid rgba(255,255,255,.06);padding:60px 0}
-    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06)}
-    .stat-item{background:var(--bg-dark);padding:36px 24px;text-align:center}
-    .stat-num{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--amber-light);line-height:1;margin-bottom:6px}
-    .stat-label{font-size:.88rem;color:rgba(255,255,255,.65);font-weight:500;margin-bottom:8px}
-    .stat-compare{font-size:.74rem;color:rgba(255,255,255,.30);line-height:1.5;max-width:180px;margin:0 auto}
+.n-shot-wrap{max-width:1040px;margin:0 auto;padding:0 28px 0}
+.n-shot-frame{background:#fff;border:1px solid #EBEAE7;border-radius:20px 20px 0 0;box-shadow:0 20px 60px rgba(0,0,0,.08);overflow:hidden}
 
-    /* Logo Scroller */
-    .tc-s{background:var(--bg-dark);padding:52px 0 44px;overflow:hidden;position:relative}
-    .tc-s::before,.tc-s::after{content:'';position:absolute;top:0;bottom:0;width:130px;z-index:2;pointer-events:none}
-    .tc-s::before{left:0;background:linear-gradient(to right,#1E1610 0%,transparent 100%)}
-    .tc-s::after{right:0;background:linear-gradient(to left,#1E1610 0%,transparent 100%)}
-    .tc-lbl{text-align:center;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:36px}
-    .tc-wrap{overflow:hidden}
-    .tc-track{display:flex;align-items:center;gap:80px;width:max-content;animation:tc-go 24s linear infinite}
-    .tc-track:hover{animation-play-state:paused}
-    @keyframes tc-go{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-    .tc-logo{display:flex;align-items:center;justify-content:center;height:48px;flex-shrink:0;opacity:.5;transition:opacity .3s ease}
-    .tc-logo:hover{opacity:1}
-    .tc-logo img{max-height:40px;width:auto;max-width:160px;object-fit:contain;filter:brightness(0) invert(1)}
-    .tc-lm img{max-height:44px;border-radius:50%}
-    .tc-nn img{max-height:26px}
-    .tc-text{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.01em;white-space:nowrap;transition:color .3s}
-    .tc-logo:hover .tc-text{color:#fff}
+.n-block-sec{padding:90px 0}
+.n-block-head{max-width:640px;margin:0 0 44px;padding:0 28px}
+.n-block-head h2{font-size:clamp(2rem,3.6vw,2.8rem);color:#0A0A0A}
 
-    /* Section defaults */
-    section{padding:100px 0}
-    .section-header{margin-bottom:60px}
-    .section-header.centered{text-align:center}
-    .section-header.centered .divider{margin:18px auto 28px}
+.n-color-card{border-radius:20px;overflow:hidden;position:relative}
+.n-color-card-pad{padding:40px}
+.n-card-eyebrow{font-size:.85rem;font-weight:600;color:rgba(10,10,10,.55);margin-bottom:8px}
+.n-card-title{font-size:1.5rem;font-weight:800;color:#0A0A0A;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.n-arrow-circle{width:30px;height:30px;border-radius:50%;background:#0A0A0A;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
 
-    /* Our Story */
-    .about{background:var(--bg-warm)}
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-    .about-left p{margin-bottom:18px;line-height:1.85;font-size:.97rem}
-    .about-accent{font-weight:600;color:var(--terra);font-style:italic}
-    .value-prop{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:26px;margin-bottom:16px;box-shadow:var(--shadow-sm);transition:box-shadow .25s,transform .25s}
-    .value-prop:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
-    .value-prop-icon{width:42px;height:42px;background:linear-gradient(135deg,rgba(192,81,46,.10),rgba(212,148,58,.15));border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1.25rem;color:var(--terra);margin-bottom:12px}
-    .value-prop h3{font-size:1.05rem;margin-bottom:5px}
-    .value-prop p{font-size:.9rem}
+.n-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:0 28px}
+.n-teal{background:#CFEAE3}
+.n-blue{background:#D6E0FB}
+.n-terra{background:#F3DCC4}
+.n-yellow{background:#FBEFC2}
 
-    /* Human + AI */
-    .human-ai{background:var(--bg-dark);padding:100px 0}
-    .human-ai .tag{background:rgba(212,148,58,.15);border-color:rgba(212,148,58,.30);color:var(--amber-light)}
-    .human-ai .divider{background:linear-gradient(90deg,var(--terra),var(--amber))}
-    .human-ai h2{color:#fff}
-    .hai-body{max-width:780px;margin-bottom:56px}
-    .hai-body p{color:rgba(255,255,255,.62);line-height:1.88;font-size:.97rem;margin-bottom:16px}
-    .hai-cols{display:grid;grid-template-columns:1fr 1px 1fr;gap:48px;align-items:start}
-    .hai-divider{background:rgba(255,255,255,.10);align-self:stretch;border-radius:2px;transform:scaleY(0);transform-origin:top;transition:transform .65s cubic-bezier(.22,1,.36,1) .4s}
-    .hai-divider.vis{transform:scaleY(1)}
-    .hai-col-label{font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08)}
-    .hai-left .hai-col-label{color:var(--terra-light)}
-    .hai-right .hai-col-label{color:var(--amber-light)}
-    .hai-col ul{list-style:none}
-    .hai-col ul li{font-size:.93rem;color:rgba(255,255,255,.62);padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:12px;align-items:flex-start;line-height:1.65}
-    .hai-col ul li:last-child{border-bottom:none}
-    .hai-left li::before,.hai-right li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;margin-top:7px;flex-shrink:0}
-    .hai-left li::before{background:var(--terra)}
-    .hai-right li::before{background:var(--amber)}
+.n-shot-inner{margin-top:24px;border-radius:14px 14px 0 0;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.1);background:#fff}
+@media(max-width:900px){.n-grid-2{grid-template-columns:1fr}}
+/* ── Recommendation card ── */
+.rec-card-ui{background:#fff;border-radius:16px;padding:20px;box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.rec-card-top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.rec-card-av{width:38px;height:38px;border-radius:50%;background:#EDE9FE;color:#6D28D9;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0}
+.rec-card-name{font-size:.92rem;font-weight:800;color:#0A0A0A}
+.rec-card-role{font-size:.72rem;color:#8A8F99}
+.rec-card-badge{margin-left:auto;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:#0A0A0A;color:#fff;padding:4px 10px;border-radius:20px}
+.rec-card-quote{font-size:.82rem;color:#3A3F47;line-height:1.6;background:#F7F6F3;border-radius:10px;padding:12px 14px;margin-bottom:12px;font-style:italic}
+.rec-card-foot{display:flex;align-items:center;gap:8px;font-size:.7rem;color:#8A8F99}
+.rec-card-foot strong{color:#0A0A0A}
 
-    /* Solutions */
-    .solutions{background:var(--bg-warm)}
-    .solutions-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-    .solution-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:36px;position:relative;box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .2s}
-    .solution-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
-    .solution-card.featured{border-color:var(--terra);border-width:2px}
-    .solution-badge{position:absolute;top:-12px;right:28px;background:var(--terra);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 14px;border-radius:100px}
-    .solution-card-tag{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
-    .solution-icon{width:44px;height:44px;background:linear-gradient(135deg,rgba(192,81,46,.10),rgba(212,148,58,.15));border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--terra);margin-bottom:14px}
-    .solution-card h3{font-size:1.4rem;margin-bottom:6px}
-    .solution-tagline{font-size:.88rem;color:var(--text-muted);margin-bottom:22px}
-    .solution-features{list-style:none;margin-bottom:22px}
-    .solution-features li{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--text-mid);padding:7px 0;border-bottom:1px solid var(--linen)}
-    .solution-features li:last-child{border-bottom:none}
-    .solution-features li::before{content:'✓';width:20px;height:20px;background:rgba(192,81,46,.10);color:var(--terra);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0}
-    .solution-footer{font-size:.82rem;color:var(--text-muted);font-style:italic;line-height:1.5}
-    .solutions-note{text-align:center;margin-top:36px;font-size:.9rem;color:var(--text-muted)}
-    .solutions-note a{color:var(--terra);font-weight:600;border-bottom:1px solid rgba(192,81,46,.3);transition:border-color .2s}
-    .solutions-note a:hover{border-color:var(--terra)}
+/* ── Dashboard card ── */
+.dash-card-ui{background:#fff;border-radius:16px;padding:18px;box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.dash-row{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:9px;margin-bottom:6px;background:#F7F6F3}
+.dash-row:last-child{margin-bottom:0}
+.dash-role{font-size:.8rem;font-weight:700;color:#0A0A0A}
+.dash-sub{font-size:.66rem;color:#8A8F99}
+.dash-stage{font-size:.62rem;font-weight:700;padding:3px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.03em}
+.stage-sourcing{background:#D6E0FB;color:#2348C2}
+.stage-eval{background:#FBEFC2;color:#8A6D00}
+.stage-shortlist{background:#CFEAE3;color:#0E7C68}
+.dash-progress{width:50px;height:4px;background:#E5E3DF;border-radius:2px;overflow:hidden;margin-left:10px}
+.dash-progress-fill{height:100%;background:#0A0A0A;border-radius:2px}
 
-    /* Method — horizontal timeline */
-    .process{background:var(--bg-warm)}
-    .method-outer{position:relative;padding-top:20px}
-    .method-line-track{position:absolute;top:49px;left:calc(12.5% - 12px);right:calc(12.5% - 12px);height:2px;background:rgba(192,81,46,.15);border-radius:2px;overflow:hidden;z-index:0}
-    .method-line-fill{height:100%;width:0;background:linear-gradient(90deg,var(--terra),var(--amber));border-radius:2px;transition:width 1.4s cubic-bezier(.22,1,.36,1)}
-    .method-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:1}
-    .method-step{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative}
-    .method-node{width:58px;height:58px;border:2px solid var(--terra);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1.25rem;font-weight:700;color:var(--terra);background:var(--bg-card);box-shadow:var(--shadow-sm);flex-shrink:0;margin-bottom:22px;transform:scale(0);transition:transform .4s cubic-bezier(.34,1.56,.64,1),background .25s,color .25s}
-    .method-node.popped{transform:scale(1)}
-    .method-step:hover .method-node{background:var(--terra);color:#fff}
-    .method-step-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:10px;line-height:1.3}
-    .method-step-body{font-size:.87rem;color:var(--text-mid);line-height:1.72}
+/* ── Intelligence report card ── */
+.intel-card-ui{background:#fff;border-radius:16px;padding:20px;box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.intel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.intel-title{font-size:.85rem;font-weight:800;color:#0A0A0A}
+.intel-sub{font-size:.68rem;color:#8A8F99;margin-top:2px}
+.intel-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.intel-stat{background:#F7F6F3;border-radius:10px;padding:12px}
+.intel-stat-label{font-size:.62rem;color:#8A8F99;margin-bottom:4px}
+.intel-stat-val{font-size:1.1rem;font-weight:800;color:#0A0A0A}
+.intel-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.intel-bar-label{font-size:.68rem;color:#3A3F47;width:90px;flex-shrink:0}
+.intel-bar-track{flex:1;height:7px;background:#F0EFEC;border-radius:4px;overflow:hidden}
+.intel-bar-fill{height:100%;border-radius:4px;background:#0A0A0A}
+.intel-bar-val{font-size:.68rem;color:#8A8F99;width:32px;text-align:right;flex-shrink:0}
 
-    /* Pricing */
-    .pricing{background:var(--bg-dark);color:#fff}
-    .pricing .section-header h2{color:#fff}
-    .pricing .section-header p{color:rgba(255,255,255,.55)}
-    .pricing .tag{background:rgba(212,148,58,.15);border-color:rgba(212,148,58,.3);color:var(--amber-light)}
-    .pricing .divider{background:linear-gradient(90deg,var(--amber),var(--amber-light))}
-    .pricing-callout{background:rgba(212,148,58,.09);border:1px solid rgba(212,148,58,.20);border-radius:var(--r-md);padding:20px 28px;margin-bottom:40px;font-size:.93rem;color:rgba(255,255,255,.68);line-height:1.75}
-    .pricing-callout strong{color:var(--amber-light)}
-    .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .pricing-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);border-radius:var(--r-lg);padding:32px 26px;transition:background .3s,border-color .3s,transform .3s;position:relative}
-    .pricing-card:hover{background:rgba(255,255,255,.08);border-color:rgba(212,148,58,.35);transform:translateY(-4px)}
-    .pricing-card.featured{background:linear-gradient(160deg,rgba(192,81,46,.20),rgba(212,148,58,.12));border-color:rgba(212,148,58,.45)}
-    .pricing-popular{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--terra),var(--amber));color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 16px;border-radius:100px;white-space:nowrap;animation:pulse-badge 3s ease-in-out infinite}
-    @keyframes pulse-badge{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.03)}}
-    .pricing-name{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;color:#fff;margin-bottom:8px}
-    .pricing-price{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:var(--amber-light);line-height:1;margin-bottom:4px}
-    .pricing-price-note{font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:20px}
-    .pricing-features{list-style:none;margin-bottom:24px}
-    .pricing-features li{display:flex;align-items:center;gap:8px;font-size:.87rem;color:rgba(255,255,255,.70);padding:6px 0}
-    .pricing-features li::before{content:'→';color:var(--amber-light);font-size:.75rem;flex-shrink:0}
-    .pricing-best{font-size:.8rem;color:rgba(255,255,255,.40);padding-top:16px;border-top:1px solid rgba(255,255,255,.08);line-height:1.55}
-    .pricing-best strong{color:rgba(255,255,255,.60)}
-    .pricing-footer{text-align:center;margin-top:40px;font-size:.9rem;color:rgba(255,255,255,.45)}
-    .pricing-footer a{color:var(--amber-light);font-weight:600;border-bottom:1px solid rgba(240,192,112,.35)}
-
-    /* Built For */
-    .audience{background:var(--bg-warm)}
-    .audience-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-    .audience-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:32px 26px;box-shadow:var(--shadow-sm);transition:box-shadow .3s,transform .3s}
-    .audience-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
-    .audience-icon{width:44px;height:44px;background:linear-gradient(135deg,rgba(192,81,46,.10),rgba(212,148,58,.15));border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--terra);margin-bottom:16px}
-    .audience-card h3{font-size:1.05rem;margin-bottom:10px}
-    .audience-card p{font-size:.88rem;line-height:1.65}
-
-    /* Contact */
-    .contact{background:var(--bg-warm)}
-    .contact-wrapper{display:grid;grid-template-columns:1fr 1.3fr;gap:72px;align-items:start}
-    .contact-left p{font-size:1rem;line-height:1.82;margin-bottom:30px}
-    .contact-trust{display:flex;flex-direction:column;gap:12px}
-    .trust-item{display:flex;align-items:center;gap:12px;font-size:.88rem;color:var(--text-mid);font-weight:500}
-    .trust-item-dot{width:8px;height:8px;border-radius:50%;background:var(--terra);flex-shrink:0}
-    .contact-form{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:44px;box-shadow:var(--shadow-lg)}
-    .form-group{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
-    .form-group label{font-size:.83rem;font-weight:600;color:var(--text);letter-spacing:.01em}
-    .form-group input,.form-group textarea{font-family:'Inter',sans-serif;font-size:.93rem;color:var(--text);background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:12px 16px;outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
-    .form-group input:focus,.form-group textarea:focus{border-color:var(--terra);box-shadow:0 0 0 3px rgba(192,81,46,.10)}
-    .form-group textarea{resize:vertical;min-height:110px}
-    .form-submit{margin-top:8px}
-    .form-submit .btn{width:100%;justify-content:center;padding:15px 28px;font-size:.96rem}
-    .form-guarantee{text-align:center;font-size:.8rem;color:var(--text-muted);margin-top:14px}
-    .form-guarantee span{color:var(--terra);font-weight:600}
-
-    /* Footer */
-    footer{background:var(--bg-dark);color:rgba(255,255,255,.65);padding:70px 0 32px}
-    .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08)}
-    .footer-logo{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:2px}
-    .footer-logo em{color:var(--amber);font-style:normal}
-    .footer-logo .logo-dot{background:var(--amber)}
-    .footer-brand p{font-size:.87rem;line-height:1.7;color:rgba(255,255,255,.45);margin-bottom:22px;max-width:320px}
-    .footer-social{display:flex;gap:12px}
-    .footer-social a{width:36px;height:36px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.82rem;color:rgba(255,255,255,.55);transition:all .2s}
-    .footer-social a:hover{background:rgba(212,148,58,.18);border-color:rgba(212,148,58,.35);color:var(--amber-light)}
-    .footer-col h4{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:18px}
-    .footer-col ul{list-style:none}
-    .footer-col li{margin-bottom:11px}
-    .footer-col a{font-size:.88rem;color:rgba(255,255,255,.55);transition:color .2s}
-    .footer-col a:hover{color:var(--amber-light)}
-    .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:28px;font-size:.82rem;color:rgba(255,255,255,.28)}
-    .footer-legal{display:flex;gap:24px}
-    .footer-legal a{color:rgba(255,255,255,.35);transition:color .2s}
-    .footer-legal a:hover{color:rgba(255,255,255,.65)}
-
-    /* Responsive */
-    @media(max-width:900px){
-      .about-grid,.contact-wrapper{grid-template-columns:1fr;gap:48px}
-      .solutions-grid{grid-template-columns:1fr}
-      .pricing-grid{grid-template-columns:1fr 1fr}
-      .audience-grid{grid-template-columns:1fr 1fr}
-      .nav-links,.navbar .btn{display:none}
-      .footer-top{grid-template-columns:1fr;gap:36px}
-      .stats-grid{grid-template-columns:1fr 1fr}
-      .hai-cols{grid-template-columns:1fr;gap:32px}
-      .hai-divider{display:none}
-      .method-steps{grid-template-columns:1fr;gap:0}
-      .method-line-track{display:none}
-      .method-step{flex-direction:row;text-align:left;padding-bottom:32px;padding-left:24px;border-left:2px solid rgba(192,81,46,.18);margin-left:29px}
-      .method-step:last-child{border-left-color:transparent}
-      .method-node{margin:0 20px 0 -52px;flex-shrink:0}
-      .method-step-body-wrap{padding-top:8px}
-    }
-    @media(max-width:600px){
-      .pricing-grid,.audience-grid{grid-template-columns:1fr}
-      .stats-grid{grid-template-columns:1fr 1fr}
-      .hero h1{font-size:2.4rem}
-    }
-    @media(prefers-reduced-motion:reduce){
-      .hero-bg,.method-line-fill,[data-aos]{animation:none!important;transition:none!important}
-    }
-  </style>
+.n-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;padding:0 28px;max-width:1180px;margin:0 auto}
+@media(max-width:1000px){.n-3col{grid-template-columns:1fr}}
+/* ───── end Notion-aligned system ───── */
+</style>
 </head>
 <body>
-
-<!-- ─── Navbar ─── -->
 <nav class="navbar" id="navbar">
-  <div class="container navbar-inner">
-    <a href="#" class="logo">Talent<em>Cursor</em><span class="logo-dot"></span></a>
-    <ul class="nav-links">
-      <li><a href="#services">Solutions</a></li>
-      <li><a href="#process">How We Work</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-    </ul>
-    <a href="#contact" class="btn btn-primary">Partner With Us</a>
-  </div>
+<div class="container navbar-inner">
+<a href="#" class="logo">Talent<em>Cursor</em><span class="logo-cursor"></span></a>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#specialty">Focus</a></li>
+<li><a href="#process">How We Work</a></li>
+<li><a href="#services">Solutions</a></li>
+</ul>
+<a href="#contact" class="btn btn-primary">Partner With Us</a>
+</div>
 </nav>
 
-<!-- ─── Hero ─── -->
-<section class="hero" id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <div class="hero-eyebrow-line"></div>
-        <span class="hero-eyebrow-text">Structured Recruiting for Modern Teams</span>
-      </div>
-      <h1>Fewer candidates.<br><em>Better hiring signal.</em></h1>
-      <p class="hero-sub">We combine AI-assisted sourcing with structured human evaluation to find the candidates most teams miss.<span style="display:block;margin-top:14px">Candidates worth meeting, in 15 days — not bloated pipelines.</span></p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Start Your Search →</a>
-        <a href="#process" class="btn btn-outline">See How It Works</a>
-      </div>
-      <p class="hero-note">No retainers. No lock-ins. Just results.</p>
-    </div>
-  </div>
-</section>
 
-<!-- ─── Stats ─── -->
-<div class="stats-bar">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
-        <div class="stat-num" data-count="15" data-suffix=" Days">15 Days</div>
-        <div class="stat-label">From brief to shortlist</div>
-        <div class="stat-compare">The industry average is 6–8 weeks</div>
-      </div>
-      <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
-        <div class="stat-num">3–5%</div>
-        <div class="stat-label">Of candidates reach your desk</div>
-        <div class="stat-compare">The rest are filtered before they reach you</div>
-      </div>
-      <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-        <div class="stat-num" data-count="72" data-suffix="%">72%</div>
-        <div class="stat-label">Offer-to-join rate</div>
-        <div class="stat-compare">Industry average sits at 50–55%</div>
-      </div>
-      <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
-        <div class="stat-num" data-count="2" data-suffix="x">2x</div>
-        <div class="stat-label">Faster shortlists than traditional search</div>
-        <div class="stat-compare">Without sacrificing evaluation depth</div>
-      </div>
-    </div>
-  </div>
+<section class="n-hero" id="hero">
+<div class="n-hero-glow"></div>
+<div class="n-hero-inner" style="position:relative;z-index:1">
+<div class="n-kicker n-kicker-dark"><i class="ph ph-sparkle"></i> Powered by a Recruiting Engine. Directed by Search Specialists.</div>
+<h1 class="n-h1 n-h1-dark">The Recruiting Firm Built for the AI Era.</h1>
+<p class="n-sub n-sub-dark" style="font-weight:600;color:rgba(255,255,255,.85);margin-bottom:14px">AI-powered discovery. Human-led judgment.</p>
+<p class="n-sub n-sub-dark">TalentCursor runs on a purpose-built recruiting engine that sources and scores candidates at scale, directed by search specialists who make the calls an algorithm can't. You get a shortlist, not a pipeline to manage.</p>
+<div class="n-ctas">
+<a href="#contact" class="btn-n-primary">Start a Conversation <i class="ph ph-arrow-right"></i></a>
+<a href="#process" class="btn-n-secondary-dark">See How It Works</a>
+</div>
 </div>
 
-<!-- ─── Logo Scroller ─── -->
+<div class="n-shot-wrap" style="position:relative;z-index:1">
+<div class="n-shot-frame-dark">
+<div class="product-window" data-aos="fade-up" data-aos-delay="100" style="margin:0;border:none;border-radius:0;box-shadow:none">
+<div class="pw-bar">
+<div class="pw-dot"></div><div class="pw-dot"></div><div class="pw-dot"></div>
+<div class="pw-url" id="pw-url">talentcursor · internal · sr-product-designer</div>
+</div>
+<div class="pw-tabs">
+<button class="pw-tab active" data-role="0">Sr. Product Designer</button>
+<button class="pw-tab" data-role="1">Head of Engineering</button>
+<button class="pw-tab" data-role="2">GTM Lead</button>
+</div>
+<div class="pw-grid">
+<div class="pw-sidebar">
+<div class="pw-mandate">
+<div class="pw-mandate-label">Active Mandate</div>
+<div class="pw-mandate-title" id="pw-mandate-title">Sr. Product Designer</div>
+<div class="pw-mandate-sub" id="pw-mandate-sub">Series B Fintech · Bangalore</div>
+</div>
+<div class="pw-recruiter">
+<div class="pw-recruiter-av" id="pw-recruiter-av">DL</div>
+<div>
+<div class="pw-recruiter-name" id="pw-recruiter-name">Search Lead — Design</div>
+<div class="pw-recruiter-status"><span class="pw-recruiter-dot"></span>reviewing now</div>
+</div>
+</div>
+</div>
+<div class="pw-list">
+<div class="pw-funnel">
+<div class="pw-funnel-h">Why these 4 made the shortlist</div>
+<div class="pw-funnel-sub">Sourced and screened at scale &middot; evaluated by a recruiter</div>
+<div class="pw-funnel-row" id="pw-funnel-row">
+<div class="pw-fstep"><span class="pw-fnum" data-target="847">0</span><span class="pw-flabel">Sourced</span></div>
+<div class="pw-fstep"><span class="pw-fnum" data-target="203">0</span><span class="pw-flabel">Screened</span></div>
+<div class="pw-fstep"><span class="pw-fnum" data-target="31">0</span><span class="pw-flabel">Evaluated</span></div>
+<div class="pw-fstep"><span class="pw-fnum accent" data-target="4">0</span><span class="pw-flabel">Shortlisted</span></div>
+</div>
+</div>
+<div id="pw-candidates">
+<div class="pw-candidate sel" data-cand="0">
+<div class="pw-cand-top">
+<div class="pw-avatar">AP</div>
+<div><div class="pw-cand-name">Anika Patel</div><div class="pw-cand-role">Sr. Product Designer · 6 yrs</div></div>
+<span class="pw-verdict">Interview</span>
+</div>
+</div>
+<div class="pw-candidate" data-cand="1">
+<div class="pw-cand-top">
+<div class="pw-avatar">RK</div>
+<div><div class="pw-cand-name">Rohan Kapoor</div><div class="pw-cand-role">Product Designer · 5 yrs</div></div>
+<span class="pw-verdict">Interview</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pw-detail" id="pw-detail">
+<div class="pw-detail-name">Anika Patel</div>
+<div class="pw-detail-role">Sr. Product Designer · Bangalore · Open to relocation</div>
+<div class="pw-badge-row">
+<span class="pw-badge pw-badge-primary">91% match</span>
+<span class="pw-badge pw-badge-soft">Recommended for interview</span>
+</div>
+<div class="pw-dims">
+<div class="pw-dim"><div class="pw-dim-label">Domain fit</div><div class="pw-dim-val"><span class="ok">✓</span> Fintech, 3+ yrs</div></div>
+<div class="pw-dim"><div class="pw-dim-label">Leadership signal</div><div class="pw-dim-val"><span class="ok">✓</span> Owns decisions</div></div>
+<div class="pw-dim"><div class="pw-dim-label">Compensation</div><div class="pw-dim-val"><span class="ok">✓</span> Within band</div></div>
+<div class="pw-dim"><div class="pw-dim-label">Interview read</div><div class="pw-dim-val"><span class="ok">✓</span> Strong, recruiter-led</div></div>
+</div>
+<div class="pw-section-label">Signal Analysis</div>
+<div class="pw-signal"><strong>✓ Payments domain depth.</strong> 3+ years across two fintech companies.</div>
+<div class="pw-signal"><strong>✗ Mobile-native experience limited.</strong> Non-blocking given role scope.</div>
+<div class="pw-section-label" style="margin-top:12px">Recruiter Note</div>
+<div class="pw-signal">"Articulates design decisions in business terms. She reasons, not just crafts. References confirmed she pushed back well on scope."</div>
+</div>
+</div>
+</div>
+</div>
+
+<p style="text-align:center;font-size:.82rem;color:#8A8F99;margin:18px 0 64px">No retainers required to start. We align on outcomes before we begin.</p>
+</section>
+
+<section class="n-block-sec" style="background:#fff">
+<div class="n-block-head" data-aos="fade-up">
+<div class="n-kicker" style="justify-content:flex-start"><i class="ph ph-sparkle"></i> What You Get</div>
+<h2>A shortlist you can act on.</h2>
+<p style="font-size:1.02rem;color:#5C6470;margin-top:10px">Delivered with context, not resumes.</p>
+</div>
+
+<div class="contrast-block" data-aos="fade-up" data-aos-delay="60" style="max-width:1024px;margin-left:28px;margin-right:28px">
+<div class="contrast-col contrast-col-them">
+<div class="contrast-label">Most agencies validate for</div>
+<ul class="contrast-list">
+<li>Years of experience</li>
+<li>Compensation fit</li>
+<li>Keyword matches on a resume</li>
+</ul>
+</div>
+<div class="contrast-divider"><i class="ph ph-arrow-right"></i></div>
+<div class="contrast-col contrast-col-us">
+<div class="contrast-label">We validate all of that, plus</div>
+<ul class="contrast-list">
+<li>How they actually make decisions under pressure</li>
+<li>Whether their motivation lines up with what the role actually demands</li>
+<li>How they'll operate inside your team and stage, not just whether they tick the boxes on your JD</li>
+</ul>
+</div>
+</div>
+
+<div class="n-grid-2" style="margin-top:18px;grid-template-columns:1fr 1fr 1fr;max-width:1024px;margin-left:auto;margin-right:auto;padding:0 28px" data-aos="fade-up" data-aos-delay="120">
+<div class="n-color-card n-teal">
+<div class="n-color-card-pad">
+<div class="n-card-title"><i class="ph ph-users-three"></i> 3–5 candidates</div>
+<p style="font-size:.92rem;color:rgba(10,10,10,.65);margin-top:10px;line-height:1.55">Worth interviewing, out of hundreds who were sourced and screened.</p>
+</div>
+</div>
+<div class="n-color-card n-blue">
+<div class="n-color-card-pad">
+<div class="n-card-title"><i class="ph ph-target"></i> Motivation assessed</div>
+<p style="font-size:.92rem;color:rgba(10,10,10,.65);margin-top:10px;line-height:1.55">So you know why they would actually join, not just why they applied.</p>
+</div>
+</div>
+<div class="n-color-card n-terra">
+<div class="n-color-card-pad">
+<div class="n-card-title"><i class="ph ph-chat-circle-text"></i> Real context</div>
+<p style="font-size:.92rem;color:rgba(10,10,10,.65);margin-top:10px;line-height:1.55">The story behind each candidate, written by the recruiter who spoke with them.</p>
+</div>
+</div>
+</div>
+</section>
+
 <div class="tc-s">
-  <div class="tc-lbl">Trusted by founders building in India</div>
-  <div class="tc-wrap">
-    <div class="tc-track">
-      <div class="tc-logo"><span class="tc-text">Tericsoft</span></div>
-      <div class="tc-logo tc-lm"><span class="tc-text">LetsMobility</span></div>
-      <div class="tc-logo"><span class="tc-text">Bintix</span></div>
-      <div class="tc-logo"><span class="tc-text">Halo Group</span></div>
-      <div class="tc-logo tc-nn"><span class="tc-text">99.co</span></div>
-      <div class="tc-logo"><span class="tc-text">Tericsoft</span></div>
-      <div class="tc-logo tc-lm"><span class="tc-text">LetsMobility</span></div>
-      <div class="tc-logo"><span class="tc-text">Bintix</span></div>
-      <div class="tc-logo"><span class="tc-text">Halo Group</span></div>
-      <div class="tc-logo tc-nn"><span class="tc-text">99.co</span></div>
-    </div>
-  </div>
+<div class="dark-glow"></div>
+<div class="tc-lbl">By the numbers</div>
+<div class="tc-metrics tc-metrics-5" id="tc-metrics">
+<div class="tc-metric"><span class="tc-metric-num" data-target="20" data-suffix=" Years">0 Years</span><span class="tc-metric-label">Technical recruiting experience</span></div>
+<div class="tc-metric"><span class="tc-metric-num" data-target="72" data-suffix=" Hours">0 Hours</span><span class="tc-metric-label">Typical time to your first interview-ready candidates</span></div>
+<div class="tc-metric"><span class="tc-metric-num">3–5%</span><span class="tc-metric-label">Of sourced candidates make the final shortlist</span></div>
+<div class="tc-metric"><span class="tc-metric-num" data-target="50" data-suffix="M+">0M+</span><span class="tc-metric-label">Profiles searchable across talent channels</span></div>
+<div class="tc-metric"><span class="tc-metric-num" data-target="100" data-suffix="%">0%</span><span class="tc-metric-label">Human reviewed candidates recommended to clients</span></div>
+</div>
+<div class="tc-logos-lbl">Clients include</div>
+<div class="tc-wrap">
+<div class="tc-track">
+<div class="tc-logo"><span class="tc-text">Tericsoft</span></div>
+<div class="tc-logo"><span class="tc-text">LetsMobility</span></div>
+<div class="tc-logo"><span class="tc-text">Bintix</span></div>
+<div class="tc-logo"><span class="tc-text">Halo Group</span></div>
+<div class="tc-logo"><span class="tc-text">99.co</span></div>
+<div class="tc-logo"><span class="tc-text">Tericsoft</span></div>
+<div class="tc-logo"><span class="tc-text">LetsMobility</span></div>
+<div class="tc-logo"><span class="tc-text">Bintix</span></div>
+<div class="tc-logo"><span class="tc-text">Halo Group</span></div>
+<div class="tc-logo"><span class="tc-text">99.co</span></div>
+</div>
+</div>
 </div>
 
-<!-- ─── Our Story ─── -->
 <section class="about" id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-left" data-aos="fade-up">
-        <div class="tag">Our Story</div>
-        <h2>Your talent partner<br>in the modern era</h2>
-        <div class="divider"></div>
-        <p>TalentCursor was built by recruiting specialists and technologists — not a platform looking for a problem to solve.</p>
-        <p>Our recruiting team brings 15+ years of hands-on experience leading technical hiring across global technology companies, building recruiting functions from scratch, and working directly with founders who needed the right hire and got the wrong process instead.</p>
-        <p>Our technology team has built AI agents and automation systems that accelerate every stage of the search — from sourcing to screening — without replacing the judgment that makes a shortlist actually useful.</p>
-        <p>That combination produced one clear conviction: most recruiting fails not because the talent doesn't exist, but because the search lacks structure, the evaluation lacks depth, and urgency gets confused with speed.</p>
-        <p>We built TalentCursor around a different model. A 15-day sprint with a defined process, rigorous candidate evaluation, and recruiting specialists accountable for every shortlist — backed by technology built to move fast without cutting corners.</p>
-        <p>The result is fewer candidates on your desk and more hires who stay. We work with <span class="about-accent">startups and growth-stage teams building in India</span>. Not because it's a limitation — because focus is what separates a recruiting partner from a recruiting vendor.</p>
-      </div>
-      <div class="about-right">
-        <div class="value-prop" data-aos="fade-up" data-aos-delay="80">
-          <div class="value-prop-icon"><i class="ph ph-funnel-simple"></i></div>
-          <h3>Pre-Vetted Excellence</h3>
-          <p>Only 3–5% of candidates make it to your desk. Every shortlist is a product of rigorous evaluation, not volume.</p>
-        </div>
-        <div class="value-prop" data-aos="fade-up" data-aos-delay="160">
-          <div class="value-prop-icon"><i class="ph ph-lightning"></i></div>
-          <h3>Speed Without Sacrifice</h3>
-          <p>Interview-ready shortlists in 15 days. Our sprint model is built for velocity without compromising on quality.</p>
-        </div>
-        <div class="value-prop" data-aos="fade-up" data-aos-delay="240">
-          <div class="value-prop-icon"><i class="ph ph-handshake"></i></div>
-          <h3>True Partnership</h3>
-          <p>Transparent communication, always aligned with your goals. We focus on clarity and predictable outcomes.</p>
-        </div>
-        <div class="value-prop" data-aos="fade-up" data-aos-delay="320">
-          <div class="value-prop-icon"><i class="ph ph-cpu"></i></div>
-          <h3>Technology That Works For You</h3>
-          <p>AI agents handle sourcing at scale. Our specialists handle judgment. You get the best of both — without managing either.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="about-grid">
+<div class="about-left" data-aos="fade-up">
+<div class="tag">About</div>
+<h2>TalentCursor runs on infrastructure<br>most agencies don't have</h2>
+<div class="divider"></div>
+<p><span class="about-accent">Most recruiting firms added AI to an existing process. We built the engine first.</span></p>
+<p>The TalentCursor Engine sources and scores candidates across channels continuously, parsing for domain depth, leadership signal, and role-specific fit before a recruiter ever opens a profile. That's the part that scales.</p>
+<p>What doesn't scale, and shouldn't, is judgment. Every shortlisted candidate is read, interviewed, and vouched for by a search specialist who has made this call before. The Engine finds the pool. Our team finds the hire.</p>
+</div>
+<div class="about-right">
+<div class="value-prop" data-aos="fade-up" data-aos-delay="80">
+<div class="value-prop-icon"><i class="ph ph-funnel-simple"></i></div>
+<h3>A Considered Shortlist</h3>
+<p>Every candidate who reaches your desk has been filtered by AI at scale and verified by a senior recruiter.</p>
+</div>
+<div class="value-prop" data-aos="fade-up" data-aos-delay="160">
+<div class="value-prop-icon"><i class="ph ph-lightning"></i></div>
+<h3>Faster, Without the Resume Pile</h3>
+<p>You're not sorting through hundreds of applications. We handle the volume so you only see who's worth your time.</p>
+</div>
+<div class="value-prop" data-aos="fade-up" data-aos-delay="240">
+<div class="value-prop-icon"><i class="ph ph-handshake"></i></div>
+<h3>True Partnership</h3>
+<p>We don't run every mandate that comes through the door. If it's not a fit, we'll say so on the first call.</p>
+</div>
+<div class="value-prop" data-aos="fade-up" data-aos-delay="320">
+<div class="value-prop-icon"><i class="ph ph-graduation-cap"></i></div>
+<h3>Recruiters Who've Done the Job</h3>
+<p>Our team has hired inside startups, product companies, and enterprises. We haven't just sourced candidates for them.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 
-<!-- ─── Human + AI ─── -->
+<section class="n-block-sec" id="specialty" style="background:#F7F6F3">
+<div class="n-block-head" data-aos="fade-up">
+<div class="n-kicker" style="justify-content:flex-start"><i class="ph ph-sparkle"></i> Our Focus</div>
+<h2>We go deep in three areas. Not wide across everything.</h2>
+<p style="font-size:1.02rem;color:#5C6470;margin-top:10px;max-width:600px">Generalist agencies spread thin across every function and call it flexibility. We only work Tech, AI, and Product roles, which means every search specialist on a mandate already understands what good looks like in that role, not just how to source for it.</p>
+</div>
+
+<div class="n-3col" data-aos="fade-up" data-aos-delay="60">
+<div class="n-color-card n-blue">
+<div class="n-color-card-pad">
+<div class="n-card-title"><i class="ph ph-cpu"></i> Engineering &amp; Infrastructure</div>
+<p style="font-size:.92rem;color:rgba(10,10,10,.65);margin-top:10px;line-height:1.6">Backend, platform, DevOps, and data engineering. Roles where depth shows up in system design conversations, not a stack list on a résumé.</p>
+</div>
+</div>
+<div class="n-color-card n-teal">
+<div class="n-color-card-pad">
+<div class="n-card-title"><i class="ph ph-sparkle"></i> AI &amp; Machine Learning</div>
+<p style="font-size:.92rem;color:rgba(10,10,10,.65);margin-top:10px;line-height:1.6">ML engineers, applied scientists, and AI product roles. A fast-moving market where résumé keywords lag real capability by a year or more.</p>
+</div>
+</div>
+<div class="n-color-card n-terra">
+<div class="n-color-card-pad">
+<div class="n-card-title"><i class="ph ph-squares-four"></i> Product</div>
+<p style="font-size:.92rem;color:rgba(10,10,10,.65);margin-top:10px;line-height:1.6">Product management, product design, and product ops. Evaluated on judgment and outcomes owned, not frameworks recited.</p>
+</div>
+</div>
+</div>
+
+<p style="text-align:center;font-size:.92rem;color:#5C6470;max-width:620px;margin:36px auto 0;padding:0 28px">Our search specialists work across India, the US, UK, and APAC, sourcing from a global talent pool, with particular depth in Indian tech talent for companies building distributed teams.</p>
+</section>
+
 <section class="human-ai" id="human-ai">
-  <div class="container">
-    <div class="section-header" data-aos="fade-up">
-      <div class="tag">Why We're Different</div>
-      <h2>The Market Went Full AI.<br>We Went Further.</h2>
-      <div class="divider"></div>
-    </div>
-    <div class="hai-body" data-aos="fade-up" data-aos-delay="80">
-      <p>Every recruiting platform today claims to be AI-powered. Most mean they automated the part that was already broken — blasting more CVs faster, to more inboxes, with less judgment behind every send.</p>
-      <p>We built our own AI agents and automation systems from the ground up. They handle the speed problem: sourcing at scale, initial screening, pattern matching across channels. That's real, and it matters.</p>
-      <p>But speed was never the only problem. The harder problem is judgment — knowing that a career gap tells a story, that a candidate performing confidence in an interview is different from one demonstrating it, that what a founding team actually needs is rarely what the job description says.</p>
-      <p>That part is still done by recruiting specialists with 15+ years inside the problem. At TalentCursor, AI runs the search. Our team closes it. Every shortlist that reaches your desk has been reviewed, filtered, and validated by people who have made these calls before — not handed off to an algorithm and delivered as output.</p>
-      <p><strong style="color:rgba(255,255,255,.9);font-weight:600;">Fewer candidates. Every one worth your time.</strong></p>
-    </div>
-    <div class="hai-cols" id="hai-cols">
-      <div class="hai-col hai-left" data-aos="fade-right">
-        <div class="hai-col-label">What AI Does</div>
-        <ul>
-          <li>Sources at scale across LinkedIn, GitHub, and communities</li>
-          <li>Screens for keywords, experience signals, and role fit</li>
-          <li>Ranks and pattern-matches across thousands of profiles</li>
-        </ul>
-      </div>
-      <div class="hai-divider" id="hai-divider"></div>
-      <div class="hai-col hai-right" data-aos="fade-left">
-        <div class="hai-col-label">What Our Team Does</div>
-        <ul>
-          <li>Reads the career story behind every shortlisted profile</li>
-          <li>Evaluates judgment, not just credentials, under pressure</li>
-          <li>Matches to your actual culture, team dynamic, and stage</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<div class="dark-glow"></div>
+<div class="container">
+<div class="section-header" data-aos="fade-up">
+<div class="tag">Why We're Different</div>
+<h2>AI Solved Speed.<br>It Didn't Solve Judgment.</h2>
+<div class="divider"></div>
+</div>
+<div class="hai-body" data-aos="fade-up" data-aos-delay="80">
+<p>Every recruiting platform today claims to be AI-powered. Most mean they automated the part that was already broken: blasting more CVs faster, to more inboxes, with less judgment behind every send.</p>
+<p>We built the TalentCursor Engine to handle the speed problem: sourcing at scale, initial screening, pattern matching across channels. That's real, and it matters.</p>
+<p>But speed was never the only problem. The harder problem is judgment: knowing that a career gap tells a story, and that a candidate performing confidence in an interview is different from one who actually has it.</p>
+<p>That part is still done by senior recruiting specialists. AI runs the search. Our team closes it.</p>
+<p><strong style="color:rgba(255,255,255,.9);font-weight:600;">Fewer candidates. Every one worth your time.</strong></p>
+</div>
+<div class="hai-cols" id="hai-cols">
+<div class="hai-col hai-left" data-aos="fade-right">
+<div class="hai-col-label">What the Engine Does</div>
+<ul>
+<li>Sources at scale across LinkedIn, Naukri, and referral networks</li>
+<li>Screens for keywords, experience signals, and role fit</li>
+<li>Ranks and pattern-matches across thousands of profiles</li>
+</ul>
+</div>
+<div class="hai-divider" id="hai-divider"></div>
+<div class="hai-col hai-right" data-aos="fade-left">
+<div class="hai-col-label">What Our Team Does</div>
+<ul>
+<li>Reads the career story behind every shortlisted profile</li>
+<li>Evaluates judgment, not just credentials, under pressure</li>
+<li>Matches to your actual culture, team dynamic, and stage</li>
+</ul>
+</div>
+</div>
+</div>
 </section>
 
-<!-- ─── Solutions ─── -->
+<section class="n-block-sec" style="background:#fff">
+<div class="n-block-head" data-aos="fade-up">
+<div class="n-kicker" style="justify-content:flex-start"><i class="ph ph-sparkle"></i> Our Method</div>
+<h2>A consistent way of evaluating people.</h2>
+<p style="font-size:1.02rem;color:#5C6470;margin-top:10px;max-width:560px">Every search specialist evaluates candidates against the same criteria. Not gut feel, not keyword match.</p>
+</div>
+
+<div class="n-3col" data-aos="fade-up" data-aos-delay="60">
+<div class="n-color-card n-yellow">
+<div class="n-color-card-pad">
+<div class="n-card-title"><i class="ph ph-trend-up"></i> Delivery Signal</div>
+<p style="font-size:.92rem;color:rgba(10,10,10,.65);margin-top:10px;line-height:1.6">What did they actually own, and what happened because of it. Résumé lines don't tell you that. Conversations do.</p>
+</div>
+</div>
+<div class="n-color-card n-blue">
+<div class="n-color-card-pad">
+<div class="n-card-title"><i class="ph ph-brain"></i> Decision-Making Under Constraint</div>
+<p style="font-size:.92rem;color:rgba(10,10,10,.65);margin-top:10px;line-height:1.6">How they reasoned when the easy answer wasn't available. Pressure reveals judgment a polished interview can hide.</p>
+</div>
+</div>
+<div class="n-color-card n-teal">
+<div class="n-color-card-pad">
+<div class="n-card-title"><i class="ph ph-puzzle-piece"></i> Fit to Stage</div>
+<p style="font-size:.92rem;color:rgba(10,10,10,.65);margin-top:10px;line-height:1.6">Whether how they operate matches where your company actually is today, not just whether they tick the boxes on the JD.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="source-sec">
+<div class="container">
+<div class="source-layout">
+<div class="source-copy" data-aos="fade-up">
+<div class="tag">How We Source</div>
+<h2>Senior recruiters,<br>directing the search</h2>
+<div class="divider"></div>
+<p>Our recruiters have led hiring inside startups, product companies, and enterprises. They've sat on the other side of the table, so they know what a strong signal looks like versus a rehearsed one.</p>
+<p>What's changed is where their time goes. Instead of manually trawling job boards, our recruiters direct the TalentCursor Engine, which works the channels continuously, while they focus on the part that still needs a person: deciding who's worth a conversation.</p>
+<ul class="source-list">
+<li><span class="source-list-num">1</span><span class="source-list-text"><strong>The recruiter sets the brief.</strong> Role context, must-haves, and the things that never make it onto a job description.</span></li>
+<li><span class="source-list-num">2</span><span class="source-list-text"><strong>The Engine sources continuously.</strong> LinkedIn, Naukri, GitHub, and referral networks, scored against the brief as it goes, not in a single batch.</span></li>
+<li><span class="source-list-num">3</span><span class="source-list-text"><strong>The team engages directly.</strong> For senior or hard-to-reach roles, search specialists reach out and make the case for the opportunity, rather than waiting on inbound applications.</span></li>
+<li><span class="source-list-num">4</span><span class="source-list-text"><strong>The recruiter reads the people, not the resumes.</strong> Career narrative, judgment, and fit are still a job for someone who has made this call before.</span></li>
+</ul>
+</div>
+<div class="source-visual" data-aos="fade-up" data-aos-delay="100">
+<div class="source-visual-label">Live sourcing · Sr. Product Designer</div>
+<div class="source-recruiter-bar">
+<div class="source-recruiter-av">DL</div>
+<div>
+<div class="source-recruiter-text"><strong>Search Lead — Design</strong> directing this search</div>
+<div class="source-recruiter-sub">Brief set 2 days ago · refining criteria</div>
+</div>
+</div>
+<div class="source-channels" id="source-channels">
+<div class="source-channel">
+<div class="source-channel-icon"><i class="ph ph-linkedin-logo"></i></div>
+<div class="source-channel-name">LinkedIn</div>
+<div class="source-channel-count" data-count="412">0</div>
+<div class="source-channel-bar" data-w="92"></div>
+</div>
+<div class="source-channel">
+<div class="source-channel-icon"><i class="ph ph-briefcase"></i></div>
+<div class="source-channel-name">Naukri</div>
+<div class="source-channel-count" data-count="285">0</div>
+<div class="source-channel-bar" data-w="64"></div>
+</div>
+<div class="source-channel">
+<div class="source-channel-icon"><i class="ph ph-users-three"></i></div>
+<div class="source-channel-name">Referral network</div>
+<div class="source-channel-count" data-count="94">0</div>
+<div class="source-channel-bar" data-w="35"></div>
+</div>
+<div class="source-channel">
+<div class="source-channel-icon"><i class="ph ph-github-logo"></i></div>
+<div class="source-channel-name">GitHub &amp; portfolios</div>
+<div class="source-channel-count" data-count="56">0</div>
+<div class="source-channel-bar" data-w="22"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="n-block-sec" id="process" style="background:#F7F6F3">
+<div class="n-block-head" data-aos="fade-up">
+<div class="n-kicker" style="justify-content:flex-start"><i class="ph ph-sparkle"></i> How We Work</div>
+<h2>Built around the judgment problem.</h2>
+<p style="font-size:1.02rem;color:#5C6470;margin-top:10px;max-width:480px">Speed stopped being the hard part of recruiting years ago. The hard part is knowing whether a candidate is right, and that's where most processes quietly fall apart.</p>
+</div>
+
+<div class="n-grid-2" style="grid-template-columns:1fr 1fr;max-width:1024px;margin:0 auto;padding:0 28px" data-aos="fade-up" data-aos-delay="60">
+<div class="n-color-card n-blue">
+<div class="n-color-card-pad">
+<div class="n-card-eyebrow">Step 1</div>
+<div class="n-card-title"><i class="ph ph-chat-circle-dots"></i> Brief, not job description</div>
+<p style="font-size:.92rem;color:rgba(10,10,10,.65);margin-top:10px;line-height:1.6">We start by understanding what success in this role actually looks like: the context, constraints, and non-negotiables that never make it onto a JD.</p>
+</div>
+</div>
+<div class="n-color-card n-teal">
+<div class="n-color-card-pad">
+<div class="n-card-eyebrow">Step 2</div>
+<div class="n-card-title"><i class="ph ph-robot"></i> The Engine sources, continuously</div>
+<p style="font-size:.92rem;color:rgba(10,10,10,.65);margin-top:10px;line-height:1.6">The TalentCursor Engine works LinkedIn, Naukri, GitHub, and referral channels around the clock, surfacing patterns no manual search could keep up with.</p>
+</div>
+</div>
+<div class="n-color-card n-yellow">
+<div class="n-color-card-pad">
+<div class="n-card-eyebrow">Step 3</div>
+<div class="n-card-title"><i class="ph ph-user-focus"></i> Every candidate, personally reviewed</div>
+<p style="font-size:.92rem;color:rgba(10,10,10,.65);margin-top:10px;line-height:1.6">A senior recruiter reviews everyone who reaches your desk. No one is ranked by an algorithm and forwarded without a second look.</p>
+</div>
+</div>
+<div class="n-color-card n-terra">
+<div class="n-color-card-pad">
+<div class="n-card-eyebrow">Step 4</div>
+<div class="n-card-title"><i class="ph ph-clipboard-text"></i> A shortlist with a point of view</div>
+<p style="font-size:.92rem;color:rgba(10,10,10,.65);margin-top:10px;line-height:1.6">You receive assessed, validated candidates and our read on each one. Decision-ready, not a pipeline to manage alone.</p>
+</div>
+</div>
+</div>
+</section>
+
 <section class="solutions" id="services">
-  <div class="container">
-    <div class="section-header centered" data-aos="fade-up">
-      <div class="tag">Solutions</div>
-      <h2>Structured recruiting that scales<br>with your needs</h2>
-      <div class="divider"></div>
-      <p>Choose the model that fits your stage and hiring pace.</p>
-    </div>
-    <div class="solutions-grid">
-
-      <div class="solution-card" data-aos="fade-up" data-aos-delay="0">
-        <div class="solution-icon"><i class="ph ph-rocket-launch"></i></div>
-        <div class="solution-card-tag">Sprint Hire</div>
-        <h3>Sprint Hire</h3>
-        <p class="solution-tagline">Fastest path from req to offer</p>
-        <ul class="solution-features">
-          <li>Curated shortlist in 15 days</li>
-          <li>Structured sprint workflow</li>
-          <li>Weekly progress reports</li>
-          <li>Deep multi-channel sourcing</li>
-        </ul>
-        <p class="solution-footer">Perfect for startup founders and growing teams needing rapid, quality hires.</p>
-      </div>
-
-      <div class="solution-card featured" data-aos="fade-up" data-aos-delay="100">
-        <div class="solution-badge">Popular</div>
-        <div class="solution-icon"><i class="ph ph-users-three"></i></div>
-        <div class="solution-card-tag">Embedded Recruiter</div>
-        <h3>Embedded Recruiter</h3>
-        <p class="solution-tagline">Your dedicated remote recruiting partner</p>
-        <ul class="solution-features">
-          <li>Dedicated remote recruiter</li>
-          <li>25 hours per week</li>
-          <li>Manage up to 3 roles</li>
-          <li>Weekly dashboards &amp; end-to-end support</li>
-        </ul>
-        <p class="solution-footer">Ideal for remote-first teams and tech companies with consistent hiring needs.</p>
-      </div>
-
-      <div class="solution-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="solution-icon"><i class="ph ph-crown-simple"></i></div>
-        <div class="solution-card-tag">Leadership Search</div>
-        <h3>Leadership Search</h3>
-        <p class="solution-tagline">Executive and senior leadership hiring</p>
-        <ul class="solution-features">
-          <li>Market mapping</li>
-          <li>Senior outreach</li>
-          <li>Structured evaluation</li>
-          <li>Discreet engagement</li>
-        </ul>
-        <p class="solution-footer">For product companies and scale-ups building their leadership bench.</p>
-      </div>
-
-      <div class="solution-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="solution-icon"><i class="ph ph-chart-line-up"></i></div>
-        <div class="solution-card-tag">TA Advisory</div>
-        <h3>TA Advisory &amp; Intelligence</h3>
-        <p class="solution-tagline">Build and optimise your talent function</p>
-        <ul class="solution-features">
-          <li>TA &amp; HR function setup</li>
-          <li>Interview process design</li>
-          <li>ATS mapping</li>
-          <li>Compensation benchmarks</li>
-        </ul>
-        <p class="solution-footer">Perfect for internal TA teams looking to scale and optimise operations.</p>
-      </div>
-
-    </div>
-    <p class="solutions-note">All plans include weekly reporting, 90-day quality guarantee, and dedicated support. <a href="#contact">Need a custom solution? Let's talk.</a></p>
-  </div>
+<div class="container">
+<div class="section-header centered" data-aos="fade-up">
+<div class="tag">Services</div>
+<h2>Three ways we engage</h2>
+<div class="divider"></div>
+<p>For organizations where a wrong hire is expensive, a slow hire is costly, and a right hire changes the trajectory.</p>
+</div>
+<div class="solutions-grid">
+<div class="solution-card" data-aos="fade-up" data-aos-delay="0">
+<div class="solution-icon"><i class="ph ph-rocket-launch"></i></div>
+<div class="solution-card-tag">01</div>
+<h3>Sprint Hire</h3>
+<p class="solution-tagline">Fast doesn't mean shallow</p>
+<ul class="solution-features">
+<li>Technical and specialist roles</li>
+<li>Multi-channel sourcing</li>
+<li>Structured evaluation framework</li>
+<li>Offer management through close</li>
+</ul>
+<p class="solution-footer">A focused, structured search for active mandates: sourcing at scale, evaluating at depth.</p>
+</div>
+<div class="solution-card" data-aos="fade-up" data-aos-delay="100">
+<div class="solution-icon"><i class="ph ph-crown-simple"></i></div>
+<div class="solution-card-tag">02</div>
+<h3>Executive Search</h3>
+<p class="solution-tagline">Some roles can't be rushed</p>
+<ul class="solution-features">
+<li>Executive and leadership search</li>
+<li>Market mapping and talent intelligence</li>
+<li>Discreet senior-level engagement</li>
+<li>Available as retained search or embedded, fractional TA leadership</li>
+</ul>
+<p class="solution-footer">We map the market before we make contact, and engage only the people worth engaging. For teams building out a talent function, we can embed a senior recruiting leader directly. Same standard, different engagement model.</p>
+</div>
+<div class="solution-card" data-aos="fade-up" data-aos-delay="200">
+<div class="solution-icon"><i class="ph ph-map-pin-line"></i></div>
+<div class="solution-card-tag">03</div>
+<h3>Remote Hire</h3>
+<p class="solution-tagline">India's engineering depth, without the entity setup</p>
+<ul class="solution-features">
+<li>Engineering, AI, and product talent based in India</li>
+<li>Evaluated to the same standard as our retained search</li>
+<li>Client contracts and pays the candidate directly</li>
+<li>Suited for distributed and remote-first teams</li>
+</ul>
+<p class="solution-footer">We source, screen, and place. You hire directly, no intermediary contracts, no local entity required on your end.</p>
+</div>
+</div>
+<p class="solutions-note">Need a custom engagement model? <a href="#contact">Let's talk.</a></p>
+</div>
 </section>
 
-<!-- ─── The Method ─── -->
-<section class="process" id="process">
-  <div class="container">
-    <div class="section-header" data-aos="fade-up">
-      <div class="tag">The Method</div>
-      <h2>The TalentCursor Method</h2>
-      <div class="divider"></div>
-      <p style="max-width:480px;">A battle-tested 15-day sprint for predictable hiring outcomes.</p>
-    </div>
-    <div class="method-outer" id="method-outer">
-      <div class="method-line-track"><div class="method-line-fill" id="method-fill"></div></div>
-      <div class="method-steps">
+<section class="n-block-sec" style="background:#F7F6F3">
+<div class="n-block-head" data-aos="fade-up">
+<div class="n-kicker" style="justify-content:flex-start"><i class="ph ph-sparkle"></i> The Shortlist</div>
+<h2>Three candidates. Three honest reads.</h2>
+<p style="font-size:1.02rem;color:#5C6470;margin-top:10px;max-width:600px">This is what comparing candidates actually looks like, not a ranked list, a recruiter's honest read on each one, side by side.</p>
+</div>
 
-        <div class="method-step">
-          <div class="method-node" data-node="0">1</div>
-          <div class="method-step-body-wrap">
-            <div class="method-step-title">We learn what actually matters</div>
-            <p class="method-step-body">We map your tech stack, culture, growth trajectory, and ideal candidate DNA. Not just requirements — strategy. Understanding the why behind every role is what separates a great hire from an average one.</p>
-          </div>
-        </div>
+<div class="n-3col" data-aos="fade-up" data-aos-delay="60">
 
-        <div class="method-step">
-          <div class="method-node" data-node="1">2</div>
-          <div class="method-step-body-wrap">
-            <div class="method-step-title">We find people worth meeting</div>
-            <p class="method-step-body">Multi-channel outreach combining LinkedIn, GitHub, communities, and our proprietary network. Every message is personalised; every pipeline is curated, not spray-and-prayed.</p>
-          </div>
-        </div>
+<div class="rec-card-ui" style="border:1px solid #EBEAE7">
+<div class="rec-card-top">
+<div class="rec-card-av" style="background:#D6E0FB;color:#2348C2">AP</div>
+<div>
+<div class="rec-card-name">Anika Patel</div>
+<div class="rec-card-role">Sr. Product Designer · 91% match</div>
+</div>
+<div class="rec-card-badge">Interview</div>
+</div>
+<div class="rec-card-quote">"She reasons through design decisions in business terms, not just craft. Pushed back well on scope when we spoke."</div>
+<div class="rec-card-foot"><i class="ph ph-user-circle"></i> Recommended by <strong>Search Lead — Design</strong></div>
+</div>
 
-        <div class="method-step">
-          <div class="method-node" data-node="2">3</div>
-          <div class="method-step-body-wrap">
-            <div class="method-step-title">We filter so you don't have to</div>
-            <p class="method-step-body">Technical screens, behavioural assessments, and culture-fit evaluations. Only the top 3–5% reach your desk. You interview people who are ready to join, not just available to talk.</p>
-          </div>
-        </div>
+<div class="rec-card-ui" style="border:1px solid #EBEAE7">
+<div class="rec-card-top">
+<div class="rec-card-av" style="background:#FBEFC2;color:#8A6D00">RK</div>
+<div>
+<div class="rec-card-name">Rohan Kapoor</div>
+<div class="rec-card-role">Product Designer · 84% match</div>
+</div>
+<div class="rec-card-badge" style="background:#8A6D00">Hold</div>
+</div>
+<div class="rec-card-quote">"Strong craft, but light on the ambiguity this role needs. Worth a second look if the brief shifts toward execution."</div>
+<div class="rec-card-foot"><i class="ph ph-user-circle"></i> Recommended by <strong>Search Lead — Design</strong></div>
+</div>
 
-        <div class="method-step">
-          <div class="method-node" data-node="3">4</div>
-          <div class="method-step-body-wrap">
-            <div class="method-step-title">We stay until the hire is real</div>
-            <p class="method-step-body">From first interview to signed offer, we guide negotiations and ensure smooth onboarding. We stay involved until your new hire's first day — and beyond.</p>
-          </div>
-        </div>
+<div class="rec-card-ui" style="border:1px solid #EBEAE7">
+<div class="rec-card-top">
+<div class="rec-card-av" style="background:#F3DCC4;color:#9A5B2E">SV</div>
+<div>
+<div class="rec-card-name">Shreya Varma</div>
+<div class="rec-card-role">Sr. Product Designer · 79% match</div>
+</div>
+<div class="rec-card-badge" style="background:#B91C1C">Pass</div>
+</div>
+<div class="rec-card-quote">"Strong portfolio, but the depth isn't there in conversation. We'd rather send you fewer people than pad the list."</div>
+<div class="rec-card-foot"><i class="ph ph-user-circle"></i> Recommended by <strong>Search Lead — Design</strong></div>
+</div>
 
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ─── Pricing ─── -->
-<section class="pricing" id="pricing">
-  <div class="container">
-    <div class="section-header centered" data-aos="fade-up">
-      <div class="tag">Pricing</div>
-      <h2>True transparent pricing</h2>
-      <div class="divider"></div>
-      <p>No hidden fees. No surprises. Designed for Indian startups — risk-free until we deliver.</p>
-    </div>
-    <div class="pricing-callout" data-aos="fade-up">
-      <strong>Indian startups want results before they pay. So do we.</strong> Our Sprint Hire model charges a flat 10% only when we successfully place a candidate — zero upfront, zero retainer, zero risk.
-    </div>
-    <div class="pricing-grid">
-
-      <div class="pricing-card" data-aos="fade-up" data-aos-delay="0">
-        <div class="pricing-name">Sprint Hire</div>
-        <div class="pricing-price">10%</div>
-        <div class="pricing-price-note">flat success fee</div>
-        <ul class="pricing-features">
-          <li>15-day delivery</li>
-          <li>Pay on success</li>
-          <li>90-day guarantee</li>
-        </ul>
-        <div class="pricing-best"><strong>Best for:</strong> Startup founders with urgent, single-role needs. Pay only on success.</div>
-      </div>
-
-      <div class="pricing-card featured" data-aos="fade-up" data-aos-delay="100">
-        <div class="pricing-popular">Most Popular</div>
-        <div class="pricing-name">Embedded Recruiter</div>
-        <div class="pricing-price">₹35K</div>
-        <div class="pricing-price-note">/month + 8% fee</div>
-        <ul class="pricing-features">
-          <li>25 hrs/week dedicated</li>
-          <li>Up to 3 roles</li>
-          <li>Weekly dashboards</li>
-        </ul>
-        <div class="pricing-best"><strong>Best for:</strong> Growth-stage teams with consistent hiring across multiple roles.</div>
-      </div>
-
-      <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="pricing-name">Leadership Search</div>
-        <div class="pricing-price">15%</div>
-        <div class="pricing-price-note">flat success fee</div>
-        <ul class="pricing-features">
-          <li>Executive search</li>
-          <li>Market mapping</li>
-          <li>Discreet outreach</li>
-        </ul>
-        <div class="pricing-best"><strong>Best for:</strong> Product companies and scale-ups building their leadership bench.</div>
-      </div>
-
-      <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="pricing-name">TA Advisory</div>
-        <div class="pricing-price">₹60K+</div>
-        <div class="pricing-price-note">/month retainer</div>
-        <ul class="pricing-features">
-          <li>TA setup &amp; optimisation</li>
-          <li>Process design</li>
-          <li>Team capability building</li>
-        </ul>
-        <div class="pricing-best"><strong>Best for:</strong> Internal TA teams scaling or optimising their hiring function.</div>
-      </div>
-
-    </div>
-    <p class="pricing-footer">All plans include weekly reporting, 90-day quality guarantee, and dedicated support. <a href="#contact">Need a custom plan? Let's talk.</a></p>
-  </div>
+</div>
 </section>
 
-<!-- ─── Built For ─── -->
 <section class="audience" id="audience">
-  <div class="container">
-    <div class="section-header centered" data-aos="fade-up">
-      <div class="tag">Built For</div>
-      <h2>Built for modern teams</h2>
-      <div class="divider"></div>
-      <p>Trusted by forward-thinking companies building in India and beyond.</p>
-    </div>
-    <div class="audience-grid">
-      <div class="audience-card" data-aos="fade-up" data-aos-delay="0">
-        <div class="audience-icon"><i class="ph ph-rocket-launch"></i></div>
-        <h3>Startup Founders</h3>
-        <p>Move fast without sacrificing quality. Build your founding team with precision and speed when it matters most.</p>
-      </div>
-      <div class="audience-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="audience-icon"><i class="ph ph-code"></i></div>
-        <h3>Tech &amp; Product Companies</h3>
-        <p>Scale your engineering and product teams with candidates who match your technical bar and culture.</p>
-      </div>
-      <div class="audience-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="audience-icon"><i class="ph ph-globe-hemisphere-west"></i></div>
-        <h3>Remote-First Teams</h3>
-        <p>Hire across geographies with structured remote interviewing, assessment, and onboarding support.</p>
-      </div>
-      <div class="audience-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="audience-icon"><i class="ph ph-buildings"></i></div>
-        <h3>Internal TA Teams</h3>
-        <p>Augment your team during peak hiring or optimise your existing processes with expert guidance.</p>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="section-header centered" data-aos="fade-up">
+<div class="tag">Built For</div>
+<h2>Built for modern teams</h2>
+<div class="divider"></div>
+<p>For organizations that treat tech, AI, and product hiring as a strategic decision, not a transactional one.</p>
+</div>
+<div class="audience-grid">
+<div class="audience-card" data-aos="fade-up" data-aos-delay="0">
+<div class="audience-icon"><i class="ph ph-rocket-launch"></i></div>
+<h3>Startup Founders</h3>
+<p>Move fast without sacrificing quality. Build your founding team with precision when it matters most.</p>
+</div>
+<div class="audience-card" data-aos="fade-up" data-aos-delay="100">
+<div class="audience-icon"><i class="ph ph-code"></i></div>
+<h3>Tech &amp; Product Companies</h3>
+<p>Scale your engineering and product teams with candidates who match your technical bar and culture.</p>
+</div>
+<div class="audience-card" data-aos="fade-up" data-aos-delay="200">
+<div class="audience-icon"><i class="ph ph-globe-hemisphere-west"></i></div>
+<h3>Growth-Stage Teams</h3>
+<p>Structured hiring support as you scale, without the overhead of building an internal TA function first.</p>
+</div>
+</div>
+</div>
 </section>
 
-<!-- ─── Contact ─── -->
 <section class="contact" id="contact">
-  <div class="container">
-    <div class="contact-wrapper">
-      <div class="contact-left" data-aos="fade-up">
-        <div class="tag">Get In Touch</div>
-        <h2>Ready to accelerate<br>your hiring?</h2>
-        <div class="divider"></div>
-        <p>Book a free 30-minute strategy call. No pitch — just an honest look at your hiring challenges and what it would take to solve them. Whether you work with us or not.</p>
-        <div class="contact-trust">
-          <div class="trust-item"><span class="trust-item-dot"></span>No commitment required</div>
-          <div class="trust-item"><span class="trust-item-dot"></span>30-minute call</div>
-          <div class="trust-item"><span class="trust-item-dot"></span>Actionable insights guaranteed</div>
-          <div class="trust-item"><span class="trust-item-dot"></span>hello@talentcursor.com</div>
-        </div>
-      </div>
-      <div class="contact-form" data-aos="fade-up" data-aos-delay="100">
-        <form>
-          <div class="form-group" data-aos="fade-up" data-aos-delay="80">
-            <label for="name">Full Name *</label>
-            <input type="text" id="name" placeholder="Jane Smith" required />
-          </div>
-          <div class="form-group" data-aos="fade-up" data-aos-delay="160">
-            <label for="email">Work Email *</label>
-            <input type="email" id="email" placeholder="jane@company.com" required />
-          </div>
-          <div class="form-group" data-aos="fade-up" data-aos-delay="240">
-            <label for="needs">What are you hiring for?</label>
-            <textarea id="needs" placeholder="e.g., We're looking for a senior product manager and two backend engineers in Q1…"></textarea>
-          </div>
-          <div class="form-submit" data-aos="fade-up" data-aos-delay="320">
-            <button type="submit" class="btn btn-primary">Book Free Strategy Call →</button>
-          </div>
-          <p class="form-guarantee"><span>✓</span> No commitment &nbsp;•&nbsp; <span>✓</span> 30 minutes &nbsp;•&nbsp; <span>✓</span> Actionable insights</p>
-        </form>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="contact-wrapper">
+<div class="contact-left" data-aos="fade-up">
+<div class="tag">Get In Touch</div>
+<h2>Let's talk about<br>the right hire</h2>
+<div class="divider"></div>
+<p>We work with a focused number of clients at any time. Not because of capacity, but because the work requires it. If you have a mandate worth getting right, we would like to hear about it.</p>
+<div class="contact-trust">
+<div class="trust-item"><span class="trust-item-dot"></span>No commitment required</div>
+<div class="trust-item"><span class="trust-item-dot"></span>30-minute call</div>
+<div class="trust-item"><span class="trust-item-dot"></span>hello@talentcursor.com</div>
+</div>
+</div>
+<div class="contact-form" data-aos="fade-up" data-aos-delay="100">
+<form id="contact-form">
+<div class="form-group">
+<label for="name">Full Name *</label>
+<input type="text" id="name" name="name" placeholder="Jane Smith" required />
+</div>
+<div class="form-group">
+<label for="email">Work Email *</label>
+<input type="email" id="email" name="email" placeholder="jane@company.com" required />
+</div>
+<div class="form-group">
+<label for="needs">What are you hiring for?</label>
+<textarea id="needs" name="message" placeholder="Role, context, what matters most to get right..."></textarea>
+</div>
+<div class="form-submit">
+<button type="submit" class="btn btn-primary">Start a Conversation →</button>
+</div>
+</form>
+</div>
+</div>
+</div>
 </section>
 
-<!-- ─── Footer ─── -->
+
 <footer>
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-logo">Talent<em>Cursor</em><span class="logo-dot"></span></div>
-        <p>AI-assisted sourcing with structured human evaluation. Fewer candidates — every one worth your time, in 15 days.</p>
-        <div class="footer-social">
-          <a href="#" title="LinkedIn">in</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Solutions</h4>
-        <ul>
-          <li><a href="#services">Sprint Hire</a></li>
-          <li><a href="#services">Embedded Recruiter</a></li>
-          <li><a href="#services">Leadership Search</a></li>
-          <li><a href="#services">TA Advisory</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#process">How It Works</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="mailto:hello@talentcursor.com">hello@talentcursor.com</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2025 TalentCursor. All rights reserved.</span>
-      <div class="footer-legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-      </div>
-    </div>
-  </div>
+<div class="dark-glow" style="top:-260px"></div>
+<div class="container">
+<div class="footer-top">
+<div class="footer-brand">
+<div class="footer-logo">Talent<em>Cursor</em><span class="logo-cursor"></span></div>
+<p>Built on a recruiting engine. Run by search specialists across Tech, AI, and Product.</p>
+<div class="footer-social"><a href="https://www.linkedin.com/company/talentcursor/" title="LinkedIn" target="_blank" rel="noopener noreferrer">in</a></div>
+</div>
+<div class="footer-col">
+<h4>Solutions</h4>
+<ul>
+<li><a href="#services">Sprint Hire</a></li>
+<li><a href="#services">Executive Search</a></li>
+<li><a href="#services">Remote Hire</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Company</h4>
+<ul>
+<li><a href="#process">How It Works</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+<li><a href="mailto:hello@talentcursor.com">hello@talentcursor.com</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2026 TalentCursor. All rights reserved.</span>
+<div class="footer-legal"><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-use.html">Terms of Use</a></div>
+</div>
+<div class="footer-entity">TalentCursor is a brand owned and operated by Hirefliq Tech Solutions Pvt. Ltd.</div>
+</div>
 </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  // AOS
-  AOS.init({ duration:650, easing:'ease-out-cubic', once:true, offset:60 });
+AOS.init({ duration:650, easing:'ease-out-cubic', once:true, offset:60 });
 
-  // Navbar
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+// Product window: multi-role interactive switching
+const pwRoles = [
+  {
+    tabLabel: "Sr. Product Designer",
+    url: "talentcursor · internal · sr-product-designer",
+    title: "Sr. Product Designer",
+    sub: "Series B Fintech · Bangalore",
+    lead: { name: "Search Lead — Design", initials: "DL" },
+    funnel: [847, 203, 31, 4],
+    candidates: [
+      { initials:"AP", name:"Anika Patel", role:"Sr. Product Designer · 6 yrs", verdict:"Interview" },
+      { initials:"RK", name:"Rohan Kapoor", role:"Product Designer · 5 yrs", verdict:"Interview" }
+    ],
+    detail: {
+      name:"Anika Patel",
+      role:"Sr. Product Designer · Bangalore · Open to relocation",
+      match:"91% match",
+      dims:[
+        {label:"Domain fit", val:"Fintech, 3+ yrs", ok:true},
+        {label:"Leadership signal", val:"Owns decisions", ok:true},
+        {label:"Compensation", val:"Within band", ok:true},
+        {label:"Interview read", val:"Strong, recruiter-led", ok:true}
+      ],
+      signals:[
+        "<strong>✓ Payments domain depth.</strong> 3+ years across two fintech companies.",
+        "<strong>✗ Mobile-native experience limited.</strong> Non-blocking given role scope."
+      ],
+      note:"\"Articulates design decisions in business terms. She reasons, not just crafts. References confirmed she pushed back well on scope.\""
+    }
+  },
+  {
+    tabLabel: "Head of Engineering",
+    url: "talentcursor · internal · head-of-engineering",
+    title: "Head of Engineering",
+    sub: "Series A SaaS · Remote-first",
+    lead: { name: "Search Lead — Engineering", initials: "EL" },
+    funnel: [612, 148, 22, 3],
+    candidates: [
+      { initials:"SM", name:"Sandeep Mehta", role:"Eng. Manager · 9 yrs", verdict:"Interview" },
+      { initials:"PV", name:"Priya Venkatesh", role:"Staff Engineer · 8 yrs", verdict:"Interview" }
+    ],
+    detail: {
+      name:"Sandeep Mehta",
+      role:"Eng. Manager · Pune · Open to remote",
+      match:"88% match",
+      dims:[
+        {label:"Domain fit", val:"B2B SaaS, 9 yrs", ok:true},
+        {label:"Leadership signal", val:"Scaled 4 → 22", ok:true},
+        {label:"Compensation", val:"Within band", ok:true},
+        {label:"Interview read", val:"Strong on team health", ok:true}
+      ],
+      signals:[
+        "<strong>✓ Scaled a team 4 to 22.</strong> Built the engineering org through two funding rounds.",
+        "<strong>✗ No direct fintech experience.</strong> Strong adjacent domain in B2B SaaS."
+      ],
+      note:"\"Talks about engineering decisions in terms of team health, not just velocity. References specifically praised his 1:1 culture.\""
+    }
+  },
+  {
+    tabLabel: "GTM Lead",
+    url: "talentcursor · internal · gtm-lead",
+    title: "GTM Lead",
+    sub: "Seed-stage B2B · Bangalore",
+    lead: { name: "Search Lead — GTM", initials: "GL" },
+    funnel: [398, 96, 17, 3],
+    candidates: [
+      { initials:"NK", name:"Neha Kulkarni", role:"GTM Lead · 7 yrs", verdict:"Interview" },
+      { initials:"AJ", name:"Arjun Jain", role:"Growth Lead · 6 yrs", verdict:"Interview" }
+    ],
+    detail: {
+      name:"Neha Kulkarni",
+      role:"GTM Lead · Bangalore · Open to relocation",
+      match:"93% match",
+      dims:[
+        {label:"Domain fit", val:"B2B GTM, 7 yrs", ok:true},
+        {label:"Leadership signal", val:"Built GTM from zero", ok:true},
+        {label:"Compensation", val:"Slightly above band", ok:false},
+        {label:"Interview read", val:"Sharp on positioning", ok:true}
+      ],
+      signals:[
+        "<strong>✓ Built GTM from zero at two startups.</strong> Both reached Series A within 18 months of her joining.",
+        "<strong>✗ Limited enterprise sales exposure.</strong> Background skews PLG and SMB."
+      ],
+      note:"\"Sharp on positioning. She rewrote the founder's pitch in our first call without being asked. That kind of instinct is rare.\""
+    }
+  }
+];
 
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', function(e) {
-      const t = document.querySelector(this.getAttribute('href'));
-      if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 76, behavior:'smooth' }); }
-    });
+// Typewriter effect for the product-window URL bar — ties back to the TalentCursor cursor motif
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let pwTypeInterval = null;
+function typewriteUrl(el, text) {
+  if (pwTypeInterval) clearInterval(pwTypeInterval);
+  if (prefersReducedMotion) { el.textContent = text; return; }
+  el.innerHTML = '<span class="pw-typing-cursor"></span>';
+  let i = 0;
+  pwTypeInterval = setInterval(() => {
+    i++;
+    el.innerHTML = text.slice(0, i) + '<span class="pw-typing-cursor"></span>';
+    if (i >= text.length) { clearInterval(pwTypeInterval); pwTypeInterval = null; }
+  }, 16);
+}
+
+function renderRole(idx) {
+  const r = pwRoles[idx];
+  typewriteUrl(document.getElementById('pw-url'), r.url);
+  document.getElementById('pw-mandate-title').textContent = r.title;
+  document.getElementById('pw-mandate-sub').textContent = r.sub;
+  document.getElementById('pw-recruiter-name').textContent = r.lead.name;
+  document.getElementById('pw-recruiter-av').textContent = r.lead.initials;
+
+  // funnel count-up
+  const funnelEls = document.querySelectorAll('#pw-funnel-row .pw-fnum');
+  funnelEls.forEach((el, i) => {
+    const target = r.funnel[i];
+    el.dataset.target = target;
+    let current = 0;
+    const step = Math.max(target / 24, 1);
+    el.textContent = '0';
+    const t = setInterval(() => {
+      current += step;
+      if (current >= target) { current = target; clearInterval(t); }
+      el.textContent = Math.round(current).toLocaleString();
+    }, 20);
   });
 
-  // Count-up
-  const countEls = document.querySelectorAll('.stat-num[data-count]');
-  const cObs = new IntersectionObserver(entries => {
+  // candidates
+  const candWrap = document.getElementById('pw-candidates');
+  candWrap.innerHTML = r.candidates.map((c, i) => `
+    <div class="pw-candidate${i===0 ? ' sel' : ''}" data-cand="${i}">
+      <div class="pw-cand-top">
+        <div class="pw-avatar">${c.initials}</div>
+        <div><div class="pw-cand-name">${c.name}</div><div class="pw-cand-role">${c.role}</div></div>
+        <span class="pw-verdict">${c.verdict}</span>
+      </div>
+    </div>
+  `).join('');
+
+  renderDetail(r.detail);
+
+  candWrap.querySelectorAll('.pw-candidate').forEach(card => {
+    card.addEventListener('click', function() {
+      candWrap.querySelectorAll('.pw-candidate').forEach(c => c.classList.remove('sel'));
+      this.classList.add('sel');
+      // for demo purposes both candidates share the role's primary detail panel
+      renderDetail(r.detail);
+    });
+  });
+}
+
+function renderDetail(d) {
+  const el = document.getElementById('pw-detail');
+  el.innerHTML = `
+    <div class="pw-detail-name">${d.name}</div>
+    <div class="pw-detail-role">${d.role}</div>
+    <div class="pw-badge-row">
+      <span class="pw-badge pw-badge-primary">${d.match}</span>
+      <span class="pw-badge pw-badge-soft">Recommended for interview</span>
+    </div>
+    <div class="pw-dims">
+      ${d.dims.map(dim => `
+        <div class="pw-dim">
+          <div class="pw-dim-label">${dim.label}</div>
+          <div class="pw-dim-val"><span class="${dim.ok ? 'ok' : 'warn'}">${dim.ok ? '✓' : '!'}</span> ${dim.val}</div>
+        </div>
+      `).join('')}
+    </div>
+    <div class="pw-section-label">Signal Analysis</div>
+    ${d.signals.map(s => `<div class="pw-signal">${s}</div>`).join('')}
+    <div class="pw-section-label" style="margin-top:12px">Recruiter Note</div>
+    <div class="pw-signal">${d.note}</div>
+  `;
+}
+
+document.querySelectorAll('.pw-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.pw-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    renderRole(+this.dataset.role);
+  });
+});
+
+// auto-rotate tabs every 6s unless user has interacted
+let pwAutoIdx = 0;
+let pwUserInteracted = false;
+document.querySelectorAll('.pw-tab').forEach(t => t.addEventListener('click', () => { pwUserInteracted = true; }));
+setInterval(() => {
+  if (pwUserInteracted) return;
+  pwAutoIdx = (pwAutoIdx + 1) % pwRoles.length;
+  const tabs = document.querySelectorAll('.pw-tab');
+  tabs.forEach(t => t.classList.remove('active'));
+  tabs[pwAutoIdx].classList.add('active');
+  renderRole(pwAutoIdx);
+}, 6000);
+
+// initial render once funnel numbers are in view
+const pwInit = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { renderRole(0); pwInit.unobserve(e.target); }
+  });
+}, { threshold: 0.3 });
+const pwWindowEl = document.querySelector('.product-window');
+if (pwWindowEl) pwInit.observe(pwWindowEl);
+
+// Source channels: animate counts + bars on scroll into view
+const sourceChannelsEl = document.getElementById('source-channels');
+if (sourceChannelsEl) {
+  const sIO = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
-      const el = e.target, end = +el.dataset.count, suf = el.dataset.suffix || '';
-      let t0;
-      const step = ts => {
-        if (!t0) t0 = ts;
-        const p = Math.min((ts - t0) / 1200, 1);
-        el.textContent = Math.round(p * end) + suf;
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-      cObs.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-  countEls.forEach(el => cObs.observe(el));
-
-  // Method timeline
-  const methodOuter = document.getElementById('method-outer');
-  const methodFill = document.getElementById('method-fill');
-  const nodes = document.querySelectorAll('.method-node');
-  if (methodOuter) {
-    new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        methodFill.style.width = '100%';
-        nodes.forEach((n, i) => setTimeout(() => n.classList.add('popped'), 150 + i * 280));
-        e.target._obs && e.target._obs.unobserve(e.target);
+      sourceChannelsEl.querySelectorAll('.source-channel').forEach((ch, i) => {
+        const countEl = ch.querySelector('.source-channel-count');
+        const barEl = ch.querySelector('.source-channel-bar');
+        const target = +countEl.dataset.count;
+        setTimeout(() => { barEl.style.width = barEl.dataset.w + '%'; }, i * 120);
+        let current = 0;
+        const step = Math.max(target / 30, 1);
+        const t = setInterval(() => {
+          current += step;
+          if (current >= target) { current = target; clearInterval(t); }
+          countEl.textContent = Math.round(current);
+        }, 18);
       });
-    }, { threshold: 0.25 }).observe(methodOuter);
-  }
-
-  // HAI divider
-  const haiCols = document.getElementById('hai-cols');
-  const haiDiv = document.getElementById('hai-divider');
-  if (haiCols && haiDiv) {
-    new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => haiDiv.classList.add('vis'), 420); } });
-    }, { threshold: 0.3 }).observe(haiCols);
-  }
-
-  // Form
-  const form = document.querySelector('form');
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const btn = this.querySelector('button[type="submit"]');
-      btn.textContent = '✓ Message sent!';
-      btn.style.cssText = 'background:#4caf87;box-shadow:0 4px 16px rgba(76,175,135,.35)';
-      setTimeout(() => { btn.textContent = 'Book Free Strategy Call →'; btn.style.cssText = ''; }, 3000);
+      sIO.unobserve(sourceChannelsEl);
     });
-  }
+  }, { threshold: 0.3 });
+  sIO.observe(sourceChannelsEl);
+}
+
+// Stats strip: count up on scroll into view (same pattern as funnel/source-channel counters)
+const tcMetricsEl = document.getElementById('tc-metrics');
+if (tcMetricsEl) {
+  const tcIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      tcMetricsEl.querySelectorAll('.tc-metric-num[data-target]').forEach(el => {
+        const target = +el.dataset.target;
+        const suffix = el.dataset.suffix || '';
+        let current = 0;
+        const step = Math.max(target / 36, 1);
+        const t = setInterval(() => {
+          current += step;
+          if (current >= target) { current = target; clearInterval(t); }
+          el.textContent = Math.round(current) + suffix;
+        }, 20);
+      });
+      tcIO.unobserve(tcMetricsEl);
+    });
+  }, { threshold: 0.4 });
+  tcIO.observe(tcMetricsEl);
+}
+
+const navbar = document.getElementById('navbar');
+function updateNavbar() {
+  const heroEl = document.querySelector('.n-hero');
+  const heroHeight = heroEl ? heroEl.offsetHeight : 0;
+  const stillOverHero = window.scrollY < (heroHeight - 80);
+  navbar.classList.toggle('on-dark', stillOverHero);
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+}
+window.addEventListener('scroll', updateNavbar);
+updateNavbar();
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+a.addEventListener('click', function(e) {
+const t = document.querySelector(this.getAttribute('href'));
+if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 76, behavior:'smooth' }); }
+});
+});
+const haiCols = document.getElementById('hai-cols');
+const haiDiv = document.getElementById('hai-divider');
+if (haiCols && haiDiv) {
+new IntersectionObserver(entries => {
+entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => haiDiv.classList.add('vis'), 420); } });
+}, { threshold: 0.3 }).observe(haiCols);
+}
+const form = document.getElementById('contact-form');
+if (form) {
+form.addEventListener('submit', async function(e) {
+e.preventDefault();
+const btn = this.querySelector('button[type="submit"]');
+const originalText = btn.textContent;
+const originalStyle = btn.style.cssText;
+btn.textContent = 'Sending...';
+btn.disabled = true;
+try {
+  // Replace YOUR_FORM_ID below with your real Formspree endpoint (formspree.io, free tier)
+  const response = await fetch('https://formspree.io/f/xdarnbyq', {
+    method: 'POST',
+    body: new FormData(this),
+    headers: { 'Accept': 'application/json' }
+  });
+  if (!response.ok) throw new Error('Submission failed');
+  btn.textContent = '✓ Message sent!';
+  btn.style.cssText = 'background:#4caf87;box-shadow:0 4px 16px rgba(76,175,135,.35)';
+  this.reset();
+} catch (err) {
+  btn.textContent = 'Something went wrong — try again';
+  btn.style.cssText = 'background:#B91C1C;box-shadow:0 4px 16px rgba(185,28,28,.35)';
+} finally {
+  btn.disabled = false;
+  setTimeout(() => { btn.textContent = originalText; btn.style.cssText = originalStyle; }, 3500);
+}
+});
+}
 </script>
 </body>
-  </html>
+</html>
